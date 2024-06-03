@@ -1,5 +1,5 @@
 import 'package:easy_buy_ar/features/authentication/screens/splash_screen/splash_screen.dart';
-import 'package:easy_buy_ar/utils/theme.dart';
+import 'package:easy_buy_ar/utils/custom_theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

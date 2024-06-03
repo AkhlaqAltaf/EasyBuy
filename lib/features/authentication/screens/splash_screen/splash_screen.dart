@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:easy_buy_ar/features/authentication/screens/login_Screen/login.dart';
-import 'package:easy_buy_ar/utils/theme.dart';
+
+import 'package:easy_buy_ar/utils/helper_functions/helper_function.dart';
 import 'package:flutter/material.dart';
 
 
@@ -37,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
             const Spacer(flex: 1),
             Padding(
               padding: const EdgeInsets.only(bottom: 25.0), 
-               child: AppTheme.getSpinKit(context), 
+               child: HelperFunctions.getSpinKit(context), 
             ),
           ],
         ),
