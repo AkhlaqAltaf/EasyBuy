@@ -11,7 +11,7 @@ urlpatterns += [
 ]
 urlpatterns += [
     path('accounts/', include('src.apis.accounts.urls', namespace='accounts/')),
-
+    path('product/', include('src.apis.product.urls', namespace='product/')),
 
 ]
 

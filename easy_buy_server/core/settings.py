@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
     # APPS
     'src.apps.accounts.apps.AccountsAppConfig',
+    'src.apps.product.apps.ProductAppConfig',
 
     # DRF APPS
     'rest_framework',
