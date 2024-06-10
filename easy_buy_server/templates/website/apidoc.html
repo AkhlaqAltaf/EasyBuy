@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+
+{% block title %}API Documentation - Easy Buy with 3D Augmented Reality{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center">API Documentation</h1>
+
+    <p>
+        <a href="{% url 'website:api' %}" class="btn btn-outline-light">Access API View</a>
+    </p>
+
+    <section id="introduction" class="my-4">
+        <h2>Introduction</h2>
+        <p>
+            Welcome to the Easy Buy with 3D Augmented Reality API documentation. This page provides details about the available API endpoints, their usage, and examples. Our APIs allow you to seamlessly integrate with the Easy Buy system, enabling efficient and immersive home decor shopping experiences.
+        </p>
+    </section>
+
+    <section id="authentication" class="my-4">
+        <h2>Authentication</h2>
+        <p>
+            All API requests require authentication. You must include a valid token in the Authorization header of each request.
+        </p>
+        <pre><code class="text-light">Authorization: Bearer &lt;your_token&gt;</code></pre>
+    </section>
+
+    <section id="endpoints" class="my-4">
+        <h2>API Endpoints</h2>
+
+        <h3>1. Registration and User Login</h3>
+        <h4>1.1 Register User</h4>
+        <p>Endpoint to register a new user.</p>
+        <pre><code class="text-light">POST /api/accounts/register/</code></pre>
+        <p>Request Body:</p>
+        <pre><code class="text-light">{
+    "email": "user@example.com",
+    "password": "password123"
+}</code></pre>
+        <p>Response:</p>
+        <pre><code class="text-light">{
+    "id": 1,
+    "email": "user@example.com",
+    "verification_code": "1234"
+}</code></pre>
+
+        <h4>1.2 Verify Email</h4>
+        <p>Endpoint to verify the user's email with a verification code.</p>
+        <pre><code class="text-light">POST /api/accounts/verify-email/</code></pre>
+        <p>Request Body:</p>
+        <pre><code class="text-light">{
+    "email": "user@example.com",
+    "verification_code": "1234"
+}</code></pre>
+        <p>Response:</p>
+        <pre><code class="text-light">{
+    "status": "success",
+    "message": "Email verified successfully."
+}</code></pre>
+
+        <h4>1.3 Login User</h4>
+        <p>Endpoint to log in a user and retrieve a token.</p>
+        <pre><code class="text-light">POST /api/accounts/login/</code></pre>
+        <p>Request Body:</p>
+        <pre><code class="text-light">{
+    "email": "user@example.com",
+    "password": "password123"
+}</code></pre>
+        <p>Response:</p>
+        <pre><code class="text-light">{
+    "token": "your_token_here"
+}</code></pre>
+
+        <h3>2. Product Management</h3>
+        <h4>2.1 List Products</h4>
+        <p>Endpoint to list all products.</p>
+        <pre><code class="text-light">GET /api/products/</code></pre>
+        <p>Response:</p>
+        <pre><code class="text-light">[
+    {
+        "id": 1,
+        "name": "Sofa",
+        "price": 499.99
+    },
+    {
+        "id": 2,
+        "name": "Coffee Table",
+        "price": 149.99
+    }
+]</code></pre>
+
+        <h4>2.2 Add Product</h4>
+        <p>Endpoint to add a new product.</p>
+        <pre><code class="text-light">POST /api/products/</code></pre>
+        <p>Request Body:</p>
+        <pre><code class="text-light">{
+    "name": "Armchair",
+    "price": 299.99
+}</code></pre>
+        <p>Response:</p>
+        <pre><code class="text-light">{
+    "id": 3,
+    "name": "Armchair",
+    "price": 299.99
+}</code></pre>
+
+        <h3>3. Augmented Reality Visualization</h3>
+        <h4>3.1 Get AR Model</h4>
+        <p>Endpoint to get the AR model for a product.</p>
+        <pre><code class="text-light">GET /api/ar/models/{product_id}/</code></pre>
+        <p>Response:</p>
+        <pre><code class="text-light">{
+    "product_id": 1,
+    "model_url": "http://example.com/ar/sofa_model.glb"
+}</code></pre>
+
+        <h3>4. Order Management</h3>
+        <h4>4.1 List Orders</h4>
+        <p>Endpoint to list all orders.</p>
+        <pre><code class="text-light">GET /api/orders/</code></pre>
+        <p>Response:</p>
+        <pre><code class="text-light">[
+    {
+        "id": 1,
+        "user_id": 1,
+        "product_id": 1,
+        "status": "Processing"
+    }
+]</code></pre>
+
+        <h4>4.2 Create Order</h4>
+        <p>Endpoint to create a new order.</p>
+        <pre><code class="text-light">POST /api/orders/</code></pre>
+        <p>Request Body:</p>
+        <pre><code class="text-light">{
+    "user_id": 1,
+    "product_id": 2,
+    "quantity": 1
+}</code></pre>
+        <p>Response:</p>
+        <pre><code class="text-light">{
+    "id": 2,
+    "user_id": 1,
+    "product_id": 2,
+    "status": "Processing"
+}</code></pre>
+
+        <h3>5. User Reviews and Ratings</h3>
+        <h4>5.1 List Reviews</h4>
+        <p>Endpoint to list all reviews for a product.</p>
+        <pre><code class="text-light">GET /api/reviews/{product_id}/</code></pre>
+        <p>Response:</p>
+        <pre><code class="text-light">[
+    {
+        "id": 1,
+        "user_id": 1,
+        "product_id": 1,
+        "rating": 5,
+        "comment": "Great product!"
+    }
+]</code></pre>
+
+        <h4>5.2 Add Review</h4>
+        <p>Endpoint to add a new review.</p>
+        <pre><code class="text-light">POST /api/reviews/</code></pre>
+        <p>Request Body:</p>
+        <pre><code class="text-light">{
+    "user_id": 1,
+    "product_id": 2,
+    "rating": 4,
+    "comment": "Very comfortable!"
+}</code></pre>
+        <p>Response:</p>
+        <pre><code class="text-light">{
+    "id": 2,
+    "user_id": 1,
+    "product_id": 2,
+    "rating": 4,
+    "comment": "Very comfortable!"
+}</code></pre>
+
+        <h3>6. Payment Processing</h3>
+        <h4>6.1 Create Payment</h4>
+        <p>Endpoint to process a payment.</p>
+        <pre><code class="text-light">POST /api/payments/</code></pre>
+        <p>Request Body:</p>
+        <pre><code class="text-light">{
+    "order_id": 1,
+    "amount": 499.99,
+    "payment_method": "credit_card"
+}</code></pre>
+        <p>Response:</p>
+        <pre><code class="text-light">{
+    "status": "success",
+    "transaction_id": "txn_123456"
+}</code></pre>
+
+        <h3>7. Email and Notifications</h3>
+        <h4>7.1 Get Notifications</h4>
+        <p>Endpoint to get user notifications.</p>
+        <pre><code class="text-light">GET /api/notifications/</code></pre>
+        <p>Response:</p>
+        <pre><code class="text-light">[
+    {
+        "id": 1,
+        "user_id": 1,
+        "message": "Your order has been shipped.",
+        "timestamp": "2024-06-10T10:00:00Z"
+    }
+]</code></pre>
+    </section>
+</div>
+{% endblock %}
