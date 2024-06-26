@@ -11,24 +11,10 @@ class LoginFooterWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text('Continue With'),
-        const SizedBox(height: 30.0),
-        SocialIconFooter(),
-        const SizedBox(height: 10.0),
-        TextButton(
-          onPressed: () => Get.to(() => const SignupScreen()),
-          child: const Text.rich(
-            TextSpan(
-              text: "Don't Have an Account? ",
-              children: [
-                TextSpan(
-                  text: 'SignUp',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ),
-        ),
+       
+        
+        
+      
       ],
     );
   }

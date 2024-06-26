@@ -1,4 +1,8 @@
+import 'package:easy_buy_app/presentation_layer/auth_screens/login_Screen/login.dart';
+import 'package:easy_buy_app/presentation_layer/auth_screens/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -17,7 +21,7 @@ class LoginForm extends StatelessWidget {
                 labelText: "Email",
                 hintText: "Email",
                 border: OutlineInputBorder(),
-              ),  
+              ),
             ),
             SizedBox(
               height: 30.0,
@@ -29,9 +33,7 @@ class LoginForm extends StatelessWidget {
                 hintText: "Password",
                 border: OutlineInputBorder(),
                 suffixIcon: IconButton(
-                  onPressed: () {
-                    
-                  },
+                  onPressed: () {},
                   icon: Icon(Icons.remove_red_eye_sharp),
                 ),
               ),
@@ -60,6 +62,22 @@ class LoginForm extends StatelessWidget {
                   backgroundColor: Colors.blue.withOpacity(0.7),
                 ),
                 child: Text('LOGIN'),
+              ),
+            ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: TextButton(
+                  onPressed: () => Get.to(() => const SignupScreen()),
+                  child: Text.rich(
+                    TextSpan(children: [
+                      TextSpan(
+                          text: "Don't have an account?",
+                          style: Theme.of(context).textTheme.bodyText1),
+                      TextSpan(text: ' Signup'),
+                    ]),
+                  ),
+                ),
               ),
             ),
           ],

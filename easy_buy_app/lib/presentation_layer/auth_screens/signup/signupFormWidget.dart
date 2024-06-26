@@ -1,6 +1,9 @@
 
+import 'package:easy_buy_app/presentation_layer/auth_screens/login_Screen/login.dart';
 import 'package:easy_buy_app/presentation_layer/utils/constant/text_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 
 
@@ -18,14 +21,7 @@ class signupFormWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextField(
-              decoration: InputDecoration(
-                label: Text(SignupFullName),
-                prefixIcon: Icon(Icons.person_outline_outlined),
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20.0),
+            
             TextField(
               decoration: InputDecoration(
                 label: Text(SignUpEmail),
@@ -37,7 +33,9 @@ class signupFormWidget extends StatelessWidget {
             TextField(
               decoration: InputDecoration(
                 label: Text(SignupPhone),
-                prefixIcon: Icon(Icons.numbers),
+                prefixIcon: Icon(Icons.fingerprint),
+                suffixIcon: Icon(Icons.remove_red_eye_outlined),
+                
                 border: OutlineInputBorder(),
               ),
             ),
@@ -57,6 +55,7 @@ class signupFormWidget extends StatelessWidget {
                 child: Text("Sign Up".toUpperCase()),
               ),
             ),
+             
     
           ],
         ),

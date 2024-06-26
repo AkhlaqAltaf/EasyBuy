@@ -1,4 +1,4 @@
-import 'package:easy_buy_app/presentation_layer/home_screen/bottomnav.dart';
+import 'package:easy_buy_app/presentation_layer/splash_screen/splash_screen.dart';
 import 'package:easy_buy_app/presentation_layer/utils/custom_theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,7 +14,7 @@ class App extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      home: BottomNavigation(),
+      home: SplashScreen(),
     );
   }
 }
