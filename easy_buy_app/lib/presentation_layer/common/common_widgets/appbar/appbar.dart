@@ -23,6 +23,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
+
+
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.0),
       child: AppBar(
