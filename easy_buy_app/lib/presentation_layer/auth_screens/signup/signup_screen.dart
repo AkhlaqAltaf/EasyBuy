@@ -22,27 +22,26 @@ class SignupScreen extends StatelessWidget {
             child: Column(
               
               children: [
-                SizedBox(height: 30.0),
+                
                 FormHeaderWidget(
                   
                   title: SignupHeaderTitle,
                   
-                  subtitle: SignupHeaderSubtitle,
+                
                 ),
+                SizedBox(height: 20.0),
                 signupFormWidget(),
                 Column(
                   children: [
-                    const Text('OR'),
-                    SizedBox(height: 20.0),
-                    SocialIconFooter(),
+                   
                     TextButton(
                       onPressed: () => Get.to(() => const LoginScreen()),
                       child: Text.rich(
                         TextSpan(children: [
                           TextSpan(
-                              text: 'Already have an account? ',
+                              text: "Don't have an account?",
                               style: Theme.of(context).textTheme.bodyText1),
-                          TextSpan(text: 'Login'),
+                          TextSpan(text: ' Login'),
                         ]),
                       ),
                     ),
