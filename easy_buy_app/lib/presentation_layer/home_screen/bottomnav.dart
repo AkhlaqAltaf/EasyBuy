@@ -1,4 +1,4 @@
-import 'package:easy_buy_app/home.dart';
+import 'package:easy_buy_app/presentation_layer/home_screen/home.dart';
 import 'package:easy_buy_app/presentation_layer/utils/helper_functions/helper_function.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

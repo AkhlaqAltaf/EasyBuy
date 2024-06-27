@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class FormHeaderWidget extends StatelessWidget {
   const FormHeaderWidget({
-   
     required this.title,
     super.key,
   });
@@ -11,13 +10,9 @@ class FormHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        SizedBox(height: size.height * 0.2),
-        Text(title, style: Theme.of(context).textTheme.headlineLarge),
-       
+        Image(image: AssetImage("assets/logo/logo.png")),
       ],
     );
   }

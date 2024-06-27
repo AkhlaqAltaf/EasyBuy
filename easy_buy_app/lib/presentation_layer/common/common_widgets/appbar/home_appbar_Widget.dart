@@ -14,9 +14,9 @@ class CustomHomeAppBar extends StatelessWidget {
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Good Day For Shopping',
+          Text('Good Day For Shopping With',
               style: Theme.of(context).textTheme.labelMedium!),
-          Text('Hi', style: Theme.of(context).textTheme.headlineSmall!),
+          Text('Easy Buy', style: Theme.of(context).textTheme.headlineSmall!),
         ],
       ),
       actions: [
