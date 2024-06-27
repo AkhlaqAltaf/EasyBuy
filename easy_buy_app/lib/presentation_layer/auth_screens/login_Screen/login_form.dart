@@ -79,7 +79,7 @@ class LoginForm extends StatelessWidget {
                     TextSpan(children: [
                       TextSpan(
                           text: "Don't have an account?",
-                          style: Theme.of(context).textTheme.bodyText1),
+                          style: Theme.of(context).textTheme.bodyLarge),
                       TextSpan(text: ' Signup'),
                     ]),
                   ),

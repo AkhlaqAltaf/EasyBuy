@@ -1,4 +1,5 @@
 import 'package:easy_buy_app/presentation_layer/common/common_widgets/categories_section/category_row_widgets.dart';
+import 'package:easy_buy_app/presentation_layer/common/common_widgets/drawer/drawer.dart';
 import 'package:easy_buy_app/presentation_layer/common/common_widgets/text_widgets/section_heading.dart';
 import 'package:easy_buy_app/presentation_layer/home_screen/header_section_container.dart';
 import 'package:easy_buy_app/presentation_layer/home_screen/promo_slider.dart';
@@ -22,6 +23,7 @@ class HomeScreen extends StatelessWidget {
       {'name': 'Curtains', 'icon': Icons.blinds},
     ];
     return Scaffold(
+      drawer: drawer(context),
       body: SingleChildScrollView(
         child: Column(
           children: [

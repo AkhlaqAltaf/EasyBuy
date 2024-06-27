@@ -12,16 +12,16 @@ class HeaderContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 230,
+      height: MediaQuery.of(context).size.height / 3.4,
       child: Column(
         children: [
           CustomHomeAppBar(),
-          SizedBox(height: AppSizes.spaceBtwItems+5.0),
+          SizedBox(height: AppSizes.spaceBtwItems + 5.0),
           HomeSearchContainer(text: 'Search'),
-          SizedBox(height: AppSizes.spaceBtwItems+5.0),
+          SizedBox(height: AppSizes.spaceBtwItems + 5.0),
           Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: AppSizes.defaultSpace),
+            padding:
+                const EdgeInsets.symmetric(horizontal: AppSizes.defaultSpace),
             child: HeaderSectionHeadings(
               title: 'Special Offers',
               showActionButton: true,

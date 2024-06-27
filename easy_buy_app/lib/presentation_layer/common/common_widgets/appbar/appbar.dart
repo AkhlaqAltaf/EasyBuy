@@ -28,6 +28,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.0),
+      
       child: AppBar(
         automaticallyImplyLeading: true,
         leading: showBackArrow
