@@ -1,5 +1,6 @@
 import 'package:easy_buy_app/presentation_layer/auth_screens/login_Screen/login.dart';
 import 'package:easy_buy_app/presentation_layer/auth_screens/signup/signup_screen.dart';
+import 'package:easy_buy_app/presentation_layer/home_screen/bottomnav.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -57,7 +58,12 @@ class LoginForm extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => BottomNavigation()));
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue.withOpacity(0.7),
                 ),

@@ -47,21 +47,19 @@ class HomeScreen extends StatelessWidget {
                   CategoryRow(categories: categories.sublist(4, 8)),
                 ],
               ),
-        ),
-        Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: AppSizes.defaultSpace),
-            child: HeaderSectionHeadings(
-              title: 'Most Popular',
-              showActionButton: true,
             ),
-          ),
-        Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: CategoryList(),
-      ),
-       
-      
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: AppSizes.defaultSpace),
+              child: HeaderSectionHeadings(
+                title: 'Most Popular',
+                showActionButton: true,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CategoryList(),
+            ),
           ],
         ),
       ),
