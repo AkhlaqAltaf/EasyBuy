@@ -4,3 +4,4 @@ drf-yasg
 django-cors-headers
 djangorestframework
 django-allauth
+environs
