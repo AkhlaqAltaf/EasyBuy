@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:easy_buy_app/apis/urls/urls.dart';
 import 'package:easy_buy_app/data_layer/local_storage/auth_store.dart';
-import 'package:easy_buy_app/presentation_layer/auth_screens/login_screen/login_screen.dart';
 import 'package:easy_buy_app/presentation_layer/home_screen/bottomnav.dart';
 import 'package:easy_buy_app/presentation_layer/utils/constant/image_strings.dart';
 import 'package:easy_buy_app/presentation_layer/utils/helper_functions/helper_function.dart';
