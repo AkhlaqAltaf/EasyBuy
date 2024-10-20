@@ -10,10 +10,10 @@ import '../../../components/custom_button.dart';
 import '../../../components/custom_card.dart';
 import '../../../components/custom_icon_button.dart';
 import '../../../components/product_count_item.dart';
-import '../controllers/product_details_controller.dart';
+import '../controllers/decor_details_controller.dart';  // Update to reflect a decor controller
 
-class ProductDetailsView extends GetView<ProductDetailsController> {
-  const ProductDetailsView({Key? key}) : super(key: key);
+class DecorDetailsView extends GetView<DecorDetailsController> {  // Renamed to DecorDetailsView
+  const DecorDetailsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -64,13 +64,13 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                     left: 0,
                     right: 0,
                     child: Image.asset(
-                      controller.product.image,
+                      controller.decor.image,  // Changed from product to decor
                       width: 250.w,
                       height: 225.h,
                     ).animate().fade().scale(
-                          duration: 800.ms,
-                          curve: Curves.fastOutSlowIn,
-                        ),
+                      duration: 800.ms,
+                      curve: Curves.fastOutSlowIn,
+                    ),
                   ),
                 ],
               ),
@@ -81,15 +81,15 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
               child: Row(
                 children: [
                   Text(
-                    controller.product.name,
+                    controller.decor.name,  // Changed from product to decor
                     style: theme.textTheme.displayMedium,
                   ).animate().fade().slideX(
-                        duration: 300.ms,
-                        begin: -1,
-                        curve: Curves.easeInSine,
-                      ),
+                    duration: 300.ms,
+                    begin: -1,
+                    curve: Curves.easeInSine,
+                  ),
                   const Spacer(),
-                  ProductCountItem(product: controller.product)
+                  ProductCountItem(product: controller.decor)  // Adjust based on decor
                       .animate()
                       .fade(duration: 200.ms),
                 ],
@@ -99,27 +99,27 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.w),
               child: Text(
-                '1kg, ${controller.product.price}\$',
+                'Dimensions: ${controller.decor.dimensions}, Price: ${controller.decor.price}\$',  // Changed for decor
                 style: theme.textTheme.displaySmall?.copyWith(
                   color: theme.colorScheme.secondary,
                 ),
               ).animate().fade().slideX(
-                    duration: 300.ms,
-                    begin: -1,
-                    curve: Curves.easeInSine,
-                  ),
+                duration: 300.ms,
+                begin: -1,
+                curve: Curves.easeInSine,
+              ),
             ),
             8.verticalSpace,
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.w),
               child: Text(
-                controller.product.description,
+                controller.decor.description,  // Changed to decor description
                 style: theme.textTheme.bodyLarge,
               ).animate().fade().slideX(
-                    duration: 300.ms,
-                    begin: -1,
-                    curve: Curves.easeInSine,
-                  ),
+                duration: 300.ms,
+                begin: -1,
+                curve: Curves.easeInSine,
+              ),
             ),
             20.verticalSpace,
             Padding(
@@ -135,35 +135,35 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                 ),
                 children: DummyHelper.cards
                     .map((card) => CustomCard(
-                          title: card['title']!,
-                          subtitle: card['subtitle']!,
-                          icon: card['icon']!,
-                        ))
+                  title: card['title']!,  // Change card info to match decor (e.g. 'Material', 'Style')
+                  subtitle: card['subtitle']!,
+                  icon: card['icon']!,
+                ))
                     .toList()
                     .animate()
                     .fade()
                     .slideY(
-                      duration: 300.ms,
-                      begin: 1,
-                      curve: Curves.easeInSine,
-                    ),
+                  duration: 300.ms,
+                  begin: 1,
+                  curve: Curves.easeInSine,
+                ),
               ),
             ),
             30.verticalSpace,
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.w),
               child: CustomButton(
-                text: 'Add to cart',
-                onPressed: () => controller.onAddToCartPressed(),
+                text: 'Add to Room',  // Changed action button text
+                onPressed: () => controller.onAddToRoomPressed(),  // Function to handle adding decor to AR room or cart
                 fontSize: 16.sp,
                 radius: 50.r,
                 verticalPadding: 16.h,
                 hasShadow: false,
               ).animate().fade().slideY(
-                    duration: 300.ms,
-                    begin: 1,
-                    curve: Curves.easeInSine,
-                  ),
+                duration: 300.ms,
+                begin: 1,
+                curve: Curves.easeInSine,
+              ),
             ),
             30.verticalSpace,
           ],
