@@ -5,6 +5,9 @@ import 'package:easy_buy_app/presentation_layer/home_screen/bottomnav.dart';
 import 'package:easy_buy_app/presentation_layer/utils/constant/image_strings.dart';
 import 'package:easy_buy_app/presentation_layer/utils/helper_functions/helper_function.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../components/app/routes/app_pages.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,11 +19,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   void checkUser() {
     Future.delayed(const Duration(seconds: 4), () async {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => BottomNavigation(),
-          ));
+      Get.offNamed(Routes.BASE);
       String? token = await getToken();
     });
   }

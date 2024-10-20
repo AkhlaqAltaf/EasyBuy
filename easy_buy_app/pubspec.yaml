@@ -33,7 +33,6 @@ dependencies:
   flutter_spinkit: ^5.2.1
   get: ^4.6.6
   iconsax: ^0.0.8
-  carousel_slider: ^4.2.1
 
   # BACKEND REQUIRED 
   http: 

@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_buy_app/presentation_layer/common/common_widgets/customshapes/circular_container.dart';
 import 'package:easy_buy_app/presentation_layer/common/common_widgets/home_carousel/carosule_images.dart';
 import 'package:easy_buy_app/presentation_layer/home_screen/shop/controller/home_controller.dart';
@@ -19,15 +18,16 @@ class HomePromoSlider extends StatelessWidget {
     final controller = Get.put(HomeController());
     return Column(
       children: [
-        CarouselSlider(
-          items:
-              banners.map((url) => HomeCarosuleImages(imageUrl: url)).toList(),
-          options: CarouselOptions(
-              autoPlay: true,
-              autoPlayInterval: Duration(seconds: 4),
-              viewportFraction: 1,
-              onPageChanged: (index, _) =>
-                  controller.updatePageIndicator(index)),
+        SizedBox(
+          height: 200, // Adjust the height of the carousel
+          child: PageView.builder(
+            itemCount: banners.length,
+            onPageChanged: (index) => controller.updatePageIndicator(index),
+            itemBuilder: (context, index) {
+              final url = banners[index];
+              return HomeCarosuleImages(imageUrl: url);
+            },
+          ),
         ),
         const SizedBox(height: AppSizes.spaceBtwItems),
         Obx(

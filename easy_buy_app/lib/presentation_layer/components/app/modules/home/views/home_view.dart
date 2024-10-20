@@ -1,6 +1,5 @@
 import 'package:easy_buy_app/presentation_layer/components/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -99,18 +98,25 @@ class HomeView extends GetView<HomeController> {
                     20.verticalSpace,
                     SizedBox(
                       width: double.infinity,
-                      height: 158.h,
-                      child: CarouselSlider.builder(
-                        options: CarouselOptions(
-                          initialPage: 1,
-                          viewportFraction: 0.9,
-                          enableInfiniteScroll: true,
-                          autoPlay: true,
-                          autoPlayInterval: const Duration(seconds: 3),
+                      height: 158
+                          .h, // Assuming this is a responsive height from flutter_screenutil or similar
+                      child: PageView.builder(
+                        controller: PageController(
+                          initialPage: 1, // Set initial page
+                          viewportFraction:
+                              0.9, // Similar to the viewportFraction in CarouselSlider
                         ),
                         itemCount: controller.cards.length,
-                        itemBuilder: (context, itemIndex, pageViewIndex) {
-                          return Image.asset(controller.cards[itemIndex]);
+                        onPageChanged: (int index) {
+                          // Handle page change if necessary (similar to autoPlay in CarouselSlider)
+                        },
+                        itemBuilder: (context, itemIndex) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal:
+                                    8.0), // Adjust padding for spacing between items
+                            child: Image.asset(controller.cards[itemIndex]),
+                          );
                         },
                       ),
                     ),
