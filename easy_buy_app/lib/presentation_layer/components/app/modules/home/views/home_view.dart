@@ -135,7 +135,7 @@ class HomeView extends GetView<HomeController> {
                             style: theme.textTheme.headlineLarge,
                           ),
                           Text(
-                            'See all',
+                            'all',
                             style: theme.textTheme.headlineSmall?.copyWith(
                               color: theme.primaryColor,
                               fontWeight: FontWeight.normal,
