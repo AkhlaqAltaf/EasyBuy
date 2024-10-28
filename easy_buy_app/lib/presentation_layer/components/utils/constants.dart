@@ -1,5 +1,4 @@
 class Constants {
-
   // assets images
   static const logo = 'assets/images/app_icon.png';
 
@@ -46,5 +45,7 @@ class Constants {
   static const card1 = 'assets/images/card1.png';
   static const card2 = 'assets/images/card2.png';
   static const card3 = 'assets/images/card3.png';
-
+  static const card1_ = 'assets/images/card1_.jpeg';
+  static const card2_ = 'assets/images/card2_.jpeg';
+  static const card3_ = 'assets/images/card3_.jpeg';
 }

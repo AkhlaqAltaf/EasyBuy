@@ -23,12 +23,10 @@ class Categories extends StatelessWidget {
             backgroundColor: AppConstantColors.black,
             child: IconButton(onPressed: onPressed, icon: icon),
           ),
-          SizedBox(height: 8.0), // Adjusted spacing
-          Text('Chair'),
+          const SizedBox(height: 8.0), // Adjusted spacing
+          const Text('Chair'),
         ],
       ),
     );
   }
 }
-
-

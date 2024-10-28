@@ -1,3 +1,4 @@
+import 'package:easy_buy_app/presentation_layer/components/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -14,6 +15,7 @@ class ProductsView extends GetView<ProductsController> {
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -23,7 +25,7 @@ class ProductsView extends GetView<ProductsController> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomIconButton(
-                onPressed: () => Get.back(),
+                onPressed: () => Get.offNamed(Routes.BASE),
                 backgroundColor: theme.scaffoldBackgroundColor,
                 borderColor: theme.dividerColor,
                 icon: SvgPicture.asset(
@@ -33,7 +35,7 @@ class ProductsView extends GetView<ProductsController> {
                 ),
               ),
               Text(
-                'Vegetables 🌽',
+                'All Products',
                 style: theme.textTheme.displaySmall,
               ),
               CustomIconButton(
@@ -52,20 +54,31 @@ class ProductsView extends GetView<ProductsController> {
       ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(24.w, 24.h, 24.w, 0),
-        child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 16.w,
-            mainAxisSpacing: 16.h,
-            mainAxisExtent: 214.h,
-          ),
-          shrinkWrap: true,
-          primary: false,
-          itemCount: controller.products.length,
-          itemBuilder: (context, index) => ProductItem(
-            product: controller.products[index],
-          ),
-        ),
+        child: Obx(() {
+          if (controller.products.isEmpty) {
+            return Center(
+              child: Text(
+                "No products available",
+                style: theme.textTheme.bodyLarge,
+              ),
+            );
+          }
+
+          return GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 16.w,
+              mainAxisSpacing: 16.h,
+              mainAxisExtent: 214.h,
+            ),
+            shrinkWrap: true,
+            primary: false,
+            itemCount: controller.products.length,
+            itemBuilder: (context, index) => ProductItem(
+              product: controller.products[index],
+            ),
+          );
+        }),
       ),
     );
   }

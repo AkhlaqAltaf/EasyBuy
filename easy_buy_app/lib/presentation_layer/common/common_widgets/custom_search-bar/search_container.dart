@@ -2,9 +2,10 @@ import 'package:easy_buy_app/presentation_layer/utils/constant/colors.dart';
 import 'package:easy_buy_app/presentation_layer/utils/device/device_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+
 class HomeSearchContainer extends StatelessWidget {
   const HomeSearchContainer({
-     this.icon = Iconsax.search_normal,
+    this.icon = Iconsax.search_normal,
     required this.text,
     this.showBackground = true,
     this.showBorder = true,
@@ -22,7 +23,7 @@ class HomeSearchContainer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
       child: Container(
         width: AppDeviceUtils.getScreenWidth(context),
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           color: showBackground
               ? dark

@@ -41,7 +41,7 @@ class BottomNavigation extends StatelessWidget {
 class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
   final screens = [
-    HomeScreen(),
+    const HomeScreen(),
     Container(color: Colors.blue),
     Container(color: Colors.red),
     Container(color: Colors.pink),

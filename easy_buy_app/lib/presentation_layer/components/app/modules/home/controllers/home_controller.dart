@@ -1,3 +1,6 @@
+import 'package:easy_buy_app/apis/products/all_products.dart';
+import 'package:easy_buy_app/data_layer/product/product.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../config/theme/my_theme.dart';
@@ -8,32 +11,25 @@ import '../../../data/models/category_model.dart';
 import '../../../data/models/product_model.dart';
 
 class HomeController extends GetxController {
-
   // to hold categories & products
-  List<CategoryModel> categories = [];
-  List<ProductModel> products = [];
+  var products = <Product>[].obs;
 
   // for app theme
   var isLightTheme = MySharedPref.getThemeIsLight();
 
   // for home screen cards
-  var cards = [Constants.card1, Constants.card2, Constants.card3];
+  var cards = [Constants.card1_, Constants.card2_, Constants.card3_];
 
   @override
   void onInit() {
-    getCategories();
-    getProducts();
     super.onInit();
-  }
-
-  /// get categories from dummy helper
-  getCategories() {
-    categories = DummyHelper.categories;
+    fetchProducts();
   }
 
   /// get products from dummy helper
-  getProducts() {
-    products = DummyHelper.products;
+  void fetchProducts() async {
+    final fetchedProducts = await getAllProducts();
+    products.value = fetchedProducts; // Update the observable list
   }
 
   /// when the user press on change theme icon
@@ -42,5 +38,4 @@ class HomeController extends GetxController {
     isLightTheme = MySharedPref.getThemeIsLight();
     update(['Theme']);
   }
-  
 }

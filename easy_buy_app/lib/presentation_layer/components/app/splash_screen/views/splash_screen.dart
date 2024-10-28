@@ -5,6 +5,8 @@ import 'package:easy_buy_app/presentation_layer/utils/constant/image_strings.dar
 import 'package:easy_buy_app/presentation_layer/utils/helper_functions/helper_function.dart';
 
 class SplashScreenView extends GetView<SplashController> {
+  const SplashScreenView({super.key});
+
   @override
   Widget build(BuildContext context) {
     print("BUILD..............................");
@@ -14,7 +16,7 @@ class SplashScreenView extends GetView<SplashController> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Spacer(),
-            Image(image: AssetImage(ImagesStrings.splashlogo)),
+            const Image(image: AssetImage(ImagesStrings.splashlogo)),
             const Spacer(flex: 1),
             Padding(
               padding: const EdgeInsets.only(bottom: 25.0),

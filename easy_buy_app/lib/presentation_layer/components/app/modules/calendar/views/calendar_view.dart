@@ -5,7 +5,7 @@ import '../../../components/no_data.dart';
 import '../controllers/calendar_controller.dart';
 
 class CalendarView extends GetView<CalendarController> {
-  const CalendarView({Key? key}) : super(key: key);
+  const CalendarView({super.key});
 
   @override
   Widget build(BuildContext context) {

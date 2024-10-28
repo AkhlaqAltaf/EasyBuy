@@ -29,7 +29,7 @@ void flashMessage(BuildContext context, String type, String message) {
                     Expanded(
                       child: Text(
                         message,
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                         overflow: TextOverflow.visible,
                         softWrap: true,
                       ),

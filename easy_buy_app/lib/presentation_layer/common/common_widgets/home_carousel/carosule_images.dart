@@ -1,5 +1,3 @@
-import 'package:easy_buy_app/presentation_layer/utils/constant/colors.dart';
-import 'package:easy_buy_app/presentation_layer/utils/constant/sizes.dart';
 import 'package:flutter/material.dart';
 
 class HomeCarosuleImages extends StatelessWidget {

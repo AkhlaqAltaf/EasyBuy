@@ -5,7 +5,8 @@ class CategoryButton extends StatelessWidget {
   final bool isSelected;
   final VoidCallback onTap;
 
-  CategoryButton({
+  const CategoryButton({
+    super.key,
     required this.label,
     required this.isSelected,
     required this.onTap,
@@ -16,7 +17,7 @@ class CategoryButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
         decoration: BoxDecoration(
           color: isSelected ? Colors.black : Colors.white,
           borderRadius: BorderRadius.circular(20.0),

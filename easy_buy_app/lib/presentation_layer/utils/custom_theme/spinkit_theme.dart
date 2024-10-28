@@ -6,12 +6,12 @@ class AppSpinKitTheme {
 
   static const double size = 50.0;
 
-  static final lightSpinKit = SpinKitCircle(
+  static final lightSpinKit = const SpinKitCircle(
     color: Colors.black,
     size: size,
   );
 
-  static final darkSpinKit = SpinKitCircle(
+  static final darkSpinKit = const SpinKitCircle(
     color: Colors.white,
     size: size,
   );

@@ -31,7 +31,7 @@ class CategoriesList extends StatelessWidget {
                 ),
                 Text(
                   texts[index], // Use text from the list
-                  style: TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.black),
                 ),
               ],
             );

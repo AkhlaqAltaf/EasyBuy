@@ -12,7 +12,7 @@ import '../controllers/cart_controller.dart';
 import 'widgets/cart_item.dart';
 
 class CartView extends GetView<CartController> {
-  const CartView({Key? key}) : super(key: key);
+  const CartView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,7 @@ class CartView extends GetView<CartController> {
                         padding: EdgeInsets.only(top: 12.h, bottom: 24.h),
                         child: const Divider(thickness: 1),
                       ),
-                      itemCount: controller.products.length,
+                      itemCount: 2,
                       itemBuilder: (context, index) => CartItem(
                         product: controller.products[index],
                       ).animate(delay: (100 * index).ms).fade().slideX(

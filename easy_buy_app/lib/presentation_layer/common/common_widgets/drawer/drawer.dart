@@ -1,16 +1,28 @@
 import 'package:easy_buy_app/data_layer/local_storage/auth_store.dart';
 import 'package:easy_buy_app/presentation_layer/auth_screens/login_screen/login_screen.dart';
+import 'package:easy_buy_app/presentation_layer/components/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 Drawer drawer(BuildContext context, {bool isLogin = false}) {
   print("IS LOGIN $isLogin");
+  void checkUser() async {
+    String? token = await getToken();
+    if (token != null) {
+      isLogin = true;
+    } else {
+      isLogin = false;
+    }
+  }
 
+  checkUser();
   return Drawer(
       width: MediaQuery.of(context).size.width * 0.7,
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          Expanded(
+          const Expanded(
             child: DrawerHeader(
               curve: Curves.easeIn,
               decoration: BoxDecoration(
@@ -36,7 +48,7 @@ Drawer drawer(BuildContext context, {bool isLogin = false}) {
                     ),
                   ),
                   onTap: () {
-                    // downloadInvitationCard(context, 4);
+                    Get.offNamed(Routes.HOME);
                     // Navigator.pop(context);
                   },
                 ),
@@ -46,13 +58,13 @@ Drawer drawer(BuildContext context, {bool isLogin = false}) {
                     size: 24,
                   ),
                   title: const Text(
-                    'Settings',
+                    'Products',
                     style: TextStyle(
                       fontSize: 16,
                     ),
                   ),
                   onTap: () {
-                    // Navigator.pop(context);
+                    Get.offNamed(Routes.PRODUCTS);
                   },
                 ),
                 isLogin
@@ -93,13 +105,7 @@ Drawer drawer(BuildContext context, {bool isLogin = false}) {
                                   TextButton(
                                     child: const Text('Logout'),
                                     onPressed: () {
-                                      Navigator.of(context).pop();
-
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => LoginScreen(),
-                                          ));
+                                      Get.offNamed(Routes.LOGIN);
                                       clearData();
                                     },
                                   ),
@@ -125,7 +131,7 @@ Drawer drawer(BuildContext context, {bool isLogin = false}) {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => LoginScreen(),
+                                builder: (context) => const LoginScreen(),
                               ));
                         },
                       ),

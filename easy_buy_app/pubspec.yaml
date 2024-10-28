@@ -19,7 +19,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=3.3.2 <4.0.0"
+    sdk: ^3.5.3
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -34,7 +34,7 @@ dependencies:
   get: ^4.6.6
   iconsax: ^0.0.8
 
-  # BACKEND REQUIRED 
+  arcore_flutter_plugin: ^0.1.0  # BACKEND REQUIRED 
   http: 
   shared_preferences:
   # The following adds the Cupertino Icons font to your application.
@@ -87,12 +87,15 @@ flutter:
     # - assets/flags/
     # - assets/logo/
     # - assets/screens/  
+    - assets/
     - assets/images2/banners/
     - assets/icons/
     - assets/logo/
     - assets/images/
     - assets/vectors/
     - assets/fonts/
+    - assets/image_view.html
+    - assets/my_image.png
 
 
   fonts:

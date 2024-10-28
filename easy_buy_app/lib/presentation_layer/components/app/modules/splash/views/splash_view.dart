@@ -7,7 +7,7 @@ import '../../../../utils/constants.dart';
 import '../controllers/splash_controller.dart';
 
 class SplashView extends GetView<SplashController> {
-  const SplashView({Key? key}) : super(key: key);
+  const SplashView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +20,10 @@ class SplashView extends GetView<SplashController> {
           radius: 55.r,
           backgroundColor: theme.primaryColorDark,
           child: Image.asset(Constants.logo, width: 67.w, height: 55.h),
-        ).animate().fade().slideY(
-          duration: 500.ms,
-          begin: 1, curve: Curves.easeInSine
-        ),
+        )
+            .animate()
+            .fade()
+            .slideY(duration: 500.ms, begin: 1, curve: Curves.easeInSine),
       ),
     );
   }

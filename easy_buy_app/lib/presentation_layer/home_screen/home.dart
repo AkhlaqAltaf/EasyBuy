@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
       future: isUserAuthenticated(),
       builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Scaffold(
+          return const Scaffold(
             body: Center(child: CircularProgressIndicator()),
           );
         } else if (snapshot.hasError) {
@@ -60,14 +60,14 @@ class _HomeScreenState extends State<HomeScreen> {
             drawer: drawer(context, isLogin: isLogin),
             body: Column(
               children: [
-                HeaderContainer(),
+                const HeaderContainer(),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        SizedBox(height: AppSizes.spaceBtwItems - 15.0),
-                        Padding(
-                          padding: const EdgeInsets.all(AppSizes.defaultSpace),
+                        const SizedBox(height: AppSizes.spaceBtwItems - 15.0),
+                        const Padding(
+                          padding: EdgeInsets.all(AppSizes.defaultSpace),
                           child: HomePromoSlider(
                             banners: [
                               ImagesStrings.sliderbanner1,
@@ -82,13 +82,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             children: [
                               CategoryRow(categories: categories.sublist(0, 4)),
-                              SizedBox(height: 16),
+                              const SizedBox(height: 16),
                               CategoryRow(categories: categories.sublist(4, 8)),
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
+                        const Padding(
+                          padding: EdgeInsets.symmetric(
                               horizontal: AppSizes.defaultSpace),
                           child: HeaderSectionHeadings(
                             title: 'Most Popular',

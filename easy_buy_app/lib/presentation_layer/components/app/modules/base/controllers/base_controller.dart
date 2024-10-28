@@ -1,10 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../utils/dummy_helper.dart';
 import '../../cart/controllers/cart_controller.dart';
 
 class BaseController extends GetxController {
-
   // current screen index
   int currentIndex = 0;
 
@@ -38,7 +38,7 @@ class BaseController extends GetxController {
   }
 
   /// when the user press on remove - icon
-  onDecreasePressed(int productId) {
+  onDecreasePressed(int productId, BuildContext context) {
     var product = DummyHelper.products.firstWhere((p) => p.id == productId);
     if (product.quantity > 0) {
       product.quantity--;
@@ -49,5 +49,4 @@ class BaseController extends GetxController {
       update(['ProductQuantity']);
     }
   }
-
 }

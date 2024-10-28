@@ -1,3 +1,4 @@
+import 'package:easy_buy_app/data_layer/product/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,8 +10,8 @@ import '../modules/base/controllers/base_controller.dart';
 import 'custom_icon_button.dart';
 
 class ProductCountItem extends GetView<BaseController> {
-  final ProductModel product;
-  const ProductCountItem({Key? key, required this.product}) : super(key: key);
+  final Product product;
+  const ProductCountItem({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,8 @@ class ProductCountItem extends GetView<BaseController> {
         CustomIconButton(
           width: 36.w,
           height: 36.h,
-          onPressed: () => controller.onDecreasePressed(product.id),
+          // controller.onDecreasePressed(product.id, context)
+          onPressed: () => (),
           icon: SvgPicture.asset(
             Constants.removeIcon,
             fit: BoxFit.none,
@@ -31,7 +33,7 @@ class ProductCountItem extends GetView<BaseController> {
         GetBuilder<BaseController>(
           id: 'ProductQuantity',
           builder: (_) => Text(
-            product.quantity.toString(),
+            product.stock.toString(),
             style: theme.textTheme.headlineLarge,
           ),
         ),
@@ -39,7 +41,8 @@ class ProductCountItem extends GetView<BaseController> {
         CustomIconButton(
           width: 36.w,
           height: 36.h,
-          onPressed: () => controller.onIncreasePressed(product.id),
+// controller.onIncreasePressed(product.id)
+          onPressed: () => (),
           icon: SvgPicture.asset(
             Constants.addIcon,
             fit: BoxFit.none,

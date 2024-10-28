@@ -6,7 +6,7 @@ class CategoryIcon extends StatelessWidget {
   final String name;
   final IconData icon;
 
-  CategoryIcon({required this.name, required this.icon});
+  const CategoryIcon({super.key, required this.name, required this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +22,8 @@ class CategoryIcon extends StatelessWidget {
             color: AppConstantColors.white,
           ),
         ),
-        SizedBox(height: 8),
-        Text(name, style: TextStyle(fontSize: 14)),
+        const SizedBox(height: 8),
+        Text(name, style: const TextStyle(fontSize: 14)),
       ],
     );
   }

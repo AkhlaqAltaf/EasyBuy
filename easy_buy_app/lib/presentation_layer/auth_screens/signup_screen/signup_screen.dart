@@ -1,7 +1,9 @@
 import 'package:easy_buy_app/apis/auth_apis/signup_api.dart';
 import 'package:easy_buy_app/data_layer/auth/auth_model.dart';
 import 'package:easy_buy_app/presentation_layer/auth_screens/login_screen/login_screen.dart';
+import 'package:easy_buy_app/presentation_layer/components/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -81,32 +83,32 @@ class _SignupScreenState extends State<SignupScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 80,
                       ),
                       Image.asset(
                         'assets/logo/logo.png',
                         height: 200.0,
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Form(
                         key: _formKey,
                         child: Column(
                           children: [
                             TextFormField(
                               controller: emailController,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 label: Text("Email"),
                                 prefixIcon: Icon(Icons.email),
                               ),
                               validator: _emailValidator,
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             TextFormField(
                               controller: passwordController,
                               decoration: InputDecoration(
-                                label: Text("Password"),
-                                prefixIcon: Icon(Icons.password),
+                                label: const Text("Password"),
+                                prefixIcon: const Icon(Icons.password),
                                 suffixIcon: IconButton(
                                   onPressed: () {
                                     setState(() {
@@ -123,10 +125,10 @@ class _SignupScreenState extends State<SignupScreen> {
                               obscureText: !isVisible,
                               validator: _passwordValidator,
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             TextFormField(
                               controller: confirmPasswordController,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 label: Text("Confirm Password"),
                                 prefixIcon: Icon(Icons.password),
                               ),
@@ -136,7 +138,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
@@ -149,7 +151,6 @@ class _SignupScreenState extends State<SignupScreen> {
                             });
                             try {
                               await registerUser(auth, context);
-                            } catch (e) {
                             } finally {
                               setState(() {
                                 _isLoading = false;
@@ -158,8 +159,8 @@ class _SignupScreenState extends State<SignupScreen> {
                           }
                         },
                         child: _isLoading
-                            ? CircularProgressIndicator()
-                            : Row(
+                            ? const CircularProgressIndicator()
+                            : const Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -173,20 +174,15 @@ class _SignupScreenState extends State<SignupScreen> {
                                 ],
                               ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.pop(context);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => LoginScreen(),
-                              ));
+                          Get.offNamed(Routes.LOGIN);
                         },
                         child: RichText(
-                          text: TextSpan(
+                          text: const TextSpan(
                             style: TextStyle(fontSize: 16),
                             children: [
                               TextSpan(

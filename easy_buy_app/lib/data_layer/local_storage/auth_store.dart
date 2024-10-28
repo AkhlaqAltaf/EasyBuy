@@ -7,7 +7,7 @@ Future<void> storeToken(String token) async {
 
 Future<String?> getToken() async {
   final prefs = await SharedPreferences.getInstance();
-  String? token = await prefs.getString('token');
+  String? token = prefs.getString('token');
   return token;
 }
 
@@ -18,7 +18,7 @@ Future<void> storeUserEmail(String email) async {
 
 Future<String?> getUserEmail() async {
   final prefs = await SharedPreferences.getInstance();
-  String? email = await prefs.getString('email');
+  String? email = prefs.getString('email');
   return email;
 }
 

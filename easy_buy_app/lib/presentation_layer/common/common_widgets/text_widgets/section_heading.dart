@@ -28,7 +28,7 @@ class HeaderSectionHeadings extends StatelessWidget {
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),
-        Spacer(),
+        const Spacer(),
         if (showActionButton)
           TextButton(onPressed: onPressed, child: Text(buttonTitle))
       ],

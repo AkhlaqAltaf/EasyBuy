@@ -41,7 +41,7 @@ class HomePromoSlider extends StatelessWidget {
                   backgroundColor: controller.carousalCurrentIndex.value == i
                       ? AppConstantColors.primaryColor
                       : AppConstantColors.grey,
-                  margin: EdgeInsets.only(right: 10),
+                  margin: const EdgeInsets.only(right: 10),
                 ),
             ],
           ),

@@ -5,15 +5,14 @@ import 'package:flutter/material.dart';
 import '../../config/theme/my_theme.dart';
 
 class DarkTransition extends StatefulWidget {
-  const DarkTransition({
-    required this.builder,
-      Key? key,
+  const DarkTransition(
+      {required this.builder,
+      super.key,
       this.offset = Offset.zero,
       this.themeController,
       this.radius,
       this.duration = const Duration(milliseconds: 500),
-      this.isDark = false
-    }) : super(key: key);
+      this.isDark = false});
 
   /// Deinfe the widget that will be transitioned
   /// int index is either 1 or 2 to identify widgets, 2 is the top widget
@@ -40,7 +39,6 @@ class DarkTransition extends StatefulWidget {
 
 class _DarkTransitionState extends State<DarkTransition>
     with SingleTickerProviderStateMixin {
-
   @override
   void dispose() {
     _darkNotifier.dispose();
@@ -118,36 +116,35 @@ class _DarkTransitionState extends State<DarkTransition>
   @override
   Widget build(BuildContext context) {
     isDark = _darkNotifier.value;
-    Widget _body(int index) {
+    Widget body(int index) {
       return ValueListenableBuilder<bool>(
         valueListenable: _darkNotifier,
         builder: (BuildContext context, bool isDark, Widget? child) {
           return Theme(
-            data: index == 2
-              ? getTheme(!isDarkVisible)
-              : getTheme(isDarkVisible),
-            child: widget.builder(context, index)
-          );
+              data: index == 2
+                  ? getTheme(!isDarkVisible)
+                  : getTheme(isDarkVisible),
+              child: widget.builder(context, index));
         },
       );
     }
 
     return AnimatedBuilder(
-      animation: _animationController,
-      builder: (BuildContext context, Widget? child) {
-        return Stack(
-          children: [
-            _body(1),
-            ClipPath(
-              clipper: CircularClipper(
-                _animationController.value * radius, position,
+        animation: _animationController,
+        builder: (BuildContext context, Widget? child) {
+          return Stack(
+            children: [
+              body(1),
+              ClipPath(
+                clipper: CircularClipper(
+                  _animationController.value * radius,
+                  position,
+                ),
+                child: body(2),
               ),
-              child: _body(2),
-            ),
-          ],
-        );
-      }
-    );
+            ],
+          );
+        });
   }
 }
 

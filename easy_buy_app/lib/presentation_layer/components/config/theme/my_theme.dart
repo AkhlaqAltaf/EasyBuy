@@ -29,17 +29,11 @@ class MyTheme {
             : DarkThemeColors.primaryColor,
         secondary: isLight
             ? LightThemeColors.accentColor
-            : DarkThemeColors.accentColor, // Replaces accentColor
-        background: isLight
-            ? LightThemeColors.backgroundColor
-            : DarkThemeColors.backgroundColor, // Replaces backgroundColor
+            : DarkThemeColors.accentColor, // Replaces backgroundColor
         surface:
             isLight ? LightThemeColors.cardColor : DarkThemeColors.cardColor,
         onPrimary: Colors.white,
         onSecondary: Colors.black,
-        onBackground: isLight
-            ? LightThemeColors.bodyTextColor
-            : DarkThemeColors.bodyTextColor,
         onSurface: isLight
             ? LightThemeColors.bodyTextColor
             : DarkThemeColors.bodyTextColor,

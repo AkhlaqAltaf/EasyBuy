@@ -1,8 +1,10 @@
 import 'package:easy_buy_app/apis/auth_apis/signup_api.dart';
 import 'package:easy_buy_app/data_layer/auth/auth_model.dart';
+import 'package:easy_buy_app/presentation_layer/components/app/components/custom_button.dart';
 import 'package:easy_buy_app/presentation_layer/components/app/modules/auth_screens/signup_screen/controllers/signup_controller.dart';
 import 'package:easy_buy_app/presentation_layer/components/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class SignupView extends GetView<SignupController> {
@@ -26,32 +28,32 @@ class SignupView extends GetView<SignupController> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 80,
                       ),
                       Image.asset(
                         'assets/logo/logo.png',
                         height: 200.0,
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Form(
                         key: _formKey,
                         child: Column(
                           children: [
                             TextFormField(
                               controller: controller.emailController,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 label: Text("Email"),
                                 prefixIcon: Icon(Icons.email),
                               ),
                               validator: controller.emailValidator,
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             TextFormField(
                               controller: controller.passwordController,
                               decoration: InputDecoration(
-                                label: Text("Password"),
-                                prefixIcon: Icon(Icons.password),
+                                label: const Text("Password"),
+                                prefixIcon: const Icon(Icons.password),
                                 suffixIcon: IconButton(
                                   onPressed: () {
                                     controller.isVisible =
@@ -67,10 +69,10 @@ class SignupView extends GetView<SignupController> {
                               obscureText: !controller.isVisible,
                               validator: controller.passwordValidator,
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             TextFormField(
                               controller: controller.confirmPasswordController,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 label: Text("Confirm Password"),
                                 prefixIcon: Icon(Icons.password),
                               ),
@@ -80,8 +82,9 @@ class SignupView extends GetView<SignupController> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 20),
-                      ElevatedButton(
+                      const SizedBox(height: 20),
+                      CustomButton(
+                        text: "Register",
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             Auth auth = Auth(
@@ -93,29 +96,19 @@ class SignupView extends GetView<SignupController> {
 
                             try {
                               await registerUser(auth, context);
-                            } catch (e) {
                             } finally {
                               controller.isLoading = false;
                             }
                           }
                         },
-                        child: controller.isLoading
-                            ? CircularProgressIndicator()
-                            : Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.app_registration,
-                                    size: 25,
-                                  ),
-                                  Text(
-                                    'Register',
-                                  ),
-                                ],
-                              ),
+                        fontSize: 16.sp,
+                        radius: 50.r,
+                        verticalPadding: 16.h,
+                        hasShadow: false,
+                        disabled: controller.isLoading,
+                        icon: Icon(Icons.app_registration),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       TextButton(
@@ -123,7 +116,7 @@ class SignupView extends GetView<SignupController> {
                           Get.offNamed(Routes.LOGIN);
                         },
                         child: RichText(
-                          text: TextSpan(
+                          text: const TextSpan(
                             style: TextStyle(fontSize: 16),
                             children: [
                               TextSpan(

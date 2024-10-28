@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProfileView extends StatelessWidget {
-  const ProfileView({Key? key}) : super(key: key);
+  const ProfileView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +10,9 @@ class ProfileView extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'My profile',
-          style: Theme.of(context).textTheme.titleLarge,  // Updated from headline6 to titleLarge
+          style: Theme.of(context)
+              .textTheme
+              .titleLarge, // Updated from headline6 to titleLarge
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -26,7 +28,7 @@ class ProfileView extends StatelessWidget {
               // Profile Image and User Info
               Row(
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     radius: 40,
                     backgroundImage: NetworkImage(
                         'https://via.placeholder.com/150'), // Replace with real image URL
@@ -37,12 +39,16 @@ class ProfileView extends StatelessWidget {
                     children: [
                       Text(
                         'Matilda Brown', // Replace with actual name
-                        style: Theme.of(context).textTheme.titleLarge,  // Updated to titleLarge
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge, // Updated to titleLarge
                       ),
                       const SizedBox(height: 4),
                       Text(
                         'matildabrown@mail.com', // Replace with actual email
-                        style: Theme.of(context).textTheme.bodyMedium,  // Updated to bodyMedium
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium, // Updated to bodyMedium
                       ),
                     ],
                   ),
@@ -100,9 +106,14 @@ class ProfileView extends StatelessWidget {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
       leading: Icon(icon, color: Colors.black),
-      title: Text(title, style: Theme.of(context).textTheme.titleMedium),  // Updated to titleMedium
-      subtitle: Text(subtitle, style: Theme.of(context).textTheme.bodyMedium),  // Updated to bodyMedium
-      trailing: Icon(Icons.arrow_forward_ios, color: Colors.black),
+      title: Text(title,
+          style: Theme.of(context)
+              .textTheme
+              .titleMedium), // Updated to titleMedium
+      subtitle: Text(subtitle,
+          style:
+              Theme.of(context).textTheme.bodyMedium), // Updated to bodyMedium
+      trailing: const Icon(Icons.arrow_forward_ios, color: Colors.black),
       onTap: () {
         // Handle navigation here
       },

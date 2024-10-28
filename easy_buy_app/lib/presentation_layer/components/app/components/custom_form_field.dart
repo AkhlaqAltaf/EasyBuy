@@ -52,7 +52,7 @@ class CustomFormField extends StatefulWidget {
   final Function? onCanceled; // callback for cancel (if its search field)
 
   const CustomFormField({
-    Key? key,
+    super.key,
     this.hint,
     this.label,
     this.labelSize,
@@ -97,7 +97,7 @@ class CustomFormField extends StatefulWidget {
     this.iconColor,
     this.isSearchField = false,
     this.onCanceled,
-  }) : super(key: key);
+  });
 
   @override
   State<CustomFormField> createState() => _CustomFormFieldState();

@@ -1,10 +1,14 @@
+import 'package:easy_buy_app/presentation_layer/components/app/components/custom_button.dart';
 import 'package:easy_buy_app/presentation_layer/components/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:easy_buy_app/presentation_layer/components/app/modules/auth_screens/login_screen/controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   final _formKey = GlobalKey<FormState>();
+
+  LoginView({super.key});
 
   // Bind the controller using GetX
 
@@ -24,12 +28,12 @@ class LoginView extends GetView<LoginController> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      SizedBox(height: 80),
+                      const SizedBox(height: 80),
                       Image.asset(
                         'assets/logo/logo.png',
                         height: 200.0,
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Form(
                         key: _formKey,
                         child: Column(
@@ -37,21 +41,21 @@ class LoginView extends GetView<LoginController> {
                             // Email Field
                             Obx(() => TextFormField(
                                   controller: controller.emailController.value,
-                                  decoration: InputDecoration(
+                                  decoration: const InputDecoration(
                                     label: Text("Email"),
                                     prefixIcon: Icon(Icons.email),
                                   ),
                                   validator: controller.emailValidator,
                                 )),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
 
                             // Password Field
                             Obx(() => TextFormField(
                                   controller:
                                       controller.passwordController.value,
                                   decoration: InputDecoration(
-                                    label: Text("Password"),
-                                    prefixIcon: Icon(Icons.password),
+                                    label: const Text("Password"),
+                                    prefixIcon: const Icon(Icons.password),
                                     suffixIcon: IconButton(
                                       onPressed: () {
                                         controller.togglePasswordVisibility();
@@ -70,24 +74,19 @@ class LoginView extends GetView<LoginController> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
 
                       // Login Button
-                      Obx(() => ElevatedButton(
+                      Obx(() => CustomButton(
+                            text: "Login",
                             onPressed: () => controller.signIn(_formKey),
-                            child: controller.isLoading.value
-                                ? CircularProgressIndicator()
-                                : Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(Icons.login, size: 25),
-                                      Text('Login'),
-                                    ],
-                                  ),
+                            fontSize: 16.sp,
+                            radius: 50.r,
+                            verticalPadding: 16.h,
+                            hasShadow: false,
+                            disabled: controller.isLoading.value,
                           )),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
 
                       // Signup Navigation Button
                       TextButton(
@@ -96,7 +95,7 @@ class LoginView extends GetView<LoginController> {
                           // Get.to(() => SignupScreen());
                         },
                         child: RichText(
-                          text: TextSpan(
+                          text: const TextSpan(
                             style: TextStyle(fontSize: 16),
                             children: [
                               TextSpan(

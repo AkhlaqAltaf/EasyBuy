@@ -1,3 +1,4 @@
+import 'package:easy_buy_app/data_layer/product/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -7,11 +8,11 @@ import '../../../../data/models/product_model.dart';
 import '../../controllers/cart_controller.dart';
 
 class CartItem extends GetView<CartController> {
-  final ProductModel product;
+  final Product product;
   const CartItem({
-    Key? key,
+    super.key,
     required this.product,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class CartItem extends GetView<CartController> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset(product.image, width: 50.w, height: 40.h),
+          Image.network(product.images[0].image, width: 50.w, height: 40.h),
           16.horizontalSpace,
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,7 +30,7 @@ class CartItem extends GetView<CartController> {
               Text(product.name, style: theme.textTheme.headlineMedium),
               5.verticalSpace,
               Text(
-                '1kg, ${product.price}\$',
+                '${product.price}\$',
                 style: theme.textTheme.headlineMedium?.copyWith(
                   color: theme.colorScheme.secondary,
                 ),

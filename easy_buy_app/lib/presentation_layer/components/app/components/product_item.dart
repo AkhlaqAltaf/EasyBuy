@@ -1,3 +1,5 @@
+import 'package:easy_buy_app/ar_screen.dart';
+import 'package:easy_buy_app/data_layer/product/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,12 +9,19 @@ import '../data/models/product_model.dart';
 import '../routes/app_pages.dart';
 
 class ProductItem extends StatelessWidget {
-  final ProductModel product;
-  const ProductItem({Key? key, required this.product}) : super(key: key);
+  final Product product;
+  const ProductItem({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
+
+    // Find primary image, or fall back to the first image if no primary exists
+    final primaryImage = product.images.isNotEmpty
+        ? product.images.firstWhere((img) => img.is_primary,
+            orElse: () => product.images.first)
+        : null;
+
     return GestureDetector(
       onTap: () => Get.toNamed(Routes.PRODUCT_DETAILS, arguments: product),
       child: Container(
@@ -39,11 +48,23 @@ class ProductItem extends StatelessWidget {
               top: 22.h,
               left: 26.w,
               right: 25.w,
-              child: Image.asset(product.image).animate().slideX(
-                    duration: 200.ms,
-                    begin: 1,
-                    curve: Curves.easeInSine,
-                  ),
+              // Use Image.network to load from URL dynamically
+              child: primaryImage != null
+                  ? Image.network(
+                      primaryImage.image,
+                      height: 100.h,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        // Optional error widget
+                        return const Icon(Icons.broken_image);
+                      },
+                    ).animate().slideX(
+                        duration: 200.ms,
+                        begin: 1,
+                        curve: Curves.easeInSine,
+                      )
+                  : const Icon(
+                      Icons.image_not_supported), // Fallback if no image
             ),
             Positioned(
               left: 16.w,
@@ -61,7 +82,7 @@ class ProductItem extends StatelessWidget {
                       ),
                   5.verticalSpace,
                   Text(
-                    '1kg, ${product.price}\$',
+                    '${product.price}\$',
                     style: theme.textTheme.headlineMedium?.copyWith(
                       color: theme.colorScheme.secondary,
                     ),

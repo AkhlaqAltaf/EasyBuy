@@ -19,8 +19,12 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   void checkUser() {
     Future.delayed(const Duration(seconds: 4), () async {
-      Get.offNamed(Routes.BASE);
       String? token = await getToken();
+      if (token != null) {
+        Get.offNamed(Routes.BASE);
+      } else {
+        Get.offNamed(Routes.LOGIN);
+      }
     });
   }
 
@@ -40,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Spacer(),
-            Image(image: AssetImage(ImagesStrings.splashlogo)),
+            const Image(image: AssetImage(ImagesStrings.splashlogo)),
             const Spacer(flex: 1),
             Padding(
               padding: const EdgeInsets.only(bottom: 25.0),
@@ -60,14 +64,14 @@ class _SplashScreenState extends State<SplashScreen> {
       builder: (context) {
         return AlertDialog(
           backgroundColor: Colors.white,
-          title: Text('Edit Product'),
+          title: const Text('Edit Product'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               TextField(
                 controller: url,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     labelText: 'ipv4 Address', hintText: "192.168.1.1"),
               ),
             ],
@@ -77,7 +81,7 @@ class _SplashScreenState extends State<SplashScreen> {
               onPressed: () async {
                 try {
                   String ipv4 = url.text;
-                  Urls.serverUrl = 'http://${ipv4}:8000';
+                  Urls.serverUrl = 'http://$ipv4:8000';
 
                   Navigator.of(context).pop();
                   checkUser();
@@ -87,7 +91,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   );
                 }
               },
-              child: Text('Save'),
+              child: const Text('Save'),
             ),
           ],
         );

@@ -1,15 +1,24 @@
 import 'package:easy_buy_app/presentation_layer/common/common_widgets/categories_section/category_text_button_widget.dart';
 import 'package:flutter/material.dart';
 
-
 class CategoryList extends StatefulWidget {
+  const CategoryList({super.key});
+
   @override
   _CategoryListState createState() => _CategoryListState();
 }
 
 class _CategoryListState extends State<CategoryList> {
   final List<String> categories = [
-    'All', 'Lamp', 'Vase', 'Chair', 'table', 'Clock', 'plant', 'pictures', 'curtains'
+    'All',
+    'Lamp',
+    'Vase',
+    'Chair',
+    'table',
+    'Clock',
+    'plant',
+    'pictures',
+    'curtains'
   ];
 
   String selectedCategory = 'All';

@@ -58,12 +58,12 @@ class _VerificationState extends State<Verification> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      SizedBox(height: 80),
+                      const SizedBox(height: 80),
                       Image.asset(
                         'assets/logo/logo.png',
                         height: 200.0,
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: List.generate(4, (index) {
@@ -74,7 +74,7 @@ class _VerificationState extends State<Verification> {
                               keyboardType: TextInputType.number,
                               textAlign: TextAlign.center,
                               maxLength: 1,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 counterText: '',
                                 border: OutlineInputBorder(),
                               ),
@@ -91,7 +91,7 @@ class _VerificationState extends State<Verification> {
                           );
                         }),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: () async {
                           setState(() {
@@ -99,14 +99,13 @@ class _VerificationState extends State<Verification> {
                           });
                           try {
                             await verifyCode();
-                          } catch (e) {
                           } finally {
                             _isLoading = false;
                           }
                         },
                         child: _isLoading
-                            ? CircularProgressIndicator()
-                            : Row(
+                            ? const CircularProgressIndicator()
+                            : const Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -118,7 +117,7 @@ class _VerificationState extends State<Verification> {
                                 ],
                               ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                     ],
                   ),
                 ),

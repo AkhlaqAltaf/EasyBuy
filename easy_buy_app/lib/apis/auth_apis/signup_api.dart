@@ -20,7 +20,7 @@ Future<void> registerUser(Auth model, BuildContext context) async {
       Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => Verification(),
+            builder: (context) => const Verification(),
           ));
     } else {
       flashMessage(context, 'error', response.body.toString());

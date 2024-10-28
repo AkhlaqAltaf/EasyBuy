@@ -10,7 +10,7 @@ class FormHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
         Image(image: AssetImage("assets/logo/logo.png")),
       ],
