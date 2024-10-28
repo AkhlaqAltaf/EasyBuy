@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 import environ
 
@@ -40,6 +41,8 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_interface',
+    'colorfield',  # Required by django-admin-interface
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,8 +51,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # APPS
-    'src.apps.accounts.apps.AccountsAppConfig',
-    'src.apps.product.apps.ProductAppConfig',
+    'src.services.accounts.apps.AccountsAppConfig',
+    'src.services.product.apps.ProductAppConfig',
 
     # DRF APPS
     'rest_framework',
@@ -141,6 +144,13 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
