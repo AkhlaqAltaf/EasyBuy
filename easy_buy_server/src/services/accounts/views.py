@@ -11,7 +11,7 @@ from ...apps.whisper.main import Mailing
 
 
 class CustomLoginView(LoginView):
-    serializer_class = LoginSerializer
+    serializer_class = CustomLoginSerializer
 
     def finalize_response(self, request, response, *args, **kwargs):
         response = super().finalize_response(request, response, *args, **kwargs)
@@ -20,7 +20,7 @@ class CustomLoginView(LoginView):
             Token.objects.filter(user=user).delete()
 
             new_token = Token.objects.create(user=user)
-
+            response.data['email']=user.email
             response.data['key'] = new_token.key
         return response
 
@@ -79,5 +79,5 @@ class VerifyEmailView(generics.GenericAPIView):
 
 
 
-class CustomLoginView(LoginView):
-    serializer_class = CustomLoginSerializer
+# class CustomLoginView(LoginView):
+#     serializer_class = CustomLoginSerializer
