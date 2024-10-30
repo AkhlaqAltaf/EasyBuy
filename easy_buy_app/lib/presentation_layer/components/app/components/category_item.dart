@@ -21,13 +21,23 @@ class CategoryItem extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(20),
       child: GestureDetector(
-        onTap: () => Get.toNamed(Routes.PRODUCTS),
+        onTap: () => Get.toNamed(
+          Routes.PRODUCTS,
+          arguments: category.id,
+        ),
         child: Column(
           children: [
             CircleAvatar(
               radius: 37.r,
               backgroundColor: theme.cardColor,
-              child: Image.network(category.image),
+              child: ClipOval(
+                child: Image.network(
+                  category.image,
+                  width: 74.r, // Adjust to match the CircleAvatar's diameter
+                  height: 74.r,
+                  fit: BoxFit.cover,
+                ),
+              ),
             ).animate().fade(duration: 200.ms),
             10.verticalSpace,
             Text(category.name, style: theme.textTheme.headlineSmall)

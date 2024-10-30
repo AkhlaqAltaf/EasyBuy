@@ -57,6 +57,7 @@ dependencies:
   rename_app: # rename app
   badges: # for badges
   flutter_animate: # for animation
+  carousel_slider: ^5.0.0
 
 dev_dependencies:
   flutter_test:

@@ -7,5 +7,4 @@ class Auth {
   Map<String, dynamic> toJson() {
     return {'email': email, 'password': password};
   }
-  
 }

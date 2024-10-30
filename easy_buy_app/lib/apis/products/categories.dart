@@ -7,9 +7,11 @@ import 'package:easy_buy_app/presentation_layer/auth_screens/signup_screen/signu
 import 'package:easy_buy_app/presentation_layer/common/flash_message/flash_message.dart';
 import 'package:easy_buy_app/presentation_layer/home_screen/category_list.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
 
-Future<List<Category>> getCategories(BuildContext context) async {
+Future<List<Category>> getCategories() async {
   try {
     final response = await http.get(Uri.parse(Urls.getCategoriesUrl));
     if (response.statusCode < 300) {
@@ -30,12 +32,12 @@ Future<List<Category>> getCategories(BuildContext context) async {
       return categories;
     } else {
       print("ERROR");
-      flashMessage(context, 'error', response.body);
+      flashMessage(Get.context!, 'error', response.body);
       return [];
     }
   } catch (e) {
     print("error : ");
-    flashMessage(context, 'error', e.toString());
+    flashMessage(Get.context!, 'error', e.toString());
     return [];
   }
 }

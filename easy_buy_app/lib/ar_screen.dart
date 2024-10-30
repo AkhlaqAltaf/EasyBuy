@@ -7,7 +7,7 @@ class ArView extends StatefulWidget {
   @override
   _ArViewState createState() => _ArViewState();
 }
--
+
 class _ArViewState extends State<ArView> {
   ArCoreController? arCoreController;
   bool isArAvailable = false;

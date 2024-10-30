@@ -1,6 +1,6 @@
 class Constants {
   // assets images
-  static const logo = 'assets/images/app_icon.png';
+  static const logo = 'assets/logo/logo.png';
 
   static const homeIcon = 'assets/vectors/home.svg';
   static const categoryIcon = 'assets/vectors/category.svg';

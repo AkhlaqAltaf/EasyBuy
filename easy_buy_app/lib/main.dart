@@ -9,6 +9,8 @@ import 'presentation_layer/components/app/routes/app_pages.dart';
 import 'presentation_layer/components/config/theme/my_theme.dart';
 import 'presentation_layer/components/config/translations/localization_service.dart';
 
+//ARE YOU HERE
+
 Future<void> main() async {
   // wait for bindings
   WidgetsFlutterBinding.ensureInitialized();

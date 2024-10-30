@@ -4,14 +4,11 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-
 import '../../../../utils/constants.dart';
-import '../../../../utils/dummy_helper.dart';
 import '../../../components/custom_button.dart';
-import '../../../components/custom_card.dart';
-import '../../../components/custom_icon_button.dart';
-import '../../../components/product_count_item.dart';
 import '../controllers/product_details_controller.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import '../../../components/product_item.dart';
 
 class ProductDetailsView extends GetView<ProductDetailsController> {
   const ProductDetailsView({super.key});
@@ -19,169 +16,144 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
+
     return Scaffold(
       body: SafeArea(
-        child: ListView(
-          children: [
-            SizedBox(
-              height: 330.h,
-              child: Stack(
-                children: [
-                  Positioned.fill(
-                    child: SvgPicture.asset(
-                      Constants.container,
-                      fit: BoxFit.fill,
-                      color: theme.cardColor,
-                    ),
-                  ),
-                  Positioned(
-                    top: 24.h,
-                    left: 24.w,
-                    right: 24.w,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomIconButton(
-                          onPressed: () => Get.back(),
-                          icon: SvgPicture.asset(
-                            Constants.backArrowIcon,
-                            fit: BoxFit.none,
-                            color: theme.appBarTheme.iconTheme?.color,
+        child: Obx(() {
+          return controller.isLoading.value
+              ? Center(child: CircularProgressIndicator())
+              : ListView(
+                  padding: EdgeInsets.symmetric(horizontal: 24.w),
+                  children: [
+                    // Carousel for product images
+                    SizedBox(
+                      height: 300.h,
+                      child: Stack(
+                        children: [
+                          Positioned.fill(
+                            child: CarouselSlider.builder(
+                              itemCount: controller.product.images.length,
+                              itemBuilder: (context, index, _) {
+                                return Image.network(
+                                  controller.product.images[index].image,
+                                  fit: BoxFit.cover,
+                                  width: double.infinity,
+                                );
+                              },
+                              options: CarouselOptions(
+                                height: 300.h,
+                                viewportFraction: 1.0,
+                                enlargeCenterPage: true,
+                                autoPlay: true,
+                                autoPlayInterval: Duration(seconds: 3),
+                              ),
+                            ),
                           ),
-                        ),
-                        CustomIconButton(
-                          onPressed: () {},
-                          icon: SvgPicture.asset(
-                            Constants.searchIcon,
-                            fit: BoxFit.none,
-                            color: theme.appBarTheme.iconTheme?.color,
+                          Positioned(
+                            top: 20.h,
+                            left: 0,
+                            child: IconButton(
+                              icon: Icon(Icons.arrow_back,
+                                  color: theme.iconTheme.color),
+                              onPressed: () => Get.back(),
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Positioned(
-                    top: 80.h,
-                    left: 0,
-                    right: 0,
-                    child: Image.network(
-                      controller.product.images[0].image,
-                      width: 250.w,
-                      height: 225.h,
-                    ).animate().fade().scale(
-                          duration: 800.ms,
-                          curve: Curves.fastOutSlowIn,
-                        ),
-                  ),
-                ],
-              ),
-            ),
-            30.verticalSpace,
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.w),
-              child: Row(
-                children: [
-                  Text(
-                    controller.product.name,
-                    style: theme.textTheme.displayMedium,
-                  ).animate().fade().slideX(
-                        duration: 300.ms,
-                        begin: -1,
-                        curve: Curves.easeInSine,
+                        ],
                       ),
-                  const Spacer(),
-                  // ProductCountItem(product: controller.product)
-                  //     .animate()
-                  //     .fade(duration: 200.ms),
-                ],
-              ),
-            ),
-            8.verticalSpace,
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.w),
-              child: Text(
-                '${controller.product.price}\$',
-                style: theme.textTheme.displaySmall?.copyWith(
-                  color: theme.colorScheme.secondary,
-                ),
-              ).animate().fade().slideX(
-                    duration: 300.ms,
-                    begin: -1,
-                    curve: Curves.easeInSine,
-                  ),
-            ),
-            8.verticalSpace,
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.w),
-              child: Text(
-                controller.product.description,
-                style: theme.textTheme.bodyLarge,
-              ).animate().fade().slideX(
-                    duration: 300.ms,
-                    begin: -1,
-                    curve: Curves.easeInSine,
-                  ),
-            ),
-            20.verticalSpace,
+                    ),
+                    SizedBox(height: 16.h),
 
-            TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ArView(),
-                      ));
-                },
-                child: Text("View AR")),
-            20.verticalSpace,
-            30.verticalSpace,
+                    // Product name
+                    Text(
+                      controller.product.name,
+                      style: theme.textTheme.headlineMedium
+                          ?.copyWith(fontWeight: FontWeight.w600),
+                    ).animate().fade().scale(),
+                    SizedBox(height: 8.h),
 
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 24.w),
-            //   child: GridView(
-            //     shrinkWrap: true,
-            //     primary: false,
-            //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            //       crossAxisCount: 2,
-            //       crossAxisSpacing: 16.w,
-            //       mainAxisSpacing: 16.h,
-            //       mainAxisExtent: 80.h,
-            //     ),
-            //     children: DummyHelper.cards
-            //         .map((card) => CustomCard(
-            //               title: card['title']!,
-            //               subtitle: card['subtitle']!,
-            //               icon: card['icon']!,
-            //             ))
-            //         .toList()
-            //         .animate()
-            //         .fade()
-            //         .slideY(
-            //           duration: 300.ms,
-            //           begin: 1,
-            //           curve: Curves.easeInSine,
-            //         ),
-            //   ),
-            // ),
-            30.verticalSpace,
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.w),
-              child: CustomButton(
-                text: 'Add to Cart',
-                onPressed: () => controller.onAddToCartPressed(),
-                fontSize: 16.sp,
-                radius: 50.r,
-                verticalPadding: 16.h,
-                hasShadow: false,
-              ).animate().fade().slideY(
-                    duration: 300.ms,
-                    begin: 1,
-                    curve: Curves.easeInSine,
-                  ),
-            ),
-            30.verticalSpace,
-          ],
-        ),
+                    // Product price
+                    Text(
+                      '\$${controller.product.price}',
+                      style: theme.textTheme.headlineMedium?.copyWith(
+                        color: theme.colorScheme.secondary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ).animate().fade().scale(),
+                    SizedBox(height: 8.h),
+
+                    // Product description
+                    Text(
+                      controller.product.description,
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                    ).animate().fade(),
+                    SizedBox(height: 20.h),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ArView(),
+                          ),
+                        );
+                      },
+                      child: Text("View in AR",
+                          style: theme.textTheme.labelLarge
+                              ?.copyWith(color: theme.primaryColor)),
+                    ),
+                    SizedBox(height: 20.h),
+
+                    // Add to Cart Button
+                    Align(
+                      alignment: Alignment.center,
+                      child: CustomButton(
+                        text: 'Add to Cart',
+                        onPressed: controller.onAddToCartPressed,
+                        fontSize: 16.sp,
+                        verticalPadding: 14.h,
+                      ).animate().fade().slideY(
+                            duration: 300.ms,
+                            begin: 1,
+                            curve: Curves.easeInSine,
+                          ),
+                    ),
+                    SizedBox(height: 20.h),
+
+                    // AR View Button
+                    Text(
+                      "More Products",
+                      style: theme.textTheme.headlineSmall
+                          ?.copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 8.h),
+                    SizedBox(height: 30.h),
+                    SizedBox(
+                      height: 180.h, // Adjust to fit your layout
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: List.generate(
+                            controller.products.length,
+                            (index) => Padding(
+                              padding: EdgeInsets.only(right: 16.w),
+                              child: SizedBox(
+                                width: 150.w,
+                                child: ProductItem(
+                                  product: controller.products[index],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(height: 30.h),
+
+                    SizedBox(height: 30.h),
+                  ],
+                );
+        }),
       ),
     );
   }

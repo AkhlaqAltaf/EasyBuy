@@ -48,7 +48,7 @@ Drawer drawer(BuildContext context, {bool isLogin = false}) {
                     ),
                   ),
                   onTap: () {
-                    Get.offNamed(Routes.HOME);
+                    Get.toNamed(Routes.BASE);
                     // Navigator.pop(context);
                   },
                 ),
@@ -64,7 +64,7 @@ Drawer drawer(BuildContext context, {bool isLogin = false}) {
                     ),
                   ),
                   onTap: () {
-                    Get.offNamed(Routes.PRODUCTS);
+                    Get.toNamed(Routes.PRODUCTS, arguments: -1);
                   },
                 ),
                 isLogin

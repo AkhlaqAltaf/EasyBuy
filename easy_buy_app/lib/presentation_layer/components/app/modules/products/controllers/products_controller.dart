@@ -1,32 +1,51 @@
 import 'package:easy_buy_app/apis/products/all_products.dart';
 import 'package:easy_buy_app/data_layer/product/product.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductsController extends GetxController {
-  // To hold the products
   var products = <Product>[].obs;
-
+  var isLoading = true.obs; // Observable for loading state
+  int categoryID = Get.arguments;
+  var filteredProducts = <Product>[].obs; // Filtered product list
   @override
   void onInit() {
     super.onInit();
-    fetchProducts(); // Call fetchProducts here
+    fetchProducts();
   }
 
   // Function to fetch products from API
   void fetchProducts() async {
+    print(".....................");
+    isLoading.value = true; // Start loading
     try {
-      final fetchedProducts = await getAllProducts();
-      if (fetchedProducts.isNotEmpty) {
-        products.value = fetchedProducts; // Update the observable list
+      final fetchedProducts;
+      if (categoryID != Null) {
+        print("IN TO THE NOT -NULL");
+
+        fetchedProducts = await getAllProducts(categoryID: categoryID);
+        products.value = fetchedProducts;
+        filteredProducts.assignAll(products); // Initially, display all products
       } else {
-        // Optionally handle the empty state
-        products.value = [];
+        print("IN TO THE NULL");
+        fetchedProducts = await getAllProducts();
+        products.value = fetchedProducts;
+
+        filteredProducts.assignAll(products); // Initially, display all products
       }
+      products.value = fetchedProducts;
     } catch (e) {
-      print("Error fetching products: $e");
-      // Optionally set an empty list or handle the error state
       products.value = [];
+    } finally {
+      isLoading.value = false; // End loading
+    }
+  }
+
+  void filterProducts(String query) {
+    if (query.isEmpty) {
+      filteredProducts.assignAll(products); // Show all if query is empty
+    } else {
+      filteredProducts.assignAll(products.where((product) =>
+          product.name.toLowerCase().contains(query.toLowerCase())));
     }
   }
 }

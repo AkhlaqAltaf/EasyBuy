@@ -64,7 +64,7 @@ class _SplashScreenState extends State<SplashScreen> {
       builder: (context) {
         return AlertDialog(
           backgroundColor: Colors.white,
-          title: const Text('Edit Product'),
+          title: const Text('Put IP'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [

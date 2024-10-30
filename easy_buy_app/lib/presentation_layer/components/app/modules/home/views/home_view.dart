@@ -46,12 +46,12 @@ class HomeView extends GetView<HomeController> {
                           contentPadding:
                               EdgeInsets.symmetric(horizontal: 24.w),
                           title: Text(
-                            'Good morning',
+                            'Hi',
                             style: theme.textTheme.bodyMedium
                                 ?.copyWith(fontSize: 12.sp),
                           ),
                           subtitle: Text(
-                            'Amelia Barlow',
+                            "${controller.username.value}",
                             style: theme.textTheme.headlineMedium?.copyWith(
                               fontWeight: FontWeight.normal,
                             ),
@@ -85,6 +85,10 @@ class HomeView extends GetView<HomeController> {
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 24.w),
                           child: CustomFormField(
+                            onChanged: (value) {
+                              controller.filterProducts(
+                                  value!); // Call to filter method
+                            },
                             backgroundColor: theme.primaryColorDark,
                             textSize: 14.sp,
                             hint: 'Search category',
@@ -135,63 +139,12 @@ class HomeView extends GetView<HomeController> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Categories 😋',
-                                style: theme.textTheme.headlineLarge,
-                              ),
-                              Text(
-                                'all',
-                                style: theme.textTheme.headlineSmall?.copyWith(
-                                  color: theme.primaryColor,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                            ],
-                          ),
-                          16.verticalSpace,
-                          FutureBuilder<List<Category>>(
-                            future: getCategories(context),
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return const Center(
-                                    child: CircularProgressIndicator());
-                              } else if (snapshot.hasError) {
-                                return Center(
-                                  child: Text(
-                                      'Error loading categories: ${snapshot.error}'),
-                                );
-                              } else if (!snapshot.hasData ||
-                                  snapshot.data!.isEmpty) {
-                                return const Center(
-                                    child: Text('No categories available.'));
-                              } else {
-                                final categories = snapshot.data!;
-
-                                return SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: categories
-                                        .map((category) =>
-                                            CategoryItem(category: category))
-                                        .toList(),
-                                  ),
-                                );
-                              }
-                            },
-                          ),
-                          20.verticalSpace,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Best selling 🔥',
+                                'Categories 🥳',
                                 style: theme.textTheme.headlineLarge,
                               ),
                               TextButton(
                                 onPressed: () {
-                                  Get.offNamed(Routes.PRODUCTS);
+                                  Get.toNamed(Routes.CATEGORY);
                                 },
                                 child: Text(
                                   'See all',
@@ -206,10 +159,57 @@ class HomeView extends GetView<HomeController> {
                           ),
                           16.verticalSpace,
                           Obx(() {
-                            if (controller.products.isEmpty) {
+                            if (controller.isLoadingCategories.value) {
                               return const Center(
-                                child: Text('No products available.'),
+                                  child: CircularProgressIndicator());
+                            } else if (controller.categories.isEmpty) {
+                              return const Center(
+                                  child: Text('No categories available.'));
+                            } else {
+                              return SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: controller.categories
+                                      .map((category) =>
+                                          CategoryItem(category: category))
+                                      .toList(),
+                                ),
                               );
+                            }
+                          }),
+                          20.verticalSpace,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Best selling 🔥',
+                                style: theme.textTheme.headlineLarge,
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Get.offNamed(Routes.PRODUCTS, arguments: -1);
+                                },
+                                child: Text(
+                                  'See all',
+                                  style:
+                                      theme.textTheme.headlineSmall?.copyWith(
+                                    color: theme.primaryColor,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          16.verticalSpace,
+                          Obx(() {
+                            if (controller.isLoadingProducts.value) {
+                              return const Center(
+                                  child: CircularProgressIndicator());
+                            } else if (controller.products.isEmpty) {
+                              return const Center(
+                                  child: Text('No products available.'));
                             } else {
                               return GridView.builder(
                                 gridDelegate:

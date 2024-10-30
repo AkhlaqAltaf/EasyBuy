@@ -1,15 +1,15 @@
-import 'package:easy_buy_app/apis/products/categories.dart';
-import 'package:easy_buy_app/data_layer/product/category.dart';
+import 'package:easy_buy_app/presentation_layer/components/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../components/no_data.dart';
+import '../controllers/category_controller.dart';
 
 class CategoryView extends StatelessWidget {
   const CategoryView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final CategoryController categoryController = Get.put(CategoryController());
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Categories', style: context.theme.textTheme.headlineSmall),
@@ -29,80 +29,96 @@ class CategoryView extends StatelessWidget {
           ),
         ],
       ),
-      body: FutureBuilder<List<Category>>(
-        future: getCategories(context), // Fetch categories dynamically
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(
-              child: Text('Error loading categories: ${snapshot.error}'),
-            );
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(child: Text('No categories available.'));
-          } else {
-            // Data loaded successfully
-            final categories = snapshot.data!;
-            return Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Handle "View All Items"
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
+      body: Obx(() {
+        if (categoryController.isLoading.value) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (categoryController.categories.isEmpty) {
+          return const Center(child: Text('No categories available.'));
+        } else {
+          return Column(
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  itemCount: categoryController.categories.length,
+                  itemBuilder: (context, index) {
+                    final category = categoryController.categories[index];
+                    return Padding(
                       padding: const EdgeInsets.symmetric(
-                          vertical: 15.0, horizontal: 30.0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                    ),
-                    child: const Text(
-                      'VIEW ALL ITEMS',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                const Divider(),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Choose Category',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: categories.length,
-                    itemBuilder: (context, index) {
-                      final category = categories[index];
-                      return ListTile(
-                        title: Text(category.name),
+                          horizontal: 16.0, vertical: 8.0),
+                      child: GestureDetector(
                         onTap: () {
-                          Get.snackbar(
-                              "Category", "You clicked on ${category.name}");
+                          Get.toNamed(Routes.PRODUCTS, arguments: category.id);
                         },
-                      );
-                    },
-                  ),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          elevation: 4,
+                          child: Stack(
+                            alignment: Alignment.bottomLeft,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(12.0),
+                                child: Image.network(
+                                  category.image,
+                                  height: 200.0,
+                                  width: double.infinity,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              Container(
+                                height: 200.0,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12.0),
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    colors: [
+                                      Colors.transparent,
+                                      Colors.black.withOpacity(0.6),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      category.name,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 4.0),
+                                    Text(
+                                      category.description,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                        color: Colors.white70,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
-              ],
-            );
-          }
-        },
-      ),
+              ),
+            ],
+          );
+        }
+      }),
     );
   }
 }

@@ -18,7 +18,9 @@ Future<void> signInUser(Auth model, BuildContext context) async {
     if (response.statusCode < 300) {
       var decodedResponse = await jsonDecode(response.body);
       String token = decodedResponse['key'];
-      await storeToken(token);
+      String email = decodedResponse['email'];
+      String username = email.split('@')[0];
+      await storeToken(username);
 
       Get.offNamed(Routes.BASE);
     } else {

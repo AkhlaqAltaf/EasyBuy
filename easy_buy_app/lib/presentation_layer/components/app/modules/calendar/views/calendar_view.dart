@@ -11,10 +11,10 @@ class CalendarView extends GetView<CalendarController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Calendar', style: context.theme.textTheme.displaySmall),
+        title: Text('History', style: context.theme.textTheme.displaySmall),
         centerTitle: true,
       ),
-      body: const NoData(text: 'This is Calendar Screen'),
+      body: const NoData(text: 'This is History Screen Screen'),
     );
   }
 }
