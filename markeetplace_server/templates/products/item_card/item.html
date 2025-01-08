@@ -1,0 +1,61 @@
+
+
+
+
+
+ {% if top_sale4 %}
+
+  <div class="mt-12 px-4 md:px-20 grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- First Card -->
+    <div class="bg-gray-200 flex flex-col md:flex-row justify-between items-center rounded-lg shadow-lg p-6 w-full h-auto">
+      <div class="flex flex-col items-center justify-center text-center md:text-left">
+        <p class="text-white bg-blue-500 px-3 py-1 rounded">INTRODUCING</p>
+        <h1 class="text-2xl md:text-3xl font-semibold mt-4">
+          {{ top_sale4.name }}
+        </h1>
+        <p class="text-gray-600 text-base leading-snug mt-2">
+            {{ top_sale4.description }}
+        </p>
+        <a href="{% url 'product:product-detail' top_sale4.id %}" class="bg-orange-500 text-white font-bold px-6 py-2 mt-4 rounded flex items-center space-x-2">
+          <span>Shop Now</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </div>
+      <div class="mt-6 md:mt-0">
+        <img src="{{ top_sale4.media.first.file.url }}" alt="Circle Graphic" class="w-48 h-auto">
+      </div>
+    </div>
+      {% endif %}
+    <!-- Second Card -->
+ {% if top_sale6 %}
+
+
+    <div class="bg-gray-900 flex flex-col md:flex-row justify-between items-center rounded-lg shadow-lg p-6 w-full h-auto text-white">
+      <div class="flex flex-col items-center justify-center text-center md:text-left">
+        <p class="text-black bg-yellow-400 px-3 py-1 rounded">INTRODUCING</p>
+        <h1 class="text-2xl md:text-3xl font-semibold mt-4">
+          {{ top_sale5.name }}
+        </h1>
+        <p class="text-gray-300 text-base leading-snug mt-2">
+            {{ top_sale5.description }}
+        </p>
+        <a href="{% url 'product:product-detail' top_sale5.id %}" class="bg-orange-500 text-white font-bold px-6 py-2 mt-4 rounded flex items-center space-x-2">
+          <span>Shop Now</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </div>
+      <div class="relative mt-6 md:mt-0">
+        <p class="absolute top-2 right-0 sm:bottom-0 sm:left-9 md:top-0 md:left-36 rounded-full bg-blue-500 text-white p-4 w-14 h-14 sm:w-10 sm:h-10 flex items-center justify-center">$ {{ top_sale5.price }}</p>
+        <img src="{{ top_sale5.media.first.file.urk }}" alt="Mobile Graphic" class="w-48 h-auto">
+      </div>
+    </div>
+
+  </div>
+ {% endif %}
+
+
+

@@ -1,0 +1,12 @@
+Django
+dj-rest-auth
+drf-yasg
+django-cors-headers
+djangorestframework
+django-allauth
+pillow
+django-environ
+setuptools
+django-admin-interface
+stripe
+django-ckeditor

@@ -1,0 +1,44 @@
+<!-- In your addToCartButton.html -->
+<button class="addToCartButton w-20 flex items-center justify-center rounded-md bg-[#0B5D51] px-3 py-2 text-center text-sm font-medium text-white hover:bg-[#073741] hover:text-white focus:outline-none focus:ring-4 focus:ring-blue-300 shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+        data-product-id="{{ product.id }}"
+        data-quantity="1"
+        >
+     <i class="fa fa-shopping-cart"></i>
+
+</button>
+
+<script>
+  // Attach event listeners to all "Add to Cart" buttons dynamically
+document.querySelectorAll('.addToCartButton').forEach(function(button) {
+    button.addEventListener('click', function() {
+        const productId = button.getAttribute('data-product-id');  // Get product ID from the button
+        const quantity = button.getAttribute('data-quantity');  // Get quantity from the button
+
+        // Construct the URL for the AddToCartView
+        const url = `/product/addToCart/${productId}/${quantity}/`;
+
+        // Send the POST request using fetch
+        fetch(url, {
+            method: 'POST',  // Use POST method
+            headers: {
+                'Content-Type': 'application/json',  // Send JSON data
+                'X-CSRFToken': '{{ csrf_token }}',  // Include CSRF token for security
+            },
+            body: JSON.stringify({ 'product_id': productId, 'quantity': quantity })  // Request body
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                {#alert('Product added to cart!');  // Notify user of success#}
+                location.reload();  // Reload the current page
+            } else {
+                {#alert('Error adding product to cart');  // Notify user of error#}
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            {#alert('An error occurred');  // Notify user of error#}
+        });
+    });
+});
+</script>

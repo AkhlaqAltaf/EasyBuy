@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Product Creation</title>
+  <script src="https://kit.fontawesome.com/ac8aec1afa.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <div class="mt-12 flex flex-col space-y-6 px-4 md:px-8 max-w-5xl m-auto">
+    <h1 class="text-2xl md:text-3xl font-bold">Create a new product</h1>
+    <div class="flex flex-wrap items-center gap-3 text-sm">
+      <p class="text-gray-800 font-medium">Dashboard</p>
+      <span class="text-gray-500 text-xl">•</span>
+      <p class="text-gray-800 font-medium">Products</p>
+      <span class="text-gray-500 text-xl">•</span>
+      <p class="text-gray-600">Create</p>
+    </div>
+
+    <!-- Basic Details Section -->
+    <div class="mt-5 py-4 bg-white shadow rounded-lg grid grid-cols-1 md:grid-cols-12">
+      <div class="md:col-span-5 px-5 py-2">
+        <h4 class="text-lg font-bold">Basic Details</h4>
+      </div>
+      <div class="md:col-span-7 flex flex-col space-y-4 px-4 md:px-0">
+        <input
+          type="text"
+          placeholder="Product Name"
+          class="p-2 w-full md:w-96 h-12 border rounded"
+        />
+        <h6>Description</h6>
+        <div class="flex flex-col gap-2 border rounded-md w-full md:w-96">
+          <div class="flex items-center justify-between p-2">
+            <button class="p-2">
+              <p class="text-black hover:text-gray-800">Normal</p>
+            </button>
+            <div class="flex gap-3">
+              <button onclick="document.execCommand('bold', false, null)">
+                <i class="fas fa-bold text-gray-600 hover:text-gray-800"></i>
+              </button>
+              <button onclick="document.execCommand('italic', false, null)">
+                <i class="fas fa-italic text-gray-600 hover:text-gray-800"></i>
+              </button>
+              <button onclick="document.execCommand('underline', false, null)">
+                <i class="fas fa-underline text-gray-600 hover:text-gray-800"></i>
+              </button>
+              <button onclick="document.execCommand('insertOrderedList', false, null)">
+                <i class="fas fa-list-ol text-gray-600 hover:text-gray-800"></i>
+              </button>
+              <button onclick="document.execCommand('insertUnorderedList', false, null)">
+                <i class="fas fa-list-ul text-gray-600 hover:text-gray-800"></i>
+              </button>
+            </div>
+          </div>
+          <hr class="border-gray-300" />
+          <div
+            contenteditable="true"
+            class="border-none outline-none h-40 w-full resize-none p-2 overflow-y-auto"
+            style="max-height: 200px; min-height: 100px;"
+            placeholder="Write Something..."
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Images Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div class="col-span-1 lg:col-span-6 py-4 rounded-lg bg-white shadow">
+        <div class="p-2 flex flex-col gap-3">
+          <h1 class="text-lg font-bold px-2">Images</h1>
+          <div class="bg-gray-100 flex flex-col gap-3 shadow p-3 px-6">
+            <p class="text-sm text-gray-600">
+              Images will appear in the store front of your website.
+            </p>
+            <div class="flex items-center gap-3">
+              <div class="bg-gray-300 rounded-full p-2">
+                <i class="fas fa-upload text-gray-700 text-xl"></i>
+              </div>
+              <div class="flex flex-col gap-1">
+                <h6 class="text-lg">Click to upload or drag and drop</h6>
+                <p class="text-sm text-gray-600">
+                  SVG, JPG, PNG, or GIF maximum 900x400
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Product & Best Deals -->
+      <div class="col-span-1 lg:col-span-5 py-4 rounded-lg bg-white shadow flex flex-col md:flex-row items-center gap-4 px-4">
+        <div class="flex flex-col gap-3">
+          <h1 class="text-lg font-bold">Feature Product</h1>
+          <button
+            onclick="toggleSwitch(this)"
+            class="relative inline-flex items-center w-14 h-6 rounded-full transition-colors duration-200 focus:outline-none bg-gray-400"
+          >
+            <span
+              class="absolute left-1 w-4 h-4 rounded-full transition-transform duration-200 bg-white"
+            ></span>
+          </button>
+        </div>
+        <div class="border-l border-gray-300 h-full"></div>
+        <div class="flex flex-col gap-3">
+          <h1 class="text-lg font-bold">Best Deals</h1>
+          <button
+            onclick="toggleSwitch(this)"
+            class="relative inline-flex items-center w-14 h-6 rounded-full transition-colors duration-200 focus:outline-none bg-gray-400"
+          >
+            <span
+              class="absolute left-1 w-4 h-4 rounded-full transition-transform duration-200 bg-white"
+            ></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing Section -->
+    <div class="bg-white shadow-md rounded-lg p-6">
+      <h2 class="text-lg font-bold">Pricing</h2>
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mt-4">
+        <!-- Pricing Inputs -->
+        <!-- Add your respective pricing fields here -->
+      </div>
+      <div class="mt-4 flex items-center space-x-3">
+        <button
+          onclick="toggleSwitch(this)"
+          class="relative inline-flex items-center w-14 h-6 rounded-full transition-colors duration-200 focus:outline-none bg-gray-400"
+        >
+          <span
+            class="absolute left-1 w-4 h-4 rounded-full transition-transform duration-200 bg-white"
+          ></span>
+        </button>
+        <span class="text-sm text-gray-800">Keep selling when stock is empty</span>
+      </div>
+    </div>
+
+    <!-- Category Section -->
+    <div class="bg-white shadow-md rounded-lg p-6 space-y-6">
+      <h2 class="text-lg font-bold">Category</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+        <select class="border rounded-lg p-2 text-gray-600">
+          <option>Category</option>
+        </select>
+        <input
+          type="text"
+          placeholder="BarCode"
+          class="border rounded-lg p-2 text-gray-600"
+        />
+        <input
+          type="text"
+          placeholder="SKU"
+          class="border rounded-lg p-2 text-gray-600"
+        />
+      </div>
+    </div>
+  </div>
+  <script>
+    function toggleSwitch(button) {
+      if (button.classList.contains("bg-gray-400")) {
+        button.classList.remove("bg-gray-400");
+        button.classList.add("bg-green-600");
+        button.querySelector("span").classList.add("transform", "translate-x-8");
+      } else {
+        button.classList.remove("bg-green-600");
+        button.classList.add("bg-gray-400");
+        button.querySelector("span").classList.remove("transform", "translate-x-8");
+      }
+    }
+
+    function updateValue(fieldId, increment) {
+      const input = document.getElementById(fieldId);
+      let currentValue = parseFloat(input.value);
+
+      if (fieldId === "bulk") {
+        currentValue = (currentValue + increment).toFixed(1);
+      } else {
+        currentValue = Math.max(0, currentValue + increment);
+      }
+
+      input.value = currentValue;
+    }
+  </script>
+</body>
+</html>
+    

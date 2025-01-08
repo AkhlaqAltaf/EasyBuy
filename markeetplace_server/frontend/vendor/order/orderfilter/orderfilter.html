@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Filter</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+  <div class="flex flex-col lg:flex-row p-10 space-x-0 lg:space-x-10">
+
+    <!-- Sidebar -->
+    <div class="max-w-sm w-full lg:w-[380px] p-7 bg-white shadow-2xl rounded-lg mb-8 lg:mb-0">
+      <div class="flex items-center gap-2 mb-4">
+        <label class="block text-gray-700 text-sm font-medium mb-2">Order number</label>
+      </div>
+      
+      <div class="mb-4">
+        <input type="text" id="orderNumber" placeholder="Order number" class="w-full px-4 py-2 border rounded-md" oninput="filterOrders()"/>
+        <label class="block text-gray-700 text-sm font-medium mb-2">Issue date</label>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <input id="fromDate" placeholder="From" class="px-4 py-2 border rounded-md" type="date" oninput="filterOrders()"/>
+          <input id="toDate" placeholder="To" class="px-4 py-2 border rounded-md" type="date" oninput="filterOrders()"/>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-medium mb-2">From customer</label>
+        <div class="bg-gray-100 p-2 rounded-lg h-32 overflow-y-auto">
+          <label class="flex items-center mb-2">
+            <input type="checkbox" class="form-checkbox text-green-500 h-4 w-4" id="blindSpots" onchange="filterOrders()"/>
+            <span class="ml-2 text-gray-700">Blind Spots Inc.</span>
+          </label>
+          <label class="flex items-center mb-2">
+            <input type="checkbox" class="form-checkbox text-green-500 h-4 w-4" id="dispatcherInc" onchange="filterOrders()"/>
+            <span class="ml-2 text-gray-700">Dispatcher Inc.</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Toggles -->
+      <div class="mb-4">
+        <div class="flex items-center space-x-2 mt-4">
+          <button id="paidToggle" class="relative inline-flex items-center w-14 h-6 rounded-full bg-[#939393]" onclick="togglePaid()">
+            <span class="absolute left-0 w-3 h-3 rounded-full bg-white"></span>
+            <span class="px-1 absolute text-xs text-white opacity-100" style="margin-left: 10px;">ON</span>
+            <span class="px-1 absolute text-xs text-white opacity-0" style="margin-left: 10px;">OFF</span>
+          </button>
+          <span class="text-gray-700">Paid only</span>
+        </div>
+        <div class="flex items-center space-x-2 mt-4">
+          <button id="groupStatusToggle" class="relative inline-flex items-center w-14 h-6 rounded-full bg-[#939393]" onclick="toggleGroupStatus()">
+            <span class="absolute left-0 w-3 h-3 rounded-full bg-white"></span>
+            <span class="px-1 absolute text-xs text-white opacity-100" style="margin-left: 10px;">ON</span>
+            <span class="px-1 absolute text-xs text-white opacity-0" style="margin-left: 10px;">OFF</span>
+          </button>
+          <span class="text-gray-700">Group by status</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Orders Section -->
+    <div class="w-full">
+      <div class="p-6 bg-white">
+
+        <!-- Stats -->
+        <div id="stats" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+          <div class="bg-white shadow-xl p-4 items-center space-x-3 flex rounded-lg">
+            <div class="flex items-center text-[20px] w-[40px] justify-center rounded-3xl text-white bg-[#0B5D51]">.</div>
+            <div class="flex-col">
+              <span>Total</span>
+              <p id="totalAmount" class="text-xl font-semibold">$5,300.00</p>
+              <p id="invoiceCount" class="text-sm text-gray-500">from 12 invoices</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Paid Orders -->
+        <div id="paidOrders" class="w-full bg-white rounded-xl shadow-md overflow-hidden">
+          <!-- Dynamic content will be inserted here -->
+        </div>
+
+        <!-- Pending Orders -->
+        <div id="pendingOrders" class="p-4">
+          <!-- Dynamic content will be inserted here -->
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="./orderfilter.js">
+  
+
+  </script>
+
+</body>
+</html>

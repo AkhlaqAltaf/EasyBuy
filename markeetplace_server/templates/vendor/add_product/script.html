@@ -1,0 +1,209 @@
+<script>
+    // ========== Tag Management ==========
+    const tagInput = document.getElementById("tagInput");
+    const addTagButton = document.getElementById("addTagButton");
+    const tagStack = document.getElementById("tagStack");
+    const tagsInput = document.getElementById("tagsInput");
+
+    function addTag() {
+        const tagValue = tagInput.value.trim();
+        if (!tagValue) return;
+
+        // Create Tag Element
+        const tagElement = document.createElement("div");
+        tagElement.className = "bg-green-500 text-white px-3 py-1 rounded-lg flex items-center space-x-2 cursor-pointer group";
+        tagElement.innerHTML = `
+            <span>${tagValue}</span>
+            <button class="hidden group-hover:inline text-sm text-gray-200 ml-2">&times;</button>
+        `;
+
+        // Add Delete Functionality
+        tagElement.addEventListener("click", () => {
+            tagStack.removeChild(tagElement);
+            updateTagsInput();
+        });
+
+        // Append Tag and Clear Input
+        tagStack.appendChild(tagElement);
+        tagInput.value = "";
+
+        updateTagsInput();
+    }
+
+    function updateTagsInput() {        
+        const tags = Array.from(tagStack.children).map(tagElement =>
+            tagElement.querySelector("span").textContent
+        );
+        tagsInput.value = JSON.stringify(tags);
+    }
+
+    addTagButton.addEventListener("click", addTag);
+
+    tagInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            addTag();
+        }
+    });
+
+    // ========== Subcategory Dropdown ==========
+    const categorySelect = document.getElementById("categorySelect");
+    const subcategorySelect = document.getElementById("subcategorySelect");
+
+    categorySelect.addEventListener("change", () => {
+        const selectedCategory = categorySelect.value;
+
+        // Clear existing options
+        subcategorySelect.innerHTML = '<option value="" disabled selected>Select Sub-Category</option>';
+
+        // Fetch subcategories from backend
+        fetch(`subcategory/${selectedCategory}/`)
+            .then((response) => {
+                if (!response.ok) throw new Error("Network response was not ok");
+                return response.json();
+            })
+            .then((data) => {
+                // Populate subcategory dropdown
+                data.subcategories.forEach((subcategory) => {
+                    const option = document.createElement("option");
+                    option.value = subcategory.name;
+                    option.textContent = subcategory.name;
+                    subcategorySelect.appendChild(option);
+                });
+            })
+            .catch((error) => console.error("Error fetching subcategories:", error));
+    });
+
+    // ========== Text Editor ==========
+    CKEDITOR.replace("editor");
+
+    // ========== Image Upload ==========
+    const uploadImagesInput = document.getElementById("uploadImages");
+    const imageStack = document.getElementById("imageStack");
+
+    const imageFiles = []; // Array to store files for submission
+
+    function handleImageUpload(event) {
+        const files = Array.from(event.target.files);
+
+        files.forEach((file) => {
+            // Store the file in our imageFiles array
+            imageFiles.push(file);
+
+            const reader = new FileReader();
+
+            reader.onload = (e) => {
+                const imageDiv = document.createElement("div");
+                imageDiv.className = "relative w-24 h-24 flex-shrink-0";
+
+                const img = document.createElement("img");
+                img.src = e.target.result;
+                img.alt = file.name;
+                img.className = "w-full h-full object-cover rounded-lg";
+
+                const deleteButton = document.createElement("button");
+                deleteButton.className = "absolute top-1 right-1 bg-red-500 text-white text-xs rounded-full p-1 opacity-0 hover:opacity-100 transition-opacity";
+                deleteButton.innerText = "✕";
+
+                // Delete functionality
+                deleteButton.addEventListener("click", () => {
+                    // Remove from imageDiv
+                    imageDiv.remove();
+
+                    // Remove from imageFiles array
+                    const index = imageFiles.indexOf(file);
+                    if (index > -1) {
+                        imageFiles.splice(index, 1);
+                    }
+                });
+
+                // Hover effects
+                imageDiv.addEventListener("mouseenter", () => {
+                    deleteButton.style.opacity = 1;
+                });
+                imageDiv.addEventListener("mouseleave", () => {
+                    deleteButton.style.opacity = 0;
+                });
+
+                // Append elements
+                imageDiv.appendChild(img);
+                imageDiv.appendChild(deleteButton);
+                imageStack.appendChild(imageDiv);
+            };
+
+            reader.readAsDataURL(file);
+        });
+
+        // Clear input value for re-uploading same files
+        event.target.value = "";
+    }
+
+    // ========== Form Submission ==========
+    // ========== Form Submission ========== 
+const productForm = document.getElementById("productForm");
+
+productForm.addEventListener("submit", (e) => {
+    // Prevent default form submission
+    e.preventDefault();
+
+    // Create FormData object
+    const formData = new FormData(productForm);
+
+    // Clear any existing file inputs
+    formData.delete('images');
+
+    // Append each file to the FormData
+    imageFiles.forEach(file => {
+        formData.append('images', file);
+    });
+
+    // Add tags to FormData
+    updateTagsInput();
+    const tags = JSON.parse(tagsInput.value);
+    formData.append('tags', JSON.stringify(tags));
+
+    // Get the CKEDITOR content
+    const editorContent = CKEDITOR.instances.editor.getData();
+    formData.append('content', editorContent);
+
+    // Send form data via AJAX
+    fetch(productForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Handle successful submission
+        console.log('Success:', data);
+        
+        // Reset form fields
+        productForm.reset(); // Reset all form fields (including input fields)
+
+        // Reset the CKEditor content
+        CKEDITOR.instances.editor.setData(''); 
+
+        // Clear tags
+        tagStack.innerHTML = ''; 
+        tagsInput.value = '';
+
+        // Clear image stack
+        imageStack.innerHTML = ''; 
+
+        // Clear image files array
+        imageFiles.length = 0; 
+
+        // You can show a success message here or redirect to another page
+    })
+    .catch(error => {
+        // Handle errors
+        console.error('Error:', error);
+    });
+});
+
+
+    // Event Listeners
+    uploadImagesInput.addEventListener("change", handleImageUpload);
+</script>

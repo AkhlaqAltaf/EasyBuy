@@ -1,0 +1,27 @@
+{% load static %}
+<div class="py-12 flex flex-col justify-center items-center text-center">
+      <h2 class="text-2xl md:text-3xl font-semibold">Subscribe to our newsletter</h2>
+      <p class="mt-2 text-sm md:text-base text-[#ADB7BC]">
+        Praesent fringilla erat a lacinia egestas. Donec vehicula tempor libero et cursus. 
+        <br class="hidden sm:block"> Donec non quam urna. Quisque vitae porta ipsum.
+      </p>
+      <div class="bg-[#073741] mt-4 w-full max-w-md p-2">
+        <div class="bg-white flex items-center justify-between shadow-md">
+          <input type="text" placeholder="Email Address" 
+                 class="w-full p-2 outline-none focus:outline-none text-gray-700">
+          <button class="bg-[#0B5D51] text-white font-bold flex items-center px-4 py-2">
+            Subscribe
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 mt-6">
+        <img src="{% static 'assets/Google.png' %}" alt="Google" class="w-10">
+        <img src="{% static 'assets/Amazon.png' %}" alt="Amazon" class="w-10">
+        <img src="{% static 'assets/Philips.png' %}" alt="Philips" class="w-10">
+        <img src="{% static 'assets/Toshiba.png' %}" alt="Toshiba" class="w-10">
+        <img src="{% static 'assets/Samsung.png' %}" alt="Samsung" class="w-10">
+      </div>
+    </div>

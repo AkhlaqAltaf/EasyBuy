@@ -1,0 +1,57 @@
+
+<script>
+    const thumbnails = document.querySelectorAll("#thumbnail-container img");
+    const mainImage = document.getElementById("main-image");
+    const thumbnailContainer = document.getElementById("thumbnail-container");
+    const thumbUp = document.getElementById("thumb-up");
+    const thumbDown = document.getElementById("thumb-down");
+    const mainLeft = document.getElementById("main-left");
+    const mainRight = document.getElementById("main-right");
+
+    let currentIndex = 0;
+
+    // Change Main Image on Thumbnail Click
+    thumbnails.forEach((thumbnail, index) => {
+        thumbnail.addEventListener("click", () => {
+            mainImage.src = thumbnail.src;
+            currentIndex = index;
+        });
+    });
+
+    // Scroll Thumbnail Up/Down
+    let scrollAmount = 0;
+    thumbUp.addEventListener("click", () => {
+        scrollAmount = Math.max(scrollAmount - 50, 0);
+        thumbnailContainer.firstElementChild.style.transform = `translateY(-${scrollAmount}px)`;
+    });
+
+    thumbDown.addEventListener("click", () => {
+        const maxScroll = thumbnailContainer.scrollHeight - thumbnailContainer.clientHeight;
+        scrollAmount = Math.min(scrollAmount + 50, maxScroll);
+        thumbnailContainer.firstElementChild.style.transform = `translateY(-${scrollAmount}px)`;
+    });
+
+    // Scroll Main Image Left/Right
+    mainLeft.addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + thumbnails.length) % thumbnails.length;
+        mainImage.src = thumbnails[currentIndex].src;
+    });
+
+    mainRight.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % thumbnails.length;
+        mainImage.src = thumbnails[currentIndex].src;
+    });
+
+
+    function toggleSection(sectionId, headId) {
+        const section = document.getElementById(sectionId);
+        const head = document.getElementById(headId);
+        if (section.classList.contains('hidden')) {
+            section.classList.remove('hidden');
+            head.classList.add('text-black', 'font-semibold');
+        } else {
+            section.classList.add('hidden');
+            head.classList.remove('text-black', 'font-semibold');
+        }
+    }
+</script>

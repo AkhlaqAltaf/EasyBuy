@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 p-6">
+
+  <div class="max-w-4xl mx-auto bg-white shadow-md p-6 rounded-lg">
+    <h1 class="text-xl font-semibold mb-4">Product Details</h1>
+
+    <!-- Steps -->
+    <div class="flex items-center mb-6 ">
+      <div class="w-6 h-6 flex justify-center items-center rounded-full bg-orange-500 text-white">1</div>
+      <div class="w-16 h-1 bg-gray-300 mx-2"></div>
+      <div class="w-6 h-6 flex justify-center items-center rounded-full bg-gray-300 text-gray-600">2</div>
+      <div class="w-16 h-1 bg-gray-300 mx-2"></div>
+      <div class="w-6 h-6 flex justify-center items-center rounded-full bg-gray-300 text-gray-600">3</div>
+    </div>
+
+    <!-- Form -->
+    <div class="grid grid-cols-2 gap-6">
+      <div>
+        <label class="block text-sm font-medium mb-1">Product Name</label>
+        <input type="text" class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-orange-500">
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-1">Country Of Origin</label>
+        <select class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-orange-500">
+          <option>Select Country</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-1">Product Category</label>
+        <select class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-orange-500">
+          <option>Select Category</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-1">Product Sub Category</label>
+        <select class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-orange-500">
+          <option>Select Sub-Category</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-1">Product Summary</label>
+        <textarea class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-orange-500"></textarea>
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-1">Product Description</label>
+        <textarea class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-orange-500"></textarea>
+      </div>
+    </div>
+
+    <!-- Uploads -->
+    <div class="grid grid-cols-2 gap-6 mt-6">
+      <div class="border-dashed border-2 border-gray-300 p-4 rounded flex justify-center items-center cursor-pointer hover:border-orange-500">
+        <label for="uploadImages" class="cursor-pointer">
+          <svg class="w-6 h-6 text-gray-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 16l-1 5h19l-1-5m-4-4V3H8v9m5 7l1.4-1.6L21 20M8 3H7V5M17 3h-1v2M7 20h10M4 3l1 2 2 3M20 5l-1 2-2 3"/>
+          </svg>
+          <input type="file" id="uploadImages" multiple class="hidden" onchange="handleFiles(event, 'images')">
+          <p class="text-sm mt-2 text-gray-500">Upload Images</p>
+        </label>
+      </div>
+      <div class="border-dashed border-2 border-gray-300 p-4 rounded flex justify-center items-center cursor-pointer hover:border-orange-500">
+        <label for="uploadVideos" class="cursor-pointer">
+          <svg class="w-6 h-6 text-gray-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276a1 1 0 011.447.894v6.764a1 1 0 01-1.447.894L15 14m-4 2a9 9 0 118 0 9 9 0 11-8 0z"/>
+          </svg>
+          <input type="file" id="uploadVideos" multiple class="hidden" onchange="handleFiles(event, 'videos')">
+          <p class="text-sm mt-2 text-gray-500">Upload Videos</p>
+        </label>
+      </div>
+    </div>
+
+    <!-- File Preview -->
+    <div id="filePreview" class="mt-6 grid grid-cols-2 gap-4"></div>
+
+    <!-- Button -->
+    <div class="mt-6">
+      <button onclick="goToNextPage()" class="bg-[#0B5D51] text-white px-4 py-2 rounded shadow hover:bg-gray-400">Next</button>
+    </div>
+  </div>
+
+  <script>
+     function goToNextPage() {
+    window.location.href = 'page2.html'; // Change 'page2.html' to the actual file name or URL of the second page
+  } 
+    function handleFiles(event, type) {
+      const files = event.target.files;
+      const previewContainer = document.getElementById('filePreview');
+      previewContainer.innerHTML = ''; // Clear existing preview
+      Array.from(files).forEach(file => {
+        const filePreview = document.createElement('div');
+        filePreview.className = 'flex items-center space-x-2';
+        filePreview.innerHTML = `
+          <img src="${URL.createObjectURL(file)}" alt="${file.name}" class="w-12 h-12 object-cover rounded">
+          <p class="text-sm">${file.name}</p>
+          <button class="text-red-500" onclick="removeFile('${file.name}')">✖</button>
+        `;
+        previewContainer.appendChild(filePreview);
+      });
+    }
+  </script>
+
+</body>
+</html>

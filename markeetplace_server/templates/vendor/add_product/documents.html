@@ -1,0 +1,56 @@
+
+
+
+  <div >
+    <h1 class="text-xl font-semibold mb-4">Product Document</h1>
+
+    <div class="grid grid-cols-2 gap-6">
+      <div>
+        <label class="block text-sm font-medium mb-1">Product Specification</label>
+        <input type="text" class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-orange-500">
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-1">Product Details</label>
+        <input type="text" class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-orange-500">
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-1">Technical Data Sheet</label>
+        <input type="text" class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-orange-500">
+      </div>
+    </div>
+
+    <!-- Company Document Section -->
+    <h1 class="text-xl font-semibold mt-8 mb-4">Company Document</h1>
+    <div class="grid grid-cols-2 gap-6">
+      <div class="border-dashed border-2 border-gray-300 p-4 rounded flex justify-center items-center cursor-pointer hover:border-orange-500">
+        <label for="companyCertificate" class="cursor-pointer">
+          <svg class="w-6 h-6 text-gray-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 16l-1 5h19l-1-5m-4-4V3H8v9m5 7l1.4-1.6L21 20M8 3H7V5M17 3h-1v2M7 20h10M4 3l1 2 2 3M20 5l-1 2-2 3"/>
+          </svg>
+          <input type="file" id="companyCertificate" class="hidden">
+          <p class="text-sm mt-2 text-gray-500">Company Certificate</p>
+        </label>
+      </div>
+      <div class="border-dashed border-2 border-gray-300 p-4 rounded flex justify-center items-center cursor-pointer hover:border-orange-500">
+        <label for="importExportDocument" class="cursor-pointer">
+          <svg class="w-6 h-6 text-gray-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276a1 1 0 011.447.894v6.764a1 1 0 01-1.447.894L15 14m-4 2a9 9 0 118 0 9 9 0 11-8 0z"/>
+          </svg>
+          <input type="file" id="importExportDocument" class="hidden">
+          <p class="text-sm mt-2 text-gray-500">Import/Export Document</p>
+        </label>
+      </div>
+      <div class="border-dashed border-2 border-gray-300 p-4 rounded flex justify-center items-center cursor-pointer hover:border-orange-500">
+        <label for="otherDocument" class="cursor-pointer">
+          <svg class="w-6 h-6 text-gray-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 16l-1 5h19l-1-5m-4-4V3H8v9m5 7l1.4-1.6L21 20M8 3H7V5M17 3h-1v2M7 20h10M4 3l1 2 2 3M20 5l-1 2-2 3"/>
+          </svg>
+          <input type="file" id="otherDocument" class="hidden">
+          <p class="text-sm mt-2 text-gray-500">Other Document</p>
+        </label>
+      </div>
+    </div>
+
+  </div>
+
+

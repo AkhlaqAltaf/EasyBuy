@@ -1,0 +1,134 @@
+<script>
+    // Sample products data
+    const products = [
+        { name: "Healthcare Erbology", category: "Health", stock: 85, price: "$23.99", sku: "401.1BXBK", status: "Published" },
+        { name: "Makeup Lancome Rouge", category: "Beauty", stock: 0, price: "$95.00", sku: "978_UBFGJC", status: "Draft" },
+        { name: "Layering Bracelets", category: "Accessories", stock: 48, price: "$155.00", sku: "211_QFEXJO", status: "Published" },
+        { name: "Skincare Necessaire", category: "Beauty", stock: 5, price: "$17.99", sku: "321_UWEAJT", status: "Draft" },
+        { name: "Product 5", category: "Health", stock: 20, price: "$30.00", sku: "501.1BXBK", status: "Published" },
+        { name: "Product 6", category: "Beauty", stock: 15, price: "$45.00", sku: "601.1BXBK", status: "Draft" },
+        { name: "Product 7", category: "Accessories", stock: 10, price: "$60.00", sku: "701.1BXBK", status: "Published" },
+        { name: "Product 8", category: "Health", stock: 25, price: "$75.00", sku: "801.1BXBK", status: "Draft" },
+        { name: "Product 9", category: "Beauty", stock: 30, price: "$90.00", sku: "901.1BXBK", status: "Published" },
+        { name: "Product 10", category: "Accessories", stock: 5, price: "$100.00", sku: "1001.1BXBK", status: "Draft" },
+        { name: "Product 11", category: "Health", stock: 12, price: "$110.00", sku: "1101.1BXBK", status: "Published" },
+        { name: "Product 12", category: "Beauty", stock: 8, price: "$120.00", sku: "1201.1BXBK", status: "Draft" },
+    ];
+
+    let editingProductIndex = null;
+    let currentPage = 1;
+    const itemsPerPage = 10;
+
+    // Function to render products in the table
+    function renderProducts(filteredProducts) {
+        const tbody = document.getElementById('product-table-body');
+        tbody.innerHTML = ''; // Clear the table body
+
+        // Calculate the start and end index for the current page
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
+
+        paginatedProducts.forEach((product, index) => {
+            const row = document.createElement('tr');
+            row.className = 'hover:bg-gray-50 text-sm';
+
+            // Determine stock bar width and status style
+            const stockBarWidth = Math.min(product.stock, 100); // Limit bar to 100%
+            const statusClass = product.status === "Published" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700";
+
+            row.innerHTML = `
+                <td class="py-4 px-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg></td>
+                <td class="py-4 px-4">${editingProductIndex === index ? 
+                    `<input type="text" value="${product.name}" id="edit-name-${index}" class="w-full p-2 rounded-md" />` : 
+                    product.name}
+                </td>
+                <td class="py-4 px-4">
+                    ${editingProductIndex === index ? 
+                        `<input type="number" value="${product.stock}" id="edit-stock-${index}" class="w-full p-2 rounded-md" />` : 
+                        `<div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-green-500 h-2 rounded-full" style="width: ${stockBarWidth}%;"></div></div>
+                        <p class="text-xs text-gray-500 mt-1">${product.stock} in stock</p>`}
+                </td>
+                <td class="py-4 px-4">
+                    ${editingProductIndex === index ? 
+                        `<input type="text" value="${product.price}" id="edit-price-${index}" class="w-full p-2 rounded-md" />` : 
+                        product.price}
+                </td>
+                <td class="py-4 px-4">${product.sku}</td>
+                <td class="py-4 px-4">
+                    <span class="px-2 py-1 rounded ${statusClass}">${product.status}</span>
+                </td>
+                <td class="py-4 px-4">
+                    <div class="flex space-x-2">
+                        ${editingProductIndex === index ? 
+                            `<button class="bg-green-500 text-white px-2 py-1 rounded" onclick="saveChanges(${index})">Save</button>
+                            <button class="bg-red-500 text-white px-2 py-1 rounded" onclick="cancelEdit()">Cancel</button>` : 
+                            `<button class="bg-green-700 text-white px-2 py-1 rounded" onclick="startEditing(${index})">Edit</button>`}
+                    </div>
+                </td>
+            `;
+            tbody.appendChild(row);
+        });
+
+        // Update pagination info
+        document.getElementById('page-info').innerText = `Page ${currentPage} of ${Math.ceil(filteredProducts.length / itemsPerPage)}`;
+        document.getElementById('prev-button').disabled = currentPage === 1;
+        document.getElementById('next-button').disabled = currentPage === Math.ceil(filteredProducts.length / itemsPerPage);
+    }
+
+    // Function to filter products based on search input
+    function filterProducts() {
+        const searchInput = document.getElementById('search-input').value.toLowerCase();
+
+        // Filter products by name or category
+        const filteredProducts = products.filter(product => {
+            return product.name.toLowerCase().includes(searchInput) || product.category.toLowerCase().includes(searchInput);
+        });
+
+        currentPage = 1; // Reset to first page
+        renderProducts(filteredProducts);
+    }
+
+    // Function to change the current page
+    function changePage(direction) {
+        currentPage += direction;
+        const searchInput = document.getElementById('search-input').value.toLowerCase();
+        const filteredProducts = products.filter(product => {
+            return product.name.toLowerCase().includes(searchInput) || product.category.toLowerCase().includes(searchInput);
+        });
+        renderProducts(filteredProducts);
+    }
+
+    // Function to start editing the product row
+    function startEditing(index) {
+        editingProductIndex = index;
+        renderProducts(products); // Re-render the table with editable inputs
+    }
+
+    // Function to cancel editing and revert changes
+    function cancelEdit() {
+        editingProductIndex = null;
+        renderProducts(products); // Re-render the table without editable inputs
+    }
+
+    // Function to save the edited changes
+    function saveChanges(index) {
+        const editedProduct = {
+            name: document.getElementById(`edit-name-${index}`).value,
+            category: products[index].category, // Keeping category the same for now
+            stock: document.getElementById(`edit-stock-${index}`).value,
+            price: document.getElementById(`edit-price-${index}`).value,
+            sku: products[index].sku, // Retain SKU
+            status: products[index].status // Retain status
+        };
+
+        // Update product in the array
+        products[index] = editedProduct;
+
+        // Stop editing and re-render the table
+        cancelEdit();
+    }
+
+    // Initial rendering of products
+    renderProducts(products);
+</script>

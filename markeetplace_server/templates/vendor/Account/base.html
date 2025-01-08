@@ -1,0 +1,40 @@
+{% extends 'vendor/main/base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    {% block content %}
+
+    <div class="max-w-5xl mx-auto p-6 space-y-6">
+        <!-- Page Container --> <!-- Navbar -->
+        <header class="flex justify-between items-center py-4 border-b border-gray-200">
+            <h1 class="text-2xl font-bold">Account</h1>
+            <nav class="space-x-4">
+                <a href="{% url 'vendor:general' %}" class="text-gray-600 hover:text-gray-900">General</a>
+                <a href="{% url 'vendor:billing' %}" class="text-gray-600 hover:text-gray-900">Billing</a>
+                <a href="{% url 'vendor:team' %}" class="text-gray-600 hover:text-gray-900">Team</a>
+                <a href="{% url 'vendor:notification' %}" class="text-gray-600 hover:text-gray-900">Notifications</a>
+                <a href="{% url 'vendor:secuirity' %}" class="text-gray-600 hover:text-gray-900">Security</a>
+            </nav>
+        </header>
+        <div class="h-full">
+        {% block subpage %}
+
+        {% endblock %}
+
+
+        </div>
+
+    </div>
+    {% endblock %}
+
+</body>
+
+</html>

@@ -1,0 +1,202 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/ac8aec1afa.js" crossorigin="anonymous"></script>
+    <title>Enhanced Sidebar</title>
+    <style>
+        /* Custom scrollbar for sidebar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.3);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div id="app" class="relative ">
+        <!-- Mobile Hamburger Menu -->
+     
+        <!-- Sidebar -->
+        <div id="sidebar" class="fixed top-0 left-0 transform -translate-x-full md:translate-x-0 
+                                 md:h-full lg:w-[280px] bg-[#0B5D51] text-white 
+                                 flex flex-col items-start p-4 transition-transform 
+                                 duration-500 ease-in-out shadow-2xl z-[50] h-screen 
+                                 overflow-y-auto custom-scrollbar">
+            
+            <!-- Logo Section -->
+            <div class="mt-4 mb-8 flex items-center justify-center w-full">
+                <a href="#" class="transition-transform hover:scale-105">
+                    <img src="{% static 'Logo.png' %}" alt="Logo" class="h-12 sm:h-16 object-contain">
+                </a>
+            </div>
+
+            <!-- Store Analytics -->
+            <a href="{% url 'vendor:store-analytics' %}" 
+               class="w-full flex items-center bg-[#073741]/50 hover:bg-[#073741]/70 
+                      px-4 py-3 rounded-lg transition-all duration-300 group mb-4">
+                <i class="fas fa-chart-line w-5 h-5 mr-4 group-hover:rotate-6 transition-transform"></i>
+                <span class="font-semibold text-[14px]">Store Analytics</span>
+            </a>
+
+            <!-- Navigation Menu -->
+            <nav class="w-full space-y-2">
+                <!-- Add Product Direct Link -->
+                <a href="{% url 'vendor:add' %}" 
+                   class="w-full flex items-center px-4 py-3 hover:bg-[#073741]/50 rounded-lg transition-colors group">
+                    <i class="fas fa-plus w-5 h-5 mr-4 group-hover:rotate-90 transition-transform"></i>
+                    <span>Add Product</span>
+                </a>
+
+                <!-- Products Dropdown -->
+                <div class="relative dropdown-container">
+                    <div class="dropdown-toggle w-full flex items-center justify-between 
+                                px-4 py-3 cursor-pointer hover:bg-[#073741]/50 rounded-lg 
+                                transition-colors group" data-target="productsDropdown">
+                        <div class="flex items-center">
+                            <i class="fas fa-box w-5 h-5 mr-4"></i>
+                            <span>Products</span>
+                        </div>
+                        <i class="fas fa-chevron-right transition-transform dropdown-arrow"></i>
+                    </div>
+                    <div id="productsDropdown" 
+                         class="hidden ml-4 mt-1 space-y-1 bg-white/10 backdrop-blur-sm 
+                                text-white rounded-lg py-2 transition-all duration-300 
+                                ease-in-out transform origin-top">
+                        <a href="{% url 'vendor:vendor_product_list' %}"
+                           class="block px-4 py-2 hover:bg-white/20 transition-colors">
+                            Product List
+                        </a>
+                        <a href="{% url 'vendor:add'%}"
+                           class="block px-4 py-2 hover:bg-white/20 transition-colors">
+                            Product Create
+                        </a>
+                           <a href="{% url 'vendor:list_models'%}"
+                           class="block px-4 py-2 hover:bg-white/20 transition-colors">
+                            3d Model
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Orders Dropdown -->
+                <div class="relative dropdown-container">
+                    <div class="dropdown-toggle w-full flex items-center justify-between 
+                                px-4 py-3 cursor-pointer hover:bg-[#073741]/50 rounded-lg 
+                                transition-colors group" data-target="ordersDropdown">
+                        <div class="flex items-center">
+                            <i class="fas fa-shopping-cart w-5 h-5 mr-4"></i>
+                            <span>Orders</span>
+                        </div>
+                        <i class="fas fa-chevron-right transition-transform dropdown-arrow"></i>
+                    </div>
+                    <div id="ordersDropdown" 
+                         class="hidden ml-4 mt-1 space-y-1 bg-white/10 backdrop-blur-sm 
+                                text-white rounded-lg py-2 transition-all duration-300 
+                                ease-in-out transform origin-top">
+                        <a href="{% url 'vendor:orders' %}"
+                           class="block px-4 py-2 hover:bg-white/20 transition-colors">
+                            List
+                        </a>
+                        <a href="{% url 'vendor:order-details' %}"
+                           class="block px-4 py-2 hover:bg-white/20 transition-colors">
+                            Details
+                        </a>
+                        <a href="{% url 'vendor:order-status' %}" 
+                           class="block px-4 py-2 hover:bg-white/20 transition-colors">
+                            Order Status
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Invoice Dropdown -->
+                <div class="relative dropdown-container">
+                    <div class="dropdown-toggle w-full flex items-center justify-between 
+                                px-4 py-3 cursor-pointer hover:bg-[#073741]/50 rounded-lg 
+                                transition-colors group" data-target="invoiceDropdown">
+                        <div class="flex items-center">
+                            <i class="fas fa-file-invoice-dollar w-5 h-5 mr-4"></i>
+                            <span>Invoice</span>
+                        </div>
+                        <i class="fas fa-chevron-right transition-transform dropdown-arrow"></i>
+                    </div>
+                    <div id="invoiceDropdown" 
+                         class="hidden ml-4 mt-1 space-y-1 bg-white/10 backdrop-blur-sm 
+                                text-white rounded-lg py-2 transition-all duration-300 
+                                ease-in-out transform origin-top">
+                        <a href="{% url 'vendor:invoice-list' %}" 
+                           class="block px-4 py-2 hover:bg-white/20 transition-colors">
+                            List
+                        </a>
+                        <a href="{% url 'vendor:invoice-details' %}" 
+                           class="block px-4 py-2 hover:bg-white/20 transition-colors">
+                            Details
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Calendar -->
+                <a href="{% url 'vendor:calender'%}" 
+                   class="w-full flex items-center px-4 py-3 hover:bg-[#073741]/50 rounded-lg transition-colors group">
+                    <i class="fas fa-calendar-alt w-5 h-5 mr-4 group-hover:scale-110 transition-transform"></i>
+                    <span>Calendar</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const target = toggle.dataset.target;
+                const dropdown = document.getElementById(target);
+                const arrow = toggle.querySelector('.dropdown-arrow');
+
+                // Close other dropdowns
+                document.querySelectorAll('.dropdown-toggle').forEach(otherToggle => {
+                    if (otherToggle !== toggle) {
+                        const otherTarget = otherToggle.dataset.target;
+                        const otherDropdown = document.getElementById(otherTarget);
+                        const otherArrow = otherToggle.querySelector('.dropdown-arrow');
+                        
+                        otherDropdown.classList.add('hidden');
+                        otherArrow.classList.remove('rotate-90');
+                        otherArrow.classList.add('rotate-0');
+                    }
+                });
+
+                // Toggle the clicked dropdown
+                dropdown.classList.toggle('hidden');
+                
+                // Rotate arrow
+                if (dropdown.classList.contains('hidden')) {
+                    arrow.classList.remove('rotate-90');
+                    arrow.classList.add('rotate-0');
+                } else {
+                    arrow.classList.remove('rotate-0');
+                    arrow.classList.add('rotate-90');
+                }
+            });
+        });
+
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebar = document.getElementById('sidebar');
+        const menuIcon = document.getElementById('menuIcon');
+        const closeIcon = document.getElementById('closeIcon');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

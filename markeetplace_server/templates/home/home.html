@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    Home
+{% endblock title %}
+
+{% block head_content %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+{% endblock head_content %}
+
+
+{% block content %}
+    <div>
+      {% include 'hero/hero.html' %}
+   {%  include 'categories/categories.html' %}
+        {% include 'products/featured_products/featured_products.html' %}
+        {% include 'products/item_card/item.html' %}
+{#        {% include 'products/items/items.html' %}#}
+        {% include 'products/offers/offers.html' %}
+{#          {%  include 'newletter/newsletter.html' %}#}
+</div>
+{% endblock content %}
+
+
+

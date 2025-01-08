@@ -1,0 +1,65 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="mt-8">
+    <h3 class="text-xl font-bold text-gray-800">3D View</h3>
+
+<div class="flex justify-center space-x-4">
+    {% include 'commons/addToCartButton.html' %}
+    {% include 'commons/addToWishList.html' %}
+</div>
+    <!-- Size Adjustment Slider -->
+    <div class="mt-4">
+        <label for="sizeSlider" class="text-gray-700">Adjust Model Size</label>
+        <input id="sizeSlider" type="range" min="0.5" max="3" step="0.1" value="1" class="w-full mt-2">
+        <p id="sizeValue" class="text-gray-600">Size: 1.0</p>
+    </div>
+
+    <!-- 3D Model Viewer -->
+    <div class="flex justify-center mt-4">
+        {% for media in product.media.all %}
+            {% if media.media_type == '3d' %}
+                <model-viewer
+                    id="modelViewer"
+                    src="{{ media.file.url }}"
+                    alt="3D model of {{ product.name }}"
+                    camera-controls
+                    ar
+                    ar-modes="webxr scene-viewer quick-look"
+                    style="width: 100%; height: 500px;">
+                </model-viewer>
+                {{ break }}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    const arToggleButton = document.getElementById('arToggle');
+    const modelViewer = document.getElementById('modelViewer');
+    const sizeSlider = document.getElementById('sizeSlider');
+    const sizeValue = document.getElementById('sizeValue');
+
+    // AR Toggle functionality
+    arToggleButton.addEventListener('click', () => {
+        // Check if AR mode is enabled or not
+        if (modelViewer.hasAttribute('ar') && modelViewer.cameraMode !== 'ar') {
+            // Enable AR mode
+            modelViewer.cameraMode = 'ar';
+            arToggleButton.innerText = 'Turn off AR';
+        } else {
+            // Disable AR mode
+            modelViewer.cameraMode = 'none';
+            arToggleButton.innerText = 'Turn on AR';
+        }
+    });
+
+    // Update model size dynamically
+    sizeSlider.addEventListener('input', (e) => {
+        const size = e.target.value;
+        sizeValue.innerText = `Size: ${size}`;
+        modelViewer.style.transform = `scale(${size})`;
+    });
+</script>
+
+{% endblock %}

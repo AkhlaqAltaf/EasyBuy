@@ -1,0 +1,70 @@
+{% load static %}
+<nav class="bg-[#073741] p-4 px-4 sm:px-24 flex items-center justify-between">
+    <a href="/"><img src="{% static 'Logo.png' %}" alt="Logo" class="h-10 sm:h-16"></a>
+    <div id="nav-links" class="hidden sm:flex items-center gap-4">
+        <form action="{% url 'product:search' %}" method="GET" class="relative mb-3">
+            <input type="text" name="q" class="pl-4 pr-10 py-2 border border-gray-300 rounded w-40 sm:w-64 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Search for products" required>
+            <button type="submit" class="absolute top-2 right-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M11 19a8 8 0 110-16 8 8 0 010 16z" />
+                </svg>
+            </button>
+        </form>
+
+        <div class="flex items-center justify-center gap-4 text-white">
+            <a href="{% url 'cart:cart' %}"> <i class="fa fa-shopping-cart"></i>{% if cart %}({{cart|length}}){% endif %}</a>
+            <a href="{% url 'product:wish-list' %}"><i class="fa fa-heart"></i> </a>
+            {% if request.user.vendor %}
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link is-capitalized">
+                        <i class="fa fa-user"></i>
+                        {{ request.user.vendor.name }}
+                    </a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="#">
+                            {{ request.user.vendor }}
+                        </a>
+                        <a class="navbar-item" href="{% url 'product:user_order_list' %}">
+                           My Orders
+                        </a>
+                        <a class="navbar-item" href="{% url 'core:home' %}">
+                            List Product
+                        </a>
+                        <hr class="navbar-divider">
+                        <a class="navbar-item" href="{% url 'accounts:logout' %}">
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            {% elif request.user.is_authenticated %}
+                <div class="navbar-item has-dropdown is-hoverable" style="color: white">
+                    <a class="">
+                        {{ request.user.name }}
+                    </a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="#">
+                            Profile
+                        </a>
+                        <a class="navbar-item" href="#">
+                            Update Profile
+                        </a>
+                        <a class="navbar-item" href="#">
+                            Become Vendor
+                        </a>
+                        <hr class="navbar-divider">
+                        <a class="navbar-item" href="{% url 'accounts:logout' %}">
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="{% url 'accounts:accounts' %}">
+                    <i class="fa fa-user"></i>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+    <button id="menu-toggle" class="sm:hidden text-white focus:outline-none">
+        <i class="fa fa-bars text-xl"></i>
+    </button>
+</nav>

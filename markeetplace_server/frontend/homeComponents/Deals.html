@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deal Section</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <div class="flex flex-col items-center justify-center mt-7 py-10 px-5 text-center border-4 border-[#0B5D51]">
+    <!-- Watch Image -->
+    <div class="w-full flex items-center justify-center">
+      <img src="../assets/watches.png" alt="Watches" class="w-[140px] h-[140px] sm:w-[180px] sm:h-[180px]" />
+    </div>
+
+    <!-- Product Details -->
+    <div class="flex flex-col gap-4 items-center justify-center">
+      <!-- Logo -->
+      <div class="mt-5">
+        <img src="../assets/apple.png" alt="Apple Logo" class="w-auto h-auto" />
+      </div>
+
+      <!-- Title -->
+      <h2 class="text-[20px] sm:text-[24px] font-bold text-[#191C1F] text-center">
+        Heavy on Features. Light on Price
+      </h2>
+
+      <!-- Price Section -->
+      <div class="flex gap-2 items-center justify-center">
+        <p class="text-[14px] sm:text-[16px] text-[#475156]">Only for:</p>
+        <div class="bg-[#F3DE6D] py-2 px-3 text-[16px] sm:text-[18px] font-bold rounded-sm">
+          $299 USD
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="w-full flex flex-col gap-3 mt-5">
+        <button
+          class="uppercase px-6 sm:px-10 py-2 flex items-center justify-center border-2 border-[#0B5D51] bg-[#0B5D51] text-white gap-2">
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h18l-1.5 9h-15L3 3zm5.25 12.75h9m-9 0H5.625A1.875 1.875 0 013.75 14.25m15.75 0H18.375A1.875 1.875 0 0120.25 14.25M5.25 21a2.25 2.25 0 004.5 0M15.75 21a2.25 2.25 0 004.5 0M9.75 16.5h4.5" />
+            </svg>
+          </span>
+          Add to cart
+        </button>
+        <button
+          class="uppercase px-6 sm:px-10 py-2 flex items-center justify-center border-2 border-[#0B5D51] text-[#0B5D51] font-semibold gap-2">
+          View details
+          <span>
+            <svg xmlns="../http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 19.5l-7.5-7.5 7.5-7.5" />
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

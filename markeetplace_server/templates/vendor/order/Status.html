@@ -1,0 +1,167 @@
+{% extends 'vendor/main/base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Status Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/ac8aec1afa.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  {% block content %}
+
+  <div class="bg-white p-10 max-w-5xl m-auto mt-10">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h1 class="text-xl font-bold">DEV-103</h1>
+        <p class="text-gray-500">
+          Placed on <span class="font-medium">31/01/2024 11:19</span>
+        </p>
+      </div>
+      <div class="flex space-x-4">
+        <button class="flex items-center space-x-1 text-gray-600">
+          <span>Edit</span>
+          <i class="fa-solid fa-pencil text-sm "></i>
+        </button>
+        <button class="bg-[#0B5D51] text-white py-2 px-4 rounded-md flex items-center">
+          <span>Action</span>
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Order Info Box -->
+    <div class="bg-white border rounded-lg shadow-lg p-10">
+      <div class="flex bg-[#FDFAE7] border border-[#F7E99E] h-[100px] rounded-lg px-5 justify-between items-center mb-4">
+        <div>
+          <p class="text-sm font-bold">#96459761</p>
+          <p class="text-xs text-gray-500">
+            4 Products • Order Placed on 17 Jan, 2021 at 7:32 PM
+          </p>
+        </div>
+        <p class="text-2xl font-bold text-blue-600">$1199.00</p>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="border-t pt-4">
+        <p class="text-sm font-bold mb-2">
+          Order expected arrival <span class="text-green-700">23 Jan, 2021</span>
+        </p>
+
+        <!-- Dynamic Progress Circles and Line -->
+        <div class="flex flex-col items-center gap-6 w-full mt-6">
+          <div class="relative w-full flex items-center justify-between">
+            <!-- Full Progress Line -->
+            <div class="absolute w-full transform -translate-y-1/2 h-[8px] top-1/2 gap-0 rounded-[100px_0_0_0] bg-[#FFE7D6">
+              <div id="progressBar" class="h-full bg-[#0B5D51] rounded-full" style="width: 0%"></div>
+            </div>
+
+            <!-- Dynamic Step Circles -->
+            <div class="relative z-10 flex items-center justify-between w-full">
+              <div class="step-circle cursor-pointer" data-index="0">
+                <div class="w-6 h-6 rounded-full bg-white border-2 border-[#0B5D51]"></div>
+              </div>
+              <div class="step-circle cursor-pointer" data-index="1">
+                <div class="w-6 h-6 rounded-full bg-white border-2 border-[#0B5D51]"></div>
+              </div>
+              <div class="step-circle cursor-pointer" data-index="2">
+                <div class="w-6 h-6 rounded-full bg-white border-2 border-[#0B5D51]"></div>
+              </div>
+              <div class="step-circle cursor-pointer" data-index="3">
+                <div class="w-6 h-6 rounded-full bg-white border-2 border-[#0B5D51]"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step Labels -->
+          <div class="flex items-center justify-between w-full mt-4">
+            <div class="flex flex-col items-center ">
+                <i class="fas fa-book w-8 h-8 text-sm md:text-2xl mb-3 text-[#0B5D51] "></i>
+                <span class="text-[10px] md:text-[14px] font-semibold text-[#0B5D51] text-center">Order Placed</span>
+            </div>
+            <div class="flex flex-col items-center">
+              <i class="fas fa-box w-8 h-8 mb-3  text-sm md:text-2xl text-[#0B5D51] "></i>
+              <span class="text-[10px] md:text-[14px] font-semibold text-[#0B5D51]">Packaging</span>
+            </div>
+            <div class="flex flex-col items-center">
+              <i class="fas fa-truck w-8 h-8 mb-3   text-sm md:text-2xl text-[#0B5D51] "></i>
+              <span class="text-[10px] md:text-[14px] font-semibold text-[#0B5D51]">On The Road</span>
+            </div>
+            <div class="flex flex-col items-center">
+              <i class="fas fa-handshake w-8 h-8 mb-3  text-sm md:text-2xl text-[#0B5D51] "></i>
+              <span class="text-[10px] md:text-[14px] font-semibold text-[#0B5D51]">Delivered</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex justify-end mt-6 space-x-4">
+          <button class="text-black flex gap-2 items-center">
+            <span>Edit</span>
+            <i class="fa-solid fa-pencil text-sm "></i>
+        </button>
+          <button class="bg-[#0B5D51] text-white py-2 px-4 rounded-md" id="updateStatusBtn">
+            Update Status
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const steps = document.querySelectorAll('.step-circle');
+    const progressBar = document.getElementById('progressBar');
+    const updateStatusBtn = document.getElementById('updateStatusBtn');
+
+    let currentStep = 0;
+
+    steps.forEach(step => {
+      step.addEventListener('click', () => {
+        currentStep = parseInt(step.getAttribute('data-index'));
+        updateProgress();
+      });
+    });
+
+    function updateProgress() {
+      // Update Progress Bar
+      const progressWidth = (currentStep / (steps.length - 1)) * 100;
+      progressBar.style.width = progressWidth + '%';
+
+      // Update Circle Colors
+      steps.forEach((step, index) => {
+        if (index <= currentStep) {
+          step.innerHTML = `<div class="w-6 h-6 rounded-full bg-[#0B5D51]"></div>`;
+        } else {
+          step.innerHTML = `<div class="w-6 h-6 rounded-full bg-white border-2 border-[#0B5D51]"></div>`;
+        }
+      });
+
+      // Update Step Labels
+      const stepLabels = document.querySelectorAll('.step-label');
+      stepLabels.forEach((label, index) => {
+        label.classList.toggle('text-[#0B5D51]', index <= currentStep);
+        label.classList.toggle('text-[#93c6bd]', index > currentStep);
+      });
+    }
+
+    updateStatusBtn.addEventListener('click', () => {
+      if (currentStep < steps.length - 1) {
+        currentStep++;
+        updateProgress();
+      }
+    });
+  </script>
+ {% endblock content %}
+
+</body>
+</html>

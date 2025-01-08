@@ -1,0 +1,84 @@
+{% extends 'core/base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vendor Registration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+  </head>
+  <body class="min-h-screen flex items-center justify-center bg-[#f0faff]">
+    {% block content %}
+
+    <section
+      class="vendor-wrapper relative max-w-[470px] w-full rounded-xl my-10 p-6 pb-20 bg-[#073741] shadow-lg overflow-hidden  m-auto"
+    >
+      <!-- Vendor Registration -->
+      <div class="vendor-form vendor-registration ">
+        <header class="text-2xl font-semibold text-white text-center cursor-pointer">
+          Vendor Registration
+        </header>
+        <form action="#" class="flex flex-col gap-5 mt-10">
+          <input
+            type="text"
+            placeholder="Full Name"
+            required
+            class="h-14 px-4 text-base text-gray-800 rounded-lg outline-none bg-white"
+          />
+          <input
+            type="text"
+            placeholder="ID Card Number"
+            required
+            class="h-14 px-4 text-base text-gray-800 rounded-lg outline-none bg-white"
+          />
+          <input
+            type="text"
+            placeholder="Mobile Number"
+            required
+            class="h-14 px-4 text-base text-gray-800 rounded-lg outline-none bg-white"
+          />
+          <!-- File Upload -->
+          <label
+            class="file-upload flex flex-col items-center justify-center gap-3 cursor-pointer border-2 border-dashed border-gray-300 bg-white p-6 rounded-lg shadow-sm"
+            for="cr-file"
+          >
+            <div class="upload-icon">
+              <!-- Font Awesome Upload Icon -->
+              <i class="fas fa-upload text-gray-600 text-4xl"></i>
+            </div>
+            <div class="upload-text">
+              <span class="text-sm font-medium text-gray-600">Click to upload CR file</span>
+            </div>
+            <input type="file" id="cr-file" class="hidden" />
+          </label>
+          <!-- Terms Checkbox -->
+          <div class="flex items-center gap-2">
+            <input
+              type="checkbox"
+              id="terms"
+              class="w-4 h-4 cursor-pointer accent-white"
+            />
+            <label for="terms" class="text-white cursor-pointer">I accept all terms & conditions</label>
+          </div>
+          <!-- Submit Button -->
+          <input
+            type="submit"
+            value="Register"
+            class="h-14 bg-white text-black text-lg font-medium rounded-lg cursor-pointer hover:bg-[#0B5D51] hover:text-white"
+          />
+        </form>
+      </div>
+
+      <!-- Dome Section -->
+      <div
+        class="vendor-form dome-section absolute left-1/2 bottom-[-90%] transform -translate-x-1/2 w-[calc(100%+220px)] h-full bg-white rounded-full transition-all duration-500 ease-in-out"
+      >
+      </div>
+    </section>
+    {% endblock content %}
+  </body>
+</html>

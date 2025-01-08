@@ -1,0 +1,68 @@
+<!-- templates/main/base.html -->
+ {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/salesRevenue.css' %}">
+
+    <script src="https://kit.fontawesome.com/ac8aec1afa.js" crossorigin="anonymous"></script>
+    <title>{% block title %}My Website{% endblock %}</title>
+  </head>
+
+  <body class="bg-gray-100">
+    <div id="app" class="relative h-full max-w-screen">
+      <!-- Include Sidebar Partial -->
+      {% include 'vendor/main/partials/sidebar.html' %}
+
+      <div class="ml-[280px] w-[75vw]">
+        <!-- Page content will be injected here -->
+        {% block content %}
+        {% endblock %}
+      </div>
+    </div>
+
+    <!-- JavaScript for Dropdown and Sidebar Toggle -->
+    <script>
+      document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+        toggle.addEventListener('click', () => {
+          const target = toggle.dataset.target;
+          const dropdown = document.getElementById(target);
+
+          // Close other dropdowns
+          document.querySelectorAll('.dropdown-toggle').forEach(otherToggle => {
+            const otherTarget = otherToggle.dataset.target;
+            if (otherTarget !== target) {
+              const otherDropdown = document.getElementById(otherTarget);
+              if (!otherDropdown.classList.contains('hidden')) {
+                otherDropdown.classList.add('hidden');
+              }
+            }
+          });
+
+          // Toggle the clicked dropdown
+          dropdown.classList.toggle('hidden');
+        });
+      });
+
+      const sidebarToggle = document.getElementById('sidebarToggle');
+      const sidebar = document.getElementById('sidebar');
+      const menuIcon = document.getElementById('menuIcon');
+      const closeIcon = document.getElementById('closeIcon');
+
+      sidebarToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('-translate-x-full');
+        menuIcon.classList.toggle('hidden');
+        closeIcon.classList.toggle('hidden');
+      });
+    </script>
+    <script src="{% static 'js/salesRevenue.js' %}"></script>
+    <script src="{% static 'js/mainn.js' %}"></script>
+    <script src="{% static 'js/costBreakdown.js' %}"></script>
+
+  </body>
+</html>

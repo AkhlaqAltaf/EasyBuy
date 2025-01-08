@@ -1,0 +1,114 @@
+{% extends 'core/base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login & Signup Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .wrapper.active .form.login {
+        bottom: -5% !important;
+        border-radius: 5% !important;
+        box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1) !important;
+      }
+      .wrapper.active .form.login header {
+        opacity: 1 !important;
+      }
+      .wrapper.active .signup header {
+        opacity: 0.6 !important;
+      }
+      .form.login {
+        width: 100% !important;
+        left: 0 !important;
+        transform: translateX(0) !important;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex items-center justify-center bg-[#f0faff] m-auto">
+    {% block content %}
+
+    <section
+      class="wrapper relative max-w-[470px] w-full bg-[#073741] rounded-xl p-6 pb-32 shadow-lg overflow-hidden"
+    >
+      <div class="form signup">
+        <header class="text-2xl font-semibold text-white text-center cursor-pointer">Signup</header>
+        <form action="#" class="flex flex-col gap-5 mt-10">
+          <input
+            type="text"
+            placeholder="Full name"
+            required
+            class="h-14 px-4 text-base text-gray-800 rounded-lg outline-none bg-white"
+          />
+          <input
+            type="text"
+            placeholder="Email address"
+            required
+            class="h-14 px-4 text-base text-gray-800 rounded-lg outline-none bg-white"
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            required
+            class="h-14 px-4 text-base text-gray-800 rounded-lg outline-none bg-white"
+          />
+          <div class="flex items-center gap-2">
+            <input
+              type="checkbox"
+              id="signupCheck"
+              class="w-4 h-4 cursor-pointer accent-white"
+            />
+            <label for="signupCheck" class="text-white cursor-pointer">I accept all terms & conditions</label>
+          </div>
+          <input
+            type="submit"
+            value="Signup"
+            class="h-14 bg-white text-black text-lg font-medium rounded-lg cursor-pointer hover:bg-[#0B5D51] hover:text-white"
+          />
+        </form>
+      </div>
+
+      <div
+        class="form login absolute left-0 bottom-[-75%] transform translate-x-0 w-full p-10 pb-[140px] rounded-full bg-white transition-all ease-[0.6s] duration-500 shadow-lg"
+      >
+        <header class="text-2xl font-semibold text-gray-800 text-center cursor-pointer opacity-60">Login</header>
+        <form action="#" class="flex flex-col gap-5 mt-10">
+          <input
+            type="text"
+            placeholder="Email address"
+            required
+            class="h-14 px-4 text-base text-gray-800 rounded-lg border border-gray-300 outline-none focus:ring"
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            required
+            class="h-14 px-4 text-base text-gray-800 rounded-lg border border-gray-300 outline-none focus:ring"
+          />
+          <a href="#" class="text-gray-800 text-sm hover:underline">Forgot password?</a>
+          <input
+            type="submit"
+            value="Login"
+            class="h-14 bg-[#073741] text-white text-lg font-medium rounded-lg cursor-pointer hover:bg-[#0B5D51]"
+          />
+        </form>
+      </div>
+
+      <script>
+        const wrapper = document.querySelector(".wrapper"),
+          signupHeader = document.querySelector(".signup header"),
+          loginHeader = document.querySelector(".login header");
+
+        loginHeader.addEventListener("click", () => {
+          wrapper.classList.add("active");
+        });
+        signupHeader.addEventListener("click", () => {
+          wrapper.classList.remove("active");
+        });
+      </script>
+    </section>
+    {% endblock content %}
+  </body>
+</html>

@@ -1,0 +1,51 @@
+{% load static %}
+<div class="bg-[#073741] p-2 px-4 sm:px-24 flex flex-col md:flex-row justify-centre sm:justify-between items-center text-white">
+    <p class="text-sm">Welcome to Home Decor online Shopping store</p>
+    <div class="flex items-center gap-3 mt-2 sm:mt-0">
+      <div class="flex items-center gap-2">
+        <p class="hidden sm:block">Follow us:</p>
+        <i class="fa fa-twitter"></i>
+        <i class="fa fa-facebook-f"></i>
+        <i class="fa fa-instagram"></i>
+        <i class="fa fa-youtube"></i>
+        <i class="fa fa-reddit"></i>
+      </div>
+      <div class="h-5 w-px bg-white hidden sm:block"></div>
+
+      <!-- Language Dropdown -->
+      <div class="relative">
+        <button class="flex items-center gap-2" id="language">
+          <span id="language">ENG</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div id="language-dropdown" class="hidden absolute bg-white text-black rounded mt-2 shadow-lg z-10 p-7">
+          <div class="flex items-centre gap-2 p-2 cursor-pointer hover:bg-gray-200" onclick="selectLanguage('ENG')">
+            <img src="{% static 'assets/usimage.png' %}" alt="US Flag" class="w-5 h-5 rounded-full border">
+            <p>English</p>
+          </div>
+          <hr>
+          <div class="flex items-center gap-2 p-2 cursor-pointer hover:bg-gray-200" onclick="selectLanguage('ARB')">
+            <img src="{% static 'assets/saudiflag.png' %}" alt="Saudi Flag" class="w-5 h-5 rounded-full border">
+            <p>Arabic</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Currency Dropdown -->
+      <div class="relative" >
+        <button class="flex items-center gap-2" id="currency">
+          <span id="currency">SR</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div id="currency-dropdown" class="hidden absolute bg-white text-black rounded mt-2 shadow-lg z-10 p-2">
+          <div class="p-2 cursor-pointer hover:bg-gray-200" onclick="selectCurrency('SR')">Saudi Riyal (SR)</div>
+          <hr>
+          <div class="p-2 cursor-pointer hover:bg-gray-200" onclick="selectCurrency('AED')">UAE Dirham (AED)</div>
+        </div>
+      </div>
+    </div>
+  </div>

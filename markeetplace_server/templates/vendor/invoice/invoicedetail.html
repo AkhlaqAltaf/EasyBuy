@@ -1,0 +1,111 @@
+{% extends 'vendor/main/base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  {% block content %}
+
+
+  <!-- Invoice Container -->
+  <div class="max-w-5xl mx-auto bg-white p-8 shadow-lg rounded-lg my-10">
+
+    <!-- Header Section -->
+    <div class="flex justify-between items-center mb-6">
+      <div>
+        <h1 class="text-3xl font-bold">INVOICE</h1>
+        <p class="text-gray-600 text-sm">ACME SRL</p>
+      </div>
+      <div class="text-right">
+        <p class="text-2xl font-bold text-[#0B5D51]">PAID</p>
+        <p class="text-sm text-gray-600">INV-0019</p>
+      </div>
+    </div>
+
+    <!-- Invoice Details -->
+    <div class="flex justify-between mb-6">
+      <div class="text-sm text-gray-600">
+        <p>www.devis.io</p>
+        <p>Street King William, 123</p>
+        <p>Level 2, C, 442456</p>
+        <p>San Francisco, CA, USA</p>
+      </div>
+      <div class="text-sm text-gray-600">
+        <p>Company No. 4679533</p>
+        <p>EU VAT No. 949 67545 45</p>
+        <p>Email: <a href="mailto:accounts@devis.io" class="text-blue-600">accounts@devis.io</a></p>
+        <p>Phone: (+40) 652 3456 23</p>
+      </div>
+    </div>
+
+    <!-- Invoice Info -->
+    <div class="flex justify-between mb-6">
+      <div class="text-sm text-gray-600">
+        <p><strong>Due date:</strong> 08 Feb 2024</p>
+        <p><strong>Date of issue:</strong> 01 Feb 2024</p>
+        <p><strong>Number:</strong> INV-0019</p>
+      </div>
+      <div class="text-sm text-gray-600">
+        <p><strong>Billed to:</strong> ACME SRL</p>
+        <p>Countdown Grey Lynn</p>
+        <p>6934656584231</p>
+        <p>271 Richmond Rd, Grey Lynn, Auckland 1022, New Zealand</p>
+      </div>
+    </div>
+
+    <!-- Item List -->
+    <div class="mb-6">
+      <table class="min-w-full border border-gray-200">
+        <thead>
+          <tr class="border-b">
+            <th class="py-2 text-left">#</th>
+            <th class="py-2 text-left">Description</th>
+            <th class="py-2 text-right">Qty</th>
+            <th class="py-2 text-right">Unit Price</th>
+            <th class="py-2 text-right">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="py-2">1</td>
+            <td class="py-2">Freelancer Subscription (12/05/2019 - 11/06/2019)</td>
+            <td class="py-2 text-right">1</td>
+            <td class="py-2 text-right">$55.50</td>
+            <td class="py-2 text-right">$55.50</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Summary Section -->
+    <div class="flex justify-between text-sm mb-6">
+      <div>
+        <p><strong>Subtotal:</strong> $50.00</p>
+        <p><strong>Taxes:</strong> $5.50</p>
+      </div>
+      <div class="text-right">
+        <p class="font-bold text-lg"><strong>Total:</strong> $55.50</p>
+      </div>
+    </div>
+
+    <!-- Notes Section -->
+    <div class="border-t pt-4 text-sm text-gray-600">
+      <p><strong>Notes:</strong></p>
+      <p>Please make sure you have the right bank registration number as I had issues before and make sure you guys cover transfer expenses.</p>
+    </div>
+
+  </div>
+  {% endblock content %}
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Sample Product Card -->
+
+
+{% for product in products %}
+    <div class="group flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md h-[350px]">
+        <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="{% url 'product:product-detail' product.id %}">
+            {% with product.media.all|slice:":2" as media_list %}
+                {% if media_list|length > 0 %}
+                    <img class="peer absolute top-0 right-0 h-full w-full object-cover" src="{{ media_list.0.file.url }}" alt="product image" />
+                {% endif %}
+                {% if media_list|length > 1 %}
+                    <img class="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0" src="{{ media_list.1.file.url }}" alt="product image" />
+                {% endif %}
+            {% endwith %}
+        </a>
+        <div class="mt-4 px-3 pb-3">
+            <a href="{% url 'product:product-detail' product.id %}">
+                <h5 class="text-[20px] tracking-tight text-slate-600">{{ product.name }}</h5>
+            </a>
+            <div class="mt-1 mb-3 flex items-center justify-between">
+                <p>
+                    <span class="text-[18px] font-bold text-slate-900">{{ product.price }}</span>
+                    <span class="text-[10px] text-slate-900 line-through">$699</span>
+                </p>
+            </div>
+            <div class="flex justify-center space-x-4">
+    {% include 'commons/addToCartButton.html' %}
+    {% include 'commons/addToWishList.html' %}
+</div>
+        </div>
+    </div>
+{% endfor %}
+
+      </div>
+
+
+{% endblock content %}

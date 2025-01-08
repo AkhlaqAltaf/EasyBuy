@@ -1,0 +1,111 @@
+{% extends 'vendor/main/base.html' %}
+
+
+    {% block content %}
+    <div class="mt-10 mx-4 md:mx-10 lg:mx-20">
+        <div class="flex items-center justify-between mb-6">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800">Products</h1>
+            <a href="{% url 'vendor:add' %}" class="flex items-center gap-2 bg-[#0B5D51] rounded-xl px-4 py-2 text-white">
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                </span>
+                Add
+            </a>
+        </div>
+
+        <div class="flex items-center space-x-3 text-sm text-gray-800">
+            <p class="font-medium">Dashboard</p>
+            <span class="text-gray-400">•</span>
+            <p class="font-medium">Products</p>
+            <span class="text-gray-400">•</span>
+            <p class="text-gray-500">List</p>
+        </div>
+
+        <div class="mt-8 bg-white shadow-lg rounded-lg p-6">
+            <div class="mb-6 relative">
+                <input type="text" id="search-input" placeholder="Search by product name or category"
+                    class="w-full pl-10 pr-4 py-2 rounded-md focus:outline-none text-gray-700 bg-gray-100"
+                    onkeyup="filterProducts()">
+                <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+            </div>
+
+            <hr class="my-4" />
+            <p class="text-sm text-gray-500">No filters applied</p>
+            <hr class="my-4" />
+
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border-collapse">
+                    <thead>
+                        <tr class="bg-gray-100 text-sm">
+                            <th class="py-2 px-4 text-left text-gray-700"></th>
+                            <th class="py-2 px-4 text-left text-gray-700">NAME</th>
+                            <th class="py-2 px-4 text-left text-gray-700">STOCK</th>
+                            <th class="py-2 px-4 text-left text-gray-700">PRICE</th>
+
+                                                <th class="py-2 px-4 text-left text-gray-700">SKU</th>
+                            <th class="py-2 px-4 text-left text-gray-700">STATUS</th>
+                            <th class="py-2 px-4 text-left text-gray-700">ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="product-table-body" class="divide-y divide-gray-200">
+                        {% for product in products %}
+                        <tr class="wishlist-item" data-id="{{ product.id }}">
+                            <td class="py-2 px-4">
+                                <img src="{{ product.media.first.file.url }}" alt="{{ product.name }}" class="w-16 h-16 object-cover rounded">
+                            </td>
+                            <td class="py-2 px-4">{{ product.name }}</td>
+                            <td class="py-2 px-4">{{ product.stock_quantity }}</td>
+                            <td class="py-2 px-4">${{ product.price }}</td>
+                            <td class="py-2 px-4">{{ product.sku }}</td>
+                            <td class="py-2 px-4">{{ product.get_status_display }}</td>
+                            <td class="py-2 px-4">
+{#                                <a href="{% url 'product:edit_product' product.id %}" class="text-blue-500 hover:underline">Edit</a>#}
+<td class="py-2 px-4">
+{#    <a href="{% url 'product:edit_product' product.id %}" class="text-blue-500 hover:underline">Edit</a>#}
+    <form action="{% url 'vendor:remove_product' product.id %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="text-red-500 hover:underline">Remove</button>
+    </form>
+</td>                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination Controls -->
+            <div class="flex justify-end items-center mt-4">
+                <button id="prev-button" class="bg-green-700 text-white px-4 py-2 rounded" onclick="changePage(-1)" disabled>Previous</button>
+                <span id="page-info" class="mx-4 text-gray-700"></span>
+                <button id="next-button" class="bg-green-700 text-white px-4 py-2 rounded" onclick="changePage(1)">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to filter products based on search input
+        function filterProducts() {
+            const input = document.getElementById('search-input').value.toLowerCase();
+            const rows = document.querySelectorAll('#product-table-body tr');
+
+            rows.forEach(row => {
+                const productName = row.querySelector('.item-name').textContent.toLowerCase();
+                const productCategory = row.querySelector('.item-variant').textContent.toLowerCase();
+                if (productName.includes(input) || productCategory.includes(input)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Function to handle pagination (you can implement this based on your needs)
+        function changePage(direction) {
+            // Implement pagination logic here
+        }
+
+
+    </script>
+    {% endblock %}

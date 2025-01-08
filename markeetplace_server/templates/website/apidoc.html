@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% block title %}API Documentation - Habba-Wa-Jumla{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center">API Documentation</h1>
+
+    <p>
+        <a href="{% url 'website:api' %}">Access API View</a>
+    </p>
+
+    <section id="introduction" class="my-4">
+        <h2>Introduction</h2>
+        <p>
+            Welcome to the **Habba-Wa-Jumla** API documentation. This page provides details about the available API endpoints, their usage, and examples. Our APIs empower you to seamlessly interact with the multi-vendor marketplace system, enabling efficient management of products, vendors, and orders.
+        </p>
+    </section>
+
+    <section id="authentication" class="my-4">
+        <h2>Authentication</h2>
+        <p>
+            All API requests require authentication. You must include a valid token in the Authorization header of each request.
+        </p>
+        <pre><code>Authorization: Bearer &lt;your_token&gt;</code></pre>
+    </section>
+
+    <section id="endpoints" class="my-4">
+        <h2>API Endpoints</h2>
+
+        <h3>1. User Management</h3>
+        <h4>1.1 Register User</h4>
+        <p>Endpoint to register a new user.</p>
+        <pre><code>POST /api/users/register/</code></pre>
+        <p>Request Body:</p>
+        <pre><code>{
+    "email": "user@example.com",
+    "password": "password123"
+}</code></pre>
+        <p>Response:</p>
+        <pre><code>{
+    "id": 1,
+    "email": "user@example.com",
+    "verification_code": "1234"
+}</code></pre>
+
+        <h4>1.2 Login User</h4>
+        <p>Endpoint to log in a user and retrieve a token.</p>
+        <pre><code>POST /api/users/login/</code></pre>
+        <p>Request Body:</p>
+        <pre><code>{
+    "email": "user@example.com",
+    "password": "password123"
+}</code></pre>
+        <p>Response:</p>
+        <pre><code>{
+    "token": "your_token_here"
+}</code></pre>
+
+        <h3>2. Vendor Management</h3>
+        <h4>2.1 Register Vendor</h4>
+        <p>Endpoint for vendors to register.</p>
+        <pre><code>POST /api/vendors/register/</code></pre>
+        <p>Request Body:</p>
+        <pre><code>{
+    "business_name": "Vendor Name",
+    "email": "vendor@example.com",
+    "password": "password123"
+}</code></pre>
+        <p>Response:</p>
+        <pre><code>{
+    "vendor_id": 1,
+    "business_name": "Vendor Name",
+    "status": "Pending Approval"
+}</code></pre>
+
+        <h3>3. Product Management</h3>
+        <h4>3.1 Add Product</h4>
+        <p>Endpoint to add a new product.</p>
+        <pre><code>POST /api/products/</code></pre>
+        <p>Request Body:</p>
+        <pre><code>{
+    "name": "Product Name",
+    "price": 100.00,
+    "description": "Product Description",
+    "stock": 50,
+    "category": "Electronics"
+}</code></pre>
+        <p>Response:</p>
+        <pre><code>{
+    "product_id": 1,
+    "name": "Product Name",
+    "status": "Available"
+}</code></pre>
+
+        <h4>3.2 List Products</h4>
+        <p>Endpoint to get a list of all products.</p>
+        <pre><code>GET /api/products/</code></pre>
+        <p>Response:</p>
+        <pre><code>[
+    {
+        "product_id": 1,
+        "name": "Product Name",
+        "price": 100.00,
+        "category": "Electronics"
+    }
+]</code></pre>
+
+        <h3>4. Order Management</h3>
+        <h4>4.1 Place Order</h4>
+        <p>Endpoint to place an order.</p>
+        <pre><code>POST /api/orders/</code></pre>
+        <p>Request Body:</p>
+        <pre><code>{
+    "product_id": 1,
+    "quantity": 2,
+    "shipping_address": "123 Market St, City, Country"
+}</code></pre>
+        <p>Response:</p>
+        <pre><code>{
+    "order_id": 1,
+    "status": "Pending"
+}</code></pre>
+
+        <h4>4.2 List Orders</h4>
+        <p>Endpoint to get a list of all orders for a user.</p>
+        <pre><code>GET /api/orders/</code></pre>
+        <p>Response:</p>
+        <pre><code>[
+    {
+        "order_id": 1,
+        "product_name": "Product Name",
+        "quantity": 2,
+        "status": "Pending"
+    }
+]</code></pre>
+    </section>
+</div>
+{% endblock %}

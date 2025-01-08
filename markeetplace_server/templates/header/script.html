@@ -1,0 +1,33 @@
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('hidden');
+    });
+
+
+    const language = document.getElementById('language');
+    const languageMenu = document.getElementById('language-dropdown');
+
+    language.addEventListener('click', () => {
+      languageMenu.classList.toggle('hidden');
+    });
+
+    const Currency = document.getElementById('currency');
+    const CurrencyMenu = document.getElementById('currency-dropdown');
+
+    Currency.addEventListener('click', () => {
+      CurrencyMenu.classList.toggle('hidden');
+    });
+
+    function selectCurrency(currency) {
+      document.getElementById('currency').textContent = currency;
+      document.getElementById('currency-dropdown').classList.add('hidden');
+    }
+
+    function selectLanguage(language) {
+      document.getElementById('language').textContent = language;
+      document.getElementById('language-dropdown').classList.add('hidden');
+    }
+  </script>

@@ -1,0 +1,71 @@
+{% extends 'vendor/main/base.html' %}
+
+  {% block content %}
+  <div class="p-10">
+
+  <!-- Header -->
+  <div class="flex flex-col sm:flex-row justify-between items-center mb-4 ">
+    <h1 class="text-3xl text-black font-bold">Orders</h1>
+    <a href="/vendor/OrderFilter" class="mt-4 sm:mt-0 flex items-center bg-teal-700 hover:bg-teal-500 text-white font-semibold py-1 px-4 rounded-2xl">
+      <span class="text-2xl flex pb-1 mr-1">+</span>
+      <span class="text-lg">Filter</span>
+    </a>
+  </div>
+
+  <!-- Filters -->
+  <div class="flex flex-wrap space-x-4 mb-4">
+    <button class="text-teal-700 border-b-4 border-teal-700 pb-1 mb-2 sm:mb-0" onclick="filterOrders('ALL')">All</button>
+    <button class="text-gray-500 hover:text-teal-700 mb-2 sm:mb-0" onclick="filterOrders('CANCELLED')">Canceled</button>
+    <button class="text-gray-500 hover:text-teal-700 mb-2 sm:mb-0" onclick="filterOrders('DELIVERED')">Completed</button>
+    <button class="text-gray-500 hover:text-teal-700 mb-2 sm:mb-0" onclick="filterOrders('PENDING')">Pending</button>
+  </div>
+
+  <!-- Search -->
+  <div class="flex items-center justify-between bg-white p-4 rounded mb-4 gap-2 shadow">
+    <div class="relative w-full bg-white">
+      <input id="searchInput" type="text" class="w-full border border-gray-300 p-2 rounded text-black" placeholder="Search by Order ID" oninput="handleSearchChange()">
+    </div>
+  </div>
+
+  <!-- Orders Table -->
+  <div>
+    <table class="min-w-full bg-white rounded shadow">
+      <thead>
+        <tr class="bg-gray-100 text-left text-sm">
+          <th class="p-4">Order ID</th>
+          <th class="p-4">Total</th>
+          <th class="p-4">Status</th>
+          <th class="p-4">Date</th>
+          <th class="p-4">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="ordersTable">
+        {% for order in orders %}
+        <tr>
+          <td class="p-4">{{ order.id }}</td>
+          <td class="p-4">${{ order.get_total_cost }}</td>
+          <td class="p-4">{{ order.get_status_display }}</td>
+          <td class="p-4">{{ order.created_at|date:"Y-m-d H:i" }}</td>
+          <td class="p-4">
+            <form method="post" action="{% url 'vendor:update_order_status' order.id %}" class="inline">
+              {% csrf_token %}
+              <select name="status" onchange="this.form.submit()">
+                <option value="pending" {% if order.status == 'pending' %}selected{% endif %}>Pending</option>
+                <option value="shipped" {% if order.status == 'shipped' %}selected{% endif %}>Shipped</option>
+                <option value="delivered" {% if order.status == 'delivered' %}selected{% endif %}>Delivered</option>
+                <option value="cancelled" {% if order.status == 'cancelled' %}selected{% endif %}>Cancelled</option>
+              </select>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="flex justify-center mt-4 space-x-2" id="pagination">
+    <!-- Pagination buttons will be dynamically added here -->
+  </div>
+</div
+  {% endblock content %}

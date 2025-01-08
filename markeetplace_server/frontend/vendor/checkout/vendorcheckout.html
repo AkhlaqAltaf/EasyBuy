@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vendor Checkout</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <script>
+    // Script to toggle shipping address checkbox
+    function toggleShippingAddress() {
+      const billingCheck = document.getElementById('billingCheck');
+      const shippingFields = document.querySelectorAll('.shipping-fields input');
+      shippingFields.forEach(field => {
+        field.disabled = billingCheck.checked;
+      });
+    }
+  </script>
+</head>
+
+<body class="bg-gray-100">
+  <div class="mt-8 px-8 pb-10">
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row justify-between items-center">
+      <p class="text-[#111927] font-bold text-[33px]">Checkout</p>
+      <div class="flex items-center w-max gap-3 px-12 mt-4 sm:mt-0 justify-center relative mb-2 p-3 rounded-xl shadow-[0px_2px_10px_3px_#0B5D5180]">
+        <div>
+          <img src="done.png" alt="done" class="h-7" />
+        </div>
+        <div>
+          <p class="text-[18px] text-green-300">
+            Order Placed Successfully
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order -->
+    <div class="flex flex-col sm:flex-row justify-between items-center py-4">
+      <!-- Input Details -->
+      <div>
+        <div>
+          <div class="flex gap-2 py-3">
+            <p class="text-[#111927] font-bold text-[16px]">1.</p>
+            <p class="text-[#111927] font-bold text-[16px]">Billing Address</p>
+          </div>
+          <div>
+            <div class="flex flex-col sm:flex-row gap-4 py-2">
+              <div>
+                <input type="text" placeholder="First Name" class="pr-14 px-2 py-1 border-2 rounded-lg outline-black hover:outline-1" />
+              </div>
+              <div>
+                <input type="text" placeholder="Last Name" class="pr-14 px-2 py-1 border-2 rounded-lg outline-black hover:outline-1" />
+              </div>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4 py-2">
+              <div>
+                <input type="text" placeholder="Street Address" class="px-2 pr-14 py-1 border-2 rounded-lg outline-black hover:outline-1" />
+              </div>
+              <div>
+                <input type="text" placeholder="Street Line (optional)" class="px-2 pr-14 py-1 border-2 rounded-lg outline-black hover:outline-1" />
+              </div>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4 py-2">
+              <div>
+                <input type="text" placeholder="State" class="px-2 pr-14 py-1 border-2 rounded-lg outline-black hover:outline-1" />
+              </div>
+              <div>
+                <input type="text" placeholder="Zip" class="px-2 py-1 pr-14 border-2 rounded-lg outline-black hover:outline-1" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shipping Address -->
+        <div>
+          <div class="flex gap-2 pt-6">
+            <p class="text-[#111927] font-bold text-[16px]">2.</p>
+            <p class="text-[#111927] font-bold text-[16px]">Shipping Address</p>
+          </div>
+          <div class="flex gap-2 py-2">
+            <input type="checkbox" id="billingCheck" onclick="toggleShippingAddress()" />
+            <label for="billingCheck">Same as billing address</label>
+          </div>
+        </div>
+
+        <!-- Payment Method -->
+        <div>
+          <div class="flex gap-2 pt-6">
+            <p class="text-[#111927] font-bold text-[16px]">3.</p>
+            <p class="text-[#111927] font-bold text-[16px]">Payment Method</p>
+          </div>
+          <div class="flex flex-col">
+            <div class="flex gap-3 py-2">
+              <div class="flex gap-1">
+                <input type="radio" id="card" name="payment" />
+                <label for="card"><i class="fab fa-cc-visa text-blue-500"></i> Visa Credit/Debit Card</label>
+              </div>
+              <div class="flex gap-1">
+                <input type="radio" id="paypal" name="payment" />
+                <label for="paypal"><i class="fab fa-paypal text-blue-600"></i> Paypal</label>
+              </div>
+            </div>
+            <div class="flex flex-col">
+              <div class="py-2">
+                <input type="text" placeholder="Name on Card" class="px-2 py-1 w-full border-2 rounded-lg outline-black hover:outline-1" />
+              </div>
+              <div class="py-2">
+                <input type="text" placeholder="Card Number" class="px-2 py-1 w-full border-2 rounded-lg outline-black hover:outline-1" />
+              </div>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4 py-2">
+              <div class="w-full">
+                <input type="date" placeholder="dd/mm/yyyy" class="px-2 py-1 w-full border-2 rounded-lg outline-black text-gray-700 bg-white hover:outline-1" style="appearance: none;" />
+              </div>
+              <div class="w-full">
+                <input type="text" placeholder="Security Code" class="px-2 py-1 pr-20 border-2 rounded-lg outline-black hover:outline-1" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary -->
+      <div class="flex flex-col mt-4 sm:mt-0 relative mb-12 p-4 rounded-lg shadow-[0px_2px_10px_3px_#0B5D5180]">
+        <p class="pb-3 text-[16px] font-bold">Order Summary</p>
+        <div class="flex py-2 justify-between">
+          <img src="product2.png" alt="product" class="h-20 w-20" />
+          <div class="px-3 text-[14px]">
+            <p class="font-bold">Makeup Lancome Rouge</p>
+            <p>$95.00</p>
+          </div>
+          <div class="flex items-center text-[12px] px-1 h-9 border-2 rounded-lg">
+            <p>1</p>
+            <!-- Expand Icon -->
+            <i class="fas fa-chevron-down text-sm text-gray-500"></i>
+          </div>
+        </div>
+        <div class="flex py-3 justify-between">
+          <img src="product3.png" alt="product" class="h-20 w-20" />
+          <div class="px-3 text-[14px]">
+            <p class="font-bold">Healthcare Erbology</p>
+            <p>$25.00</p>
+          </div>
+          <div class="flex items-center text-[12px] px-1 h-9 border-2 rounded-lg">
+            <p>1</p>
+            <!-- Expand Icon -->
+            <i class="fas fa-chevron-down text-sm text-gray-500"></i>
+          </div>
+        </div>
+        <input class="px-2 py-0.5 border-2 rounded-lg outline-black hover:outline-1" type="text" placeholder="Discount Code" />
+        <button class="py-2 text-right text-[15px] text-teal-900 font-bold">
+          Apply Coupon
+        </button>
+        <div class="flex py-2 justify-between text-[14px] font-bold">
+          <p>Subtotal</p>
+          <p>$120.00</p>
+        </div>
+        <div class="flex py-1 justify-between text-[14px] font-bold">
+          <p>Shipping Tax</p>
+          <p>$12.00</p>
+        </div>
+        <div class="flex py-4 border-t-2 justify-between text-[14px] font-bold">
+          <p>Total</p>
+          <p>$132.00</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Completing order -->
+    <div>
+      <div class="flex py-1">
+        <img src="secure.png" alt="secure" />
+        <p class="font-bold">Secure Checkout</p>
+      </div>
+      <div class="py-1">
+        <p>Your purchases are secured by an industry best encryption service – Braintree</p>
+      </div>
+      <!-- Complete Order Button with Forward Icon -->
+      <button class="flex gap-1 bg-green-800 px-2 py-2 border-1 rounded-xl">
+        <p class="font-bold text-white">Complete order</p>
+        <i class="fas fa-chevron-right text-white"></i> <!-- Forward icon added here -->
+      </button>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Habba-Wa-Jumla{% endblock %}
+
+{% block content %}
+<div class="jumbotron text-center py-5" style="background-color: #ff8c00; color: white;">
+    <h1 class="display-4">Welcome to Habba-Wa-Jumla</h1>
+    <p class="lead">Your ultimate platform for event management and seamless wholesale services.</p>
+</div>
+
+<div class="container">
+    <section id="abstract" class="my-5">
+        <h2 class="text-center">Abstract</h2>
+        <p>
+            **Habba-Wa-Jumla** is a revolutionary platform designed to simplify event management and wholesale procurement. Whether planning an event or sourcing products in bulk, it provides tools for efficient scheduling, cost-effective purchases, and vendor management. Empowering businesses and individuals, Habba-Wa-Jumla makes event planning and wholesale shopping stress-free.
+        </p>
+    </section>
+
+    <section id="introduction" class="my-5">
+        <h2 class="text-center">Introduction</h2>
+        <p>
+            Habba-Wa-Jumla bridges the gap between event organizers and wholesale suppliers, offering an integrated solution for both needs. From creating event schedules to finding the best deals on bulk items, it ensures a seamless experience for users while promoting collaboration among vendors, businesses, and individuals.
+        </p>
+    </section>
+
+    <section id="modules" class="my-5">
+        <h2 class="text-center">Modules</h2>
+        <div class="accordion" id="modulesAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="module1Header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#module1" aria-expanded="true" aria-controls="module1">
+                        Module 1: User Registration & Login
+                    </button>
+                </h2>
+                <div id="module1" class="accordion-collapse collapse show" aria-labelledby="module1Header" data-bs-parent="#modulesAccordion">
+                    <div class="accordion-body">
+                        Users can sign up, log in, and create profiles to access features like event management, wholesale orders, and personalized dashboards.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="module2Header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#module2" aria-expanded="false" aria-controls="module2">
+                        Module 2: Event Management
+                    </button>
+                </h2>
+                <div id="module2" class="accordion-collapse collapse" aria-labelledby="module2Header" data-bs-parent="#modulesAccordion">
+                    <div class="accordion-body">
+                        Plan events effortlessly by scheduling tasks, managing guest lists, setting budgets, and coordinating vendors in one centralized platform.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="module3Header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#module3" aria-expanded="false" aria-controls="module3">
+                        Module 3: Wholesale Procurement
+                    </button>
+                </h2>
+                <div id="module3" class="accordion-collapse collapse" aria-labelledby="module3Header" data-bs-parent="#modulesAccordion">
+                    <div class="accordion-body">
+                        Access a wide range of wholesale suppliers, compare prices, and place bulk orders efficiently with advanced search and filter options.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="module4Header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#module4" aria-expanded="false" aria-controls="module4">
+                        Module 4: Vendor Management
+                    </button>
+                </h2>
+                <div id="module4" class="accordion-collapse collapse" aria-labelledby="module4Header" data-bs-parent="#modulesAccordion">
+                    <div class="accordion-body">
+                        A dedicated dashboard for managing vendors, tracking orders, and ensuring seamless communication between organizers and suppliers.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="module5Header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#module5" aria-expanded="false" aria-controls="module5">
+                        Module 5: Budget Optimization
+                    </button>
+                </h2>
+                <div id="module5" class="accordion-collapse collapse" aria-labelledby="module5Header" data-bs-parent="#modulesAccordion">
+                    <div class="accordion-body">
+                        Optimize event budgets and procurement costs with intelligent tools for analyzing expenses and finding cost-effective alternatives.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

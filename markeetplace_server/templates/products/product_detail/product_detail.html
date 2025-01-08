@@ -1,0 +1,89 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="bg-gray-50 font-sans">
+    <div class="font-sans">
+        <div class="p-4 lg:max-w-5xl max-w-lg mx-auto">
+            <div class="grid items-start grid-cols-1 lg:grid-cols-2 gap-6 max-lg:gap-12">
+
+                <div class="w-full lg:sticky top-0 sm:flex gap-2">
+                    <!-- Thumbnail Images Section -->
+                    <div class="sm:space-y-3 w-16 max-sm:w-12 max-sm:flex max-sm:mb-4 max-sm:gap-4">
+                        {% for media in product.media.all %}
+                            {% if media.media_type != '3d' %}
+                                <img
+                                    src="{{ media.file.url }}"
+                                    alt="Product1"
+                                    class="w-full cursor-pointer rounded-md outline"
+                                    onclick="changeImage(this.src)"
+                                />
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <!-- Main Image Section -->
+                    <div class="relative overflow-hidden group w-4/5 rounded-md">
+                        <img
+                            id="mainImage"
+                            src="{{ product.media.first.file.url }}"
+                            alt="Product"
+                            class="w-full h-auto object-cover transform group-hover:scale-150 transition duration-300 ease-in-out"
+                        />
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">{{ product.name }}</h2>
+                    <div class="flex flex-wrap gap-4 mt-4">
+                        <p class="text-gray-800 text-xl font-bold mb-3">${{ product.price }}</p>
+                    <div>
+                        <p class="text-danger"> Available in </p>
+                        {% for origin in product.country_of_origin.all %}
+                            <p class="text-blue-100 text-xl font-serif">{{ origin.name }}</p>
+                        {% endfor %}
+                    </div>
+                    </div>
+                <p>Stock : {{ product.stock_quantity }}</p>
+                <p>
+                    {{ product.description }}
+                </p>
+
+{#                    {% for tag in product.tags.all %}#}
+{#                        {% with tag|lower as tag_lower %}#}
+{#                            {% if tag_lower == "new" %}#}
+{#                                <span class="border p-1 bg-[#37A398] text-white rounded-md">{{ tag }}</span>#}
+{#                            {% elif tag_lower == "hot" %}#}
+{#                                <span class="border p-1 bg-[#FF5733] text-white rounded-md">{{ tag }}</span>#}
+{#                            {% elif tag_lower == "sale" %}#}
+{#                                <span class="border p-1 bg-[#FFC300] text-[#073741] rounded-md">{{ tag }}</span>#}
+{#                            {% elif tag_lower == "featured" %}#}
+{#                                <span class="border p-1 bg-[#1F7A77] text-white rounded-md">{{ tag }}</span>#}
+{#                            {% elif tag_lower == "limited" %}#}
+{#                                <span class="border p-1 bg-[#CC0033] text-white rounded-md">{{ tag }}</span>#}
+{#                            {% else %}#}
+{#                                <span class="border p-1 bg-gray-300 text-black rounded-md">{{ tag }}</span>#}
+{#                            {% endif %}#}
+{#                        {% endwith %}#}
+{#                    {% endfor %}#}
+                </div>
+            </div>
+
+            <!-- 3D Model Viewer Section -->
+            <div class="mt-8">
+                <a class="items-center justify-center rounded-md  px-3 py-2 text-center text-sm font-medium text-white  hover:text-white focus:outline-none focus:ring-4 focus:ring-blue-300" href="{% url 'product:product-detail3d' product.id %}"><h3 class="text-xl font-bold text-gray-800">3D View</h3></a>
+
+            </div>
+
+           <div class="flex justify-center space-x-4">
+    {% include 'commons/addToCartButton.html' %}
+    {% include 'commons/addToWishList.html' %}
+</div>
+            <!-- About the Item Section -->
+            <div class="mt-8">
+                <h3 class="text-xl font-bold text-gray-800">About the item</h3>
+                {{ product.content|safe }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

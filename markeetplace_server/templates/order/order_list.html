@@ -1,0 +1,53 @@
+{% extends 'core/base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen text-gray-800">
+    {% block content %}
+    <div class="p-10">
+        <h1 class="text-3xl text-black font-bold mb-4">My Orders</h1>
+
+        <!-- Orders Table -->
+        <div>
+            <table class="min-w-full bg-white rounded shadow">
+                <thead>
+                    <tr class="bg-gray-100 text-left text-sm">
+                        <th class="p-4">Order ID</th>
+                        <th class="p-4">Total</th>
+                        <th class="p-4">Status</th>
+                        <th class="p-4">Date</th>
+                        <th class="p-4">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                    <tr>
+                        <td class="p-4">{{ order.id }}</td>
+                        <td class="p-4">${{ order.get_total_cost }}</td>
+                        <td class="p-4">{{ order.get_status_display }}</td>
+                        <td class="p-4">{{ order.created_at|date:"Y-m-d H:i" }}</td>
+                        <td class="p-4">
+                            {% if order.status == 'pending' %}
+                            <form method="post" action="{% url 'product:cancel_order' order.id %}" class="inline">
+                                {% csrf_token %}
+                                <button type="submit" class="text-red-500 hover:text-red-700">Cancel Order</button>
+                            </form>
+                            {% else %}
+                            <span class="text-gray-500">Cannot cancel</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endblock content %}
+</body>
+</html>

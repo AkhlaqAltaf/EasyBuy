@@ -1,0 +1,27 @@
+  <script>
+    function toggleTab(isSignIn) {
+      document.getElementById('signInForm').classList.toggle('hidden', !isSignIn);
+      document.getElementById('signUpForm').classList.toggle('hidden', isSignIn);
+      document.getElementById('signInTab').classList.toggle('text-gray-800', isSignIn);
+      document.getElementById('signUpTab').classList.toggle('text-gray-800', !isSignIn);
+    }
+
+    function togglePassword(inputId) {
+      const input = document.getElementById(inputId);
+      input.type = input.type === 'password' ? 'text' : 'password';
+    }
+
+
+    const signInTab = document.getElementById('signInTab');
+    const signUpTab = document.getElementById('signUpTab');
+
+    signInTab.addEventListener('click', () => {
+        signInTab.classList.add('border-b-2', 'border-orange-500');
+        signUpTab.classList.remove('border-b-2', 'border-orange-500');
+    });
+
+    signUpTab.addEventListener('click', () => {
+        signUpTab.classList.add('border-b-2', 'border-orange-500');
+        signInTab.classList.remove('border-b-2', 'border-orange-500');
+    });
+  </script>

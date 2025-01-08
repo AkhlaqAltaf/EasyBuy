@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Latest News</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#F2F4F5]">
+
+  <!-- Latest News Section -->
+  <div class="mt-[50px]">
+    <h1 class="text-[32px] font-[600] text-center mb-[30px]">
+      Latest News
+    </h1>
+
+    <!-- News Sections Row -->
+    <div class="flex flex-wrap justify-center gap-6 px-4">
+      <!-- News Card 1 -->
+      <div class="bg-white p-4 flex flex-col shadow-md w-full md:w-1/3 lg:w-1/3 xl:w-1/4 mb-0">
+        <img src="../assets/news1.png" alt="Cras nisl dolor" class="w-full h-48 object-cover mb-4" />
+        <!-- Extra info: Account, Date, Messages -->
+        <div class="flex gap-4 items-center mb-4">
+          <div class="flex items-center space-x-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#0B5D51" viewBox="0 0 16 16">
+              <path d="M8 0a5 5 0 0 0-5 5c0 2.738 2.264 4.918 5 4.918S13 7.738 13 5A5 5 0 0 0 8 0zM4.5 5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0zM8 10.966c-1.75 0-5 1.344-5 3.5v1h10v-1c0-2.156-3.25-3.5-5-3.5z" />
+            </svg>
+            <span class="text-[#475156] text-[14px]">John Doe</span>
+          </div>
+          <div class="flex items-center space-x-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#0B5D51" viewBox="0 0 16 16">
+              <path d="M3 2a1 1 0 0 1 1 1h9a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" />
+            </svg>
+            <span class="text-[#475156] text-[14px]">Oct 07, 2024</span>
+          </div>
+          <div class="flex items-center space-x-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#0B5D51" viewBox="0 0 16 16">
+              <path d="M5.5 0a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5v-12a.5.5 0 0 1 .5-.5h5z" />
+            </svg>
+            <span class="text-[#475156] text-[14px]">453</span>
+          </div>
+        </div>
+
+        <!-- Headline -->
+        <h2 class="text-[24px] font-semibold mb-2">
+          Cras nisl dolor, et metus sit amet, vulputate condimentum dolor.
+        </h2>
+
+        <!-- Description -->
+        <p class="text-gray-600 mb-4">
+          Maecenas scelerisque, tempus egestas, ligula diam molestie lectus, tincidunt malesuada arcu metus posuere metus.
+        </p>
+
+        <!-- Read More Button -->
+        <button class="w-[162px] h-[48px] flex items-center gap-3 border border-[#0B5D51] text-[#0B5D51] px-2 py-2 rounded">
+          Read More
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#0B5D51" viewBox="0 0 16 16">
+              <path d="M11.293 8l-4.646 4.646a.5.5 0 0 0 0 .708l.707.707a.5.5 0 0 0 .707 0l5.5-5.5a.5.5 0 0 0 0-.708l-5.5-5.5a.5.5 0 0 0-.707.707L11.293 8z" />
+            </svg>
+          </span>
+        </button>
+      </div>
+
+      <!-- Repeat News Cards for news 2 and 3 -->
+      <div class="bg-white p-4 flex flex-col shadow-md w-full md:w-1/3 lg:w-1/3 xl:w-1/4 mb-0">
+        <img src="../assets/news2.png" alt="Curabitur pulvinar" class="w-full h-48 object-cover mb-4" />
+        <div class="flex gap-4 items-center mb-4">
+          <div class="flex items-center space-x-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#0B5D51" viewBox="0 0 16 16">
+              <path d="M8 0a5 5 0 0 0-5 5c0 2.738 2.264 4.918 5 4.918S13 7.738 13 5A5 5 0 0 0 8 0zM4.5 5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0zM8 10.966c-1.75 0-5 1.344-5 3.5v1h10v-1c0-2.156-3.25-3.5-5-3.5z" />
+            </svg>
+            <span class="text-[#475156] text-[14px]">Jane Smith</span>
+          </div>
+          <div class="flex items-center space-x-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#0B5D51" viewBox="0 0 16 16">
+              <path d="M3 2a1 1 0 0 1 1 1h9a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" />
+            </svg>
+            <span class="text-[#475156] text-[14px]">Oct 06, 2024</span>
+          </div>
+          <div class="flex items-center space-x-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#0B5D51" viewBox="0 0 16 16">
+              <path d="M5.5 0a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5v-12a.5.5 0 0 1 .5-.5h5z" />
+            </svg>
+            <span class="text-[#475156] text-[14px]">738</span>
+          </div>
+        </div>
+        <h2 class="text-[24px] font-semibold mb-2">
+          Curabitur pulvinar aliquam lectus, non blandit erat mattis vitae.
+        </h2>
+        <p class="text-gray-600 mb-4">
+          Mauris scelerisque odio id rutrum volutpat. Pellentesque urna odio, vulputate at tortor vitae, hendrerit blandit lorem.
+        </p>
+        <button class="w-[162px] h-[48px] flex items-center gap-3 border border-[#0B5D51] text-[#0B5D51] px-2 py-2 rounded">
+          Read More
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#0B5D51" viewBox="0 0 16 16">
+              <path d="M11.293 8l-4.646 4.646a.5.5 0 0 0 0 .708l.707.707a.5.5 0 0 0 .707 0l5.5-5.5a.5.5 0 0 0 0-.708l-5.5-5.5a.5.5 0 0 0-.707.707L11.293 8z" />
+            </svg>
+          </span>
+        </button>
+      </div>
+
+      <div class="bg-white p-4 flex flex-col shadow-md w-full md:w-1/3 lg:w-1/3 xl:w-1/4 mb-0">
+        <img src="../assets/news3.png" alt="Sed do eiusmod tempor" class="w-full h-48 object-cover mb-4" />
+        <div class="flex gap-4 items-center mb-4">
+          <div class="flex items-center space-x-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#0B5D51" viewBox="0 0 16 16">
+              <path d="M8 0a5 5 0 0 0-5 5c0 2.738 2.264 4.918 5 4.918S13 7.738 13 5A5 5 0 0 0 8 0zM4.5 5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0zM8 10.966c-1.75 0-5 1.344-5 3.5v1h10v-1c0-2.156-3.25-3.5-5-3.5z" />
+            </svg>
+            <span class="text-[#475156] text-[14px]">Alan Tan</span>
+          </div>
+          <div class="flex items-center space-x-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#0B5D51" viewBox="0 0 16 16">
+              <path d="M3 2a1 1 0 0 1 1 1h9a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" />
+            </svg>
+            <span class="text-[#475156] text-[14px]">Oct 05, 2024</span>
+          </div>
+          <div class="flex items-center space-x-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#0B5D51" viewBox="0 0 16 16">
+              <path d="M5.5 0a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5v-12a.5.5 0 0 1 .5-.5h5z" />
+            </svg>
+            <span class="text-[#475156] text-[14px]">823</span>
+          </div>
+        </div>
+        <h2 class="text-[24px] font-semibold mb-2">
+          Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </h2>
+        <p class="text-gray-600 mb-4">
+          Suspendisse potenti. Nulla sit amet nulla consectetur, aliquam risus a, tempus eros.
+        </p>
+        <button class="w-[162px] h-[48px] flex items-center gap-3 border border-[#0B5D51] text-[#0B5D51] px-2 py-2 rounded">
+          Read More
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#0B5D51" viewBox="0 0 16 16">
+              <path d="M11.293 8l-4.646 4.646a.5.5 0 0 0 0 .708l.707.707a.5.5 0 0 0 .707 0l5.5-5.5a.5.5 0 0 0 0-.708l-5.5-5.5a.5.5 0 0 0-.707.707L11.293 8z" />
+            </svg>
+          </span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

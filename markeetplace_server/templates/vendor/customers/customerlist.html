@@ -1,0 +1,177 @@
+{% extends 'vendor/main/base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer List vendor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  {% block content %}
+
+  <div class="w-full h-full py-10 px-5 ml-10"> 
+    <div class="h-auto shadow-md w-full rounded-2xl flex flex-col gap-4 mt-7 border py-4">
+      <!-- Tabs -->
+      <div class="flex flex-wrap items-center h-[48px] w-full gap-5 text-gray-500 px-5">
+        <div class="text-[#0B5D51] h-full border-b-2 border-[#0B5D51]">All</div>
+        <div class="h-full">Accepts Marketing</div>
+        <div class="h-full">Prospect</div>
+        <div class="h-full">Returning</div>
+      </div>
+
+      <!-- Filters -->
+      <div class="flex flex-wrap gap-4 h-auto px-5">
+        <div class="relative flex-grow items-center h-[58px]">
+          <input type="text" placeholder="Search..." class="w-full h-full px-4 pl-10 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <div class="absolute left-3 top-1/2 transform -translate-y-1/2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="10" cy="10" r="7"></circle>
+              <line x1="21" y1="21" x2="15" y2="15"></line>
+            </svg>
+          </div>
+        </div>
+        <div class="flex flex-col border h-[58px] w-[190px] px-[10px] justify-center rounded-lg">
+          <p class="text-gray-500">Sort By</p>
+          Last update (newest)
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="flex flex-col w-full h-full overflow-x-auto">
+        <!-- Table Header -->
+        <div class="flex min-w-[800px] bg-[#0B5D51] h-[54px] text-white items-center uppercase">
+          <div class="w-[74px] h-full flex items-center justify-center">
+            <input type="checkbox" id="customCheckbox" class="rounded-lg h-5 w-5 border border-green">
+          </div>
+          <div class="w-[413px] px-3">Name</div>
+          <div class="w-[354px] px-3">Location</div>
+          <div class="w-[143px] px-3">Orders</div>
+          <div class="w-[174px] px-3">Spent</div>
+          <div class="w-[192px] px-3 text-right">Actions</div>
+        </div>
+
+        <!-- Table Rows -->
+        <div class="flex min-w-[800px] w-full h-[74px] border items-center">
+          <div class="w-[74px] h-full flex items-center justify-center">
+            <input type="checkbox" id="customCheckbox-1" class="rounded-lg h-5 w-5 border border-green">
+          </div>
+          <div class="w-[413px] px-3 flex gap-3 items-center">
+            <img src="https://via.placeholder.com/50" alt="Carson Darrin" class="h-[42px] w-[42px] rounded-full">
+            <div>
+              <h3 class="text-[#111927] font-medium">Carson Darrin</h3>
+              <p class="text-[#0B5D51]">carson.darrin@devias.io</p>
+            </div>
+          </div>
+          <div class="w-[354px] px-3">
+            <h3 class="text-[#111927] font-medium">Cleveland, Ohio, USA</h3>
+          </div>
+          <div class="w-[143px] px-3">3</div>
+          <div class="w-[174px] px-3">$300.00</div>
+          <div class="w-[192px] px-3 justify-end flex">
+            <button class="flex gap-4 items-center text-[#0B5D51]">
+                <i class="fa-solid fa-pencil text-xl"></i>
+                <i class="fa-solid fa-arrow-right text-2xl"></i>
+            </button>
+          </div>
+        </div>
+        <div class="flex min-w-[800px] w-full h-[74px] border items-center">
+          <div class="w-[74px] h-full flex items-center justify-center">
+            <input type="checkbox" id="customCheckbox-1" class="rounded-lg h-5 w-5 border border-green">
+          </div>
+          <div class="w-[413px] px-3 flex gap-3 items-center">
+            <img src="https://via.placeholder.com/50" alt="Carson Darrin" class="h-[42px] w-[42px] rounded-full">
+            <div>
+              <h3 class="text-[#111927] font-medium">Carson Darrin</h3>
+              <p class="text-[#0B5D51]">carson.darrin@devias.io</p>
+            </div>
+          </div>
+          <div class="w-[354px] px-3">
+            <h3 class="text-[#111927] font-medium">Cleveland, Ohio, USA</h3>
+          </div>
+          <div class="w-[143px] px-3">3</div>
+          <div class="w-[174px] px-3">$300.00</div>
+          <div class="w-[192px] px-3 justify-end flex">
+            <button class="flex gap-4 items-center text-[#0B5D51]">
+                <i class="fa-solid fa-pencil text-xl"></i>
+                <i class="fa-solid fa-arrow-right text-2xl"></i>
+            </button>
+          </div>
+        </div>
+        <div class="flex min-w-[800px] w-full h-[74px] border items-center">
+          <div class="w-[74px] h-full flex items-center justify-center">
+            <input type="checkbox" id="customCheckbox-1" class="rounded-lg h-5 w-5 border border-green">
+          </div>
+          <div class="w-[413px] px-3 flex gap-3 items-center">
+            <img src="https://via.placeholder.com/50" alt="Carson Darrin" class="h-[42px] w-[42px] rounded-full">
+            <div>
+              <h3 class="text-[#111927] font-medium">Carson Darrin</h3>
+              <p class="text-[#0B5D51]">carson.darrin@devias.io</p>
+            </div>
+          </div>
+          <div class="w-[354px] px-3">
+            <h3 class="text-[#111927] font-medium">Cleveland, Ohio, USA</h3>
+          </div>
+          <div class="w-[143px] px-3">3</div>
+          <div class="w-[174px] px-3">$300.00</div>
+          <div class="w-[192px] px-3 justify-end flex">
+            <button class="flex gap-4 items-center text-[#0B5D51]">
+                <i class="fa-solid fa-pencil text-xl"></i>
+                <i class="fa-solid fa-arrow-right text-2xl"></i>
+            </button>
+          </div>
+        </div>
+        <div class="flex min-w-[800px] w-full h-[74px] border items-center">
+          <div class="w-[74px] h-full flex items-center justify-center">
+            <input type="checkbox" id="customCheckbox-1" class="rounded-lg h-5 w-5 border border-green">
+          </div>
+          <div class="w-[413px] px-3 flex gap-3 items-center">
+            <img src="https://via.placeholder.com/50" alt="Carson Darrin" class="h-[42px] w-[42px] rounded-full">
+            <div>
+              <h3 class="text-[#111927] font-medium">Carson Darrin</h3>
+              <p class="text-[#0B5D51]">carson.darrin@devias.io</p>
+            </div>
+          </div>
+          <div class="w-[354px] px-3">
+            <h3 class="text-[#111927] font-medium">Cleveland, Ohio, USA</h3>
+          </div>
+          <div class="w-[143px] px-3">3</div>
+          <div class="w-[174px] px-3">$300.00</div>
+          <div class="w-[192px] px-3 justify-end flex">
+            <button class="flex gap-4 items-center text-[#0B5D51]">
+                <i class="fa-solid fa-pencil text-xl"></i>
+                <i class="fa-solid fa-arrow-right text-2xl"></i>
+            </button>
+          </div>
+        </div>
+        <!-- Repeat rows as needed -->
+
+        <!-- Footer -->
+        <div class="w-full flex justify-between items-center h-[60px] px-5 text-sm flex-wrap">
+          <div class="flex items-center gap-2">
+            <p class="text-[#111927] font-medium">Rows per page:</p>
+            <select class="border border-gray-300 rounded-lg px-2 py-1 focus:outline-none">
+              <option>5</option>
+              <option>10</option>
+              <option>15</option>
+            </select>
+          </div>
+          <p class="text-[#111927] font-medium">1-5 of 10</p>
+          <div class="flex gap-4 items-center">
+            <button>
+              <i class="fa-solid fa-chevron-left text-[#0B5D51]"></i>
+            </button>
+            <button>
+              <i class="fa-solid fa-chevron-right text-[#0B5D51]"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://kit.fontawesome.com/ac8aec1afa.js" crossorigin="anonymous"></script>
+  {% endblock %}
+
+</body>
+</html>

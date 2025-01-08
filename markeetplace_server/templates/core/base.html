@@ -1,0 +1,108 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyBuy|{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'css/message.css' %}">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+</head>
+
+<body>
+
+{#HEADER SECTION #}
+{% include 'header/header.html' %}
+
+<div class="container">
+    {% if messages %}
+        <div class="messages" id="message-container">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} message">
+                    <span>{{ message }}</span>
+                    <button class="delete" onclick="closeMessage(this)">&times;</button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+{% block content %}
+{% endblock content %}
+
+{#FOOTER SECTION #}
+{% include 'footer/footer.html' %}
+
+<script src="{% static 'js/main.js' %}"></script>
+
+{#SCRIPTS SECTION #}
+<script>
+    // Function to close the message
+    function closeMessage(element) {
+        const messageContainer = document.getElementById('message-container');
+        const message = element.parentElement;
+        message.classList.add('fade-out');
+        setTimeout(() => {
+            messageContainer.removeChild(message);
+        }, 300); // Match this with the CSS transition duration
+    }
+
+    // Automatically close messages after 2 seconds
+    document.querySelectorAll('.message').forEach(message => {
+        setTimeout(() => {
+            closeMessage(message.querySelector('.delete'));
+        }, 2000);
+    });
+</script>
+
+<style>
+    .messages {
+        position: fixed; /* Use fixed positioning */
+        top: 20px; /* Distance from the top */
+        left: 50%; /* Center horizontally */
+        transform: translateX(-50%); /* Adjust to center */
+        width: auto; /* Adjust width as needed */
+        max-width: 90%; /* Limit max width */
+        z-index: 1000; /* Ensure it appears above other content */
+    }
+
+    .message {
+        background-color: #f0f9ff; /* Light blue background */
+        color: #1a1f36; /* Text color */
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Add shadow for better visibility */
+    }
+
+    .fade-out {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    .delete {
+        background: none;
+        border: none;
+        color: #1a1f36; /* Text color for the close button */
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    .delete:hover {
+        color: #ef4444; /* Change color on hover */
+    }
+</style>
+
+</body>
+</html>

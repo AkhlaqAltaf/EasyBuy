@@ -1,0 +1,42 @@
+   <div class="md:col-span-4 flex flex-col gap-4">
+      <!-- Sale Banner -->
+       {% if top_sale2 %}
+
+
+      <div class="bg-black flex flex-col md:flex-row h-auto md:h-[280px] rounded-md p-4 md:p-0">
+        <div class="flex flex-col justify-center w-full md:w-[200px] px-4 md:px-[20px]">
+          <p class="text-[#EBC80C] text-[12px] md:text-[14px]">MORE DISCOUNT</p>
+          <h4 class="text-white text-[20px] md:text-[24px]">{{ top_sale2.name }}</h4>
+          <a href="{% url 'product:product-detail' top_sale2.id %}" class="bg-[#FA8232] text-white font-[700] w-[120px] md:w-[150px] h-[40px] md:h-[50px] py-2 flex items-center justify-center">
+            <span>Shop Now</span>
+            <span class="ml-2 text-lg md:text-xl">→</span>
+          </a>
+        </div>
+        <div class="relative flex justify-center mt-4 md:mt-0">
+          <img src="{{ top_sale2.media.first.file.url }}" alt="" class="w-full h-auto" />
+          <p class="bg-[#EFD33D] text-[12px] md:text-[16px] p-2 absolute top-[60px] md:top-[90px] left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+              {{ top_sale2.discount_price }}% OFF
+          </p>
+        </div>
+      </div>
+    {% endif %}
+
+      <!-- Product Banner -->
+{% if top_sale3 %}
+
+
+      <div class="bg-[#F2F4F5] flex flex-col md:flex-row h-auto md:h-[280px] rounded-md p-4 md:p-0">
+        <div class="flex items-center justify-center w-full md:w-auto">
+          <img src="{{ top_sale3.media.first.file.url }}" alt="" class="w-full md:w-auto" />
+        </div>
+        <div class="flex flex-col justify-center px-4 md:px-4 mt-4 md:mt-0">
+          <h4 class="text-black font-[600] text-[20px] md:text-[24px]">{{ top_sale3.name }}</h4>
+          <p class="text-[#2DA5F3] text-[16px] md:text-[18px]">${{ top_sale3.price }}</p>
+          <a href="{% url 'product:product-detail' top_sale3.id %}" class="bg-[#FA8232] text-white font-[700] w-[120px] md:w-[150px] h-[40px] md:h-[50px] py-2 flex items-center justify-center">
+            <span>Shop Now</span>
+            <span class="ml-2 text-lg md:text-xl">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+{% endif %}

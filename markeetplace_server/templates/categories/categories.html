@@ -1,0 +1,47 @@
+
+
+  <style>
+    .custom-scrollbar {
+      scroll-snap-type: x mandatory;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+
+<body>
+  <div class="mt-[50px] flex flex-col justify-between gap-5 px-5 lg:px-[40px]">
+    <!-- Title -->
+    <div class="text-[24px] lg:text-[32px] font-[600] text-center">
+      Shop with Categories
+    </div>
+
+    <!-- Scrollable Categories Section -->
+    <div id="scrollContainer" class="flex overflow-x-scroll custom-scrollbar space-x-4 p-4">
+      <!-- Product Cards -->
+      <div class="flex space-x-4">
+        <!-- Template for Product Card -->
+        <!-- Add your product cards here -->
+
+          {% for category in categories %}
+        <a href="{% url 'product:category-product' category.id %}" class="flex flex-col items-center bg-white border border-gray-300 p-3 rounded-md shadow-lg" style="min-width: 205px; height: 236px;">
+          <img src="{{ category.image.url }}" alt="img" class="mb-2 w-full h-4/5 object-cover" style="max-height: 188px;" />
+          <p class="text-lg font-semibold">{{category.name}}</p>
+        </a>
+          {% endfor %}
+
+
+        <!-- Add more cards as needed -->
+      </div>
+    </div>
+
+    <!-- Pagination Dots -->
+    <div id="pagination" class="flex justify-center mt-4 space-x-2">
+      <!-- Dynamic dots will be added here -->
+    </div>
+  </div>
+
+{#  SCRIPT CALLS HERE #}
+{% include 'categories/scripts.html' %}
+
