@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:easy_buy_app/apis/urls/urls.dart';
 import 'package:easy_buy_app/data_layer/product/product.dart';
-import 'package:easy_buy_app/presentation_layer/common/flash_message/flash_message.dart';
 import 'package:get/get.dart'; // Import GetX
 import 'package:http/http.dart' as http;
+
+import '../../common/flash_message/flash_message.dart';
 
 Future<List<Product>> getAllProducts({int? categoryID}) async {
   try {
@@ -17,9 +18,9 @@ Future<List<Product>> getAllProducts({int? categoryID}) async {
         // Check if categoryID is provided and matches, or if categoryID is null
         if (categoryID == -1 || data['category'] == categoryID) {
           List<ProductImage> images = [];
-          data['images'].forEach((image) {
+          data['media'].forEach((image) {
             images.add(ProductImage(
-                image: image['image'], is_primary: image['is_primary']));
+                image: image['file'], is_primary: image['is_primary']));
           });
 
           var product = Product(images,
@@ -27,8 +28,9 @@ Future<List<Product>> getAllProducts({int? categoryID}) async {
               name: data['name'],
               description: data['description'],
               price: data['price'],
-              stock: data['stock'],
+              stock: data['stock_quantity'],
               category_id: data['category']);
+          products.add(product);
           products.add(product);
         }
       });

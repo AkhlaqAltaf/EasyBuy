@@ -58,7 +58,6 @@ dependencies:
   badges: # for badges
   flutter_animate: # for animation
   carousel_slider: ^5.0.0
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -97,6 +96,7 @@ flutter:
     - assets/fonts/
     - assets/image_view.html
     - assets/my_image.png
+    - assets/model.glb
 
 
   fonts:

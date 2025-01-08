@@ -1,13 +1,15 @@
-import 'package:easy_buy_app/ar_screen.dart';
-import 'package:easy_buy_app/presentation_layer/components/app/splash_screen/bindings/splash_bindings.dart';
-import 'package:easy_buy_app/presentation_layer/splash_screen/splash_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'presentation_layer/components/app/data/local/my_shared_pref.dart';
-import 'presentation_layer/components/app/routes/app_pages.dart';
-import 'presentation_layer/components/config/theme/my_theme.dart';
-import 'presentation_layer/components/config/translations/localization_service.dart';
+
+import 'app/data/local/my_shared_pref.dart';
+import 'app/modules/splash_screen/splash_screen.dart';
+import 'app/routes/app_pages.dart';
+import 'app/splash_screen/bindings/splash_bindings.dart';
+import 'config/theme/my_theme.dart';
+import 'config/translations/localization_service.dart';
+
 
 //ARE YOU HERE
 

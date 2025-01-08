@@ -2,14 +2,12 @@ import 'dart:convert';
 
 import 'package:easy_buy_app/apis/urls/urls.dart';
 import 'package:easy_buy_app/data_layer/product/category.dart';
-import 'package:easy_buy_app/presentation_layer/auth_screens/login_screen/login_screen.dart';
-import 'package:easy_buy_app/presentation_layer/auth_screens/signup_screen/signup_screen.dart';
-import 'package:easy_buy_app/presentation_layer/common/flash_message/flash_message.dart';
-import 'package:easy_buy_app/presentation_layer/home_screen/category_list.dart';
-import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
+
+import '../../common/flash_message/flash_message.dart';
 
 Future<List<Category>> getCategories() async {
   try {
@@ -24,7 +22,8 @@ Future<List<Category>> getCategories() async {
             id: data['id'],
             image: data['image'],
             name: data['name'],
-            description: data['description']);
+            // description: data['description']
+        );
         categories.add(category);
       });
 
